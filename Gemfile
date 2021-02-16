@@ -26,6 +26,7 @@ gem 'activeadmin'
 gem 'devise'
 #bootstrap
 gem 'bootstrap', '~> 5.0.0.alpha3'
+gem 'pry'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -47,6 +48,7 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'dotenv-rails'
 end
 
 group :test do
