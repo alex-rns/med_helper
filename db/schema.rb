@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_201306) do
+ActiveRecord::Schema.define(version: 2021_02_16_173335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,43 @@ ActiveRecord::Schema.define(version: 2021_02_15_201306) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "experts", force: :cascade do |t|
+    t.string "full_name"
+    t.text "description"
+    t.text "level"
+    t.integer "experience"
+    t.text "additional_education"
+    t.text "procedure"
+    t.string "address"
+    t.string "medical_center"
+    t.string "email"
+    t.string "phone"
+    t.string "image"
+    t.string "hw_start_monday"
+    t.string "hw_end_monday"
+    t.string "hw_start_tuesday"
+    t.string "hw_end_tuesday"
+    t.string "hw_start_wednesday"
+    t.string "hw_end_wednesday"
+    t.string "hw_start_thursday"
+    t.string "hw_end_thursday"
+    t.string "hw_start_friday"
+    t.string "hw_end_friday"
+    t.string "hw_start_saturday"
+    t.string "hw_end_saturday"
+    t.string "hw_start_sunday"
+    t.string "hw_end_sunday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id"
   end
 
   create_table "users", force: :cascade do |t|
