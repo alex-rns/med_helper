@@ -1,24 +1,9 @@
-# README
+# **GeekHub X | RoR | Collective Graduation Project | Med Helper**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
+Медицинский сервис. Можно регистрироваться как пациент или как врач(для допуска врача к работе админ проверяет лицензию). Пациент выбирает врача по специализации, на гугл-картах показывается его местоположение,можно посмотреть профиль врача, назначить встречу, проставить рейтинг. Врач после встречи заполняет карту диагноза пациента, назначает лечение, прививки и т.д.
 
-Things you may want to cover:
 
-* Ruby version
+GitHelper: https://docs.google.com/document/d/1kgVatgTiimp4UFBBBwFNNkFnE6hFWFgMGVcGmL_tFEk/edit
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Trello: https://trello.com/b/JjUfvdPC/medhelper
