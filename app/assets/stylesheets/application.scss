@@ -13,4 +13,52 @@
  *= require_tree .
  *= require_self
  */
+
 @import 'bootstrap';
+
+
+body {
+  background-color: #b4e0e5;
+}
+.expert-cart {
+  height: 296px;
+  margin-top: 10px;
+}
+.cart-address {
+  height: 95px;
+}
+.contact {
+  display: inline-flex;
+}
+
+.expert-filter {
+  height: 115px;
+  margin-top: 10px;
+}
+.ui-menu{
+  max-width: 707.719px;
+}
+.filter {
+  margin-top: 10px;
+}
+.ui-autocomplete {
+  background-color: white;
+}
+#menu li{
+	display: inline-block;
+}
+.ui-tooltip {
+    background: #4a4a4a;
+    color: #96f226;
+    border: 2px solid #454545;
+    border-radius: 0px;
+    box-shadow: 0 0
+}
+.ui-autocomplete {
+    background: white;
+    border-radius: 0px;
+}
+
+.ui-menu .ui-menu-item{
+  font-size:20px;
+}
