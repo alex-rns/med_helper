@@ -4,7 +4,15 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field my-3 d-inline-flex m-auto">
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control" %>
+      <%= f.text_field :name, autofocus: true, placeholder: "Full name", class: "form-control" %>
+    </div>
+    <br/>
+    <div class="field my-3 d-inline-flex m-auto">
+      <%= f.email_field :email, autocomplete: "email", placeholder: "Email", class: "form-control" %>
+    </div>
+    <br/>
+    <div class="field my-3 d-inline-flex m-auto">
+      <%= f.phone_field :phone, placeholder: "Phone", class: "form-control" %>
     </div>
     <br/>
     <div class="field my-3 d-inline-flex m-auto mb-0">
