@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'pages#testbootstrap', as: "home"
   resources :experts, only: [:show]
+  resources :users
 end
