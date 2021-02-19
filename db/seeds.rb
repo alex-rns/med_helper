@@ -11,9 +11,9 @@ csv_data = File.read(Rails.root.join('db/experts.csv').to_s)
 
 csv = CSV.new(csv_data, headers: true, header_converters: :symbol, converters: :all)
 
-Level.create!(name: "Врач высшей категори", level_status: 1)
-Level.create!(name: "Врач вторая категори", level_status: 2)
-Level.create!(name: "Врач третей категори", level_status: 3)
+Level.create!(name: "Врач высшей категории", level_status: 1)
+Level.create!(name: "Врач второй категории", level_status: 2)
+Level.create!(name: "Врач третей категории", level_status: 3)
 
 products_data = csv.to_a.map { |row| row.to_hash }
 
