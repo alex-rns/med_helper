@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'pages#testbootstrap', as: "home"
-  resources :experts, only: [:show]
-  resources :users
+  resources :experts, only: [:show, :index] do
+    resources :events, only: [:new, :create, :show]
+  end
 end

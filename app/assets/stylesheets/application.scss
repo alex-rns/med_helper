@@ -15,8 +15,17 @@
  */
 
 @import 'bootstrap';
+.event-border{
+  height: 500px;
+  width: 500px;
+  margin-top: 50px;
+  margin-left: 10px;
 
-
+}
+.btn-event{
+  width: 464px;
+  margin-top: 10px;
+}
 body {
   background-color: #b4e0e5;
 }
@@ -61,4 +70,23 @@ body {
 
 .ui-menu .ui-menu-item{
   font-size:20px;
+}
+.datepicker-dropdown {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.datepicker td, .datepicker th {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.85rem;
+}
+
+.datepicker {
+    // margin-bottom: 3rem;
+    // margin-left: 4px;
+}
+.button-contact{
+  width: 392px;
+}
+.alert-event{
+  padding: 0px;
 }

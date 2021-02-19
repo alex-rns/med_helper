@@ -1,4 +1,8 @@
 <div class="container">
+  <% if flash[:notice] %>
+    <div class="notice alert alert-success"><%= flash[:notice] %></div>
+  <% end %>
+
   <div class="row border expert-filter shadow p-3 mb-5 bg-body rounded">
     <div class="row col-12 col-sm-12 col-md-12 col-lg-12">
     <%= form_tag(search_experts_path, :method => "get") do %>
@@ -12,9 +16,18 @@
    </div>
 
      <div class="row col-12 col-sm-5 col-md-7 col-lg-7 filter">
-     <%= form_tag(search_experts_path, method: :get) do |form| %>
-      <%= select_tag :filter, options_for_select(["Сортировать по",["От высшей категории к низшей", "downcategory"], ["От низшей категории к высшей","upcategory"],["От большого стажа к небольшому", "downexperience"], ["От небольшого стажа к большому","upexperience"]]), class: 'form-control selector'%>
-     <% end %>
+       <div class = "col-sm-6">
+
+        <%= form_tag(search_experts_path, method: :get) do |form| %>
+         <%= select_tag :filter, options_for_select(["Сортировать по",["От высшей категории к низшей", "downcategory"], ["От низшей категории к высшей","upcategory"],["От большого стажа к небольшому", "downexperience"], ["От небольшого стажа к большому","upexperience"]]), class: 'form-control selector'%>
+        <% end %>
+      </div>
+      <div class="col-sm-6">
+        <!-- <span>Paccписание на </span>
+       <input id="mydate" type="date"  > -->
+     </div>
+
+
    </div>
   </div>
 
@@ -44,15 +57,22 @@
       <div class="row col-sm-4">
         <div class="row">
           <div class="row">
-
+            <%= render 'experts/time_slots', object: @experts %>
           </div>
         </div>
       </div>
       <div class="row col-8 col-sm-12 col-md-8 col-lg-8">
         <div class="row">
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button class="btn btn-primary"><i class="fa fa-calendar"></i> Записаться</button>
-            <button href="#" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-phone-alt"></i> Контакты</button>
+          <div class="btn-group " role="group" aria-label="Basic example">
+            <div class="col-sm-6">
+              <%= link_to(new_expert_event_path(expert), method: :get, class: "btn btn-primary button-contact") do %>
+                <i class="fa fa-calendar"></i><span> Записаться</span>
+              <% end %>
+            </div>
+            <div class="col-sm-6">
+            <!-- <button href="/events/new" controller="events "action="new" class="btn btn-primary"><i class="fa fa-calendar"></i> Записаться</button> -->
+              <button href="#" class="btn btn-info text-white button-contact" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-phone-alt"></i> Контакты</button>
+            </div>
 
           </div>
         </div>
@@ -61,7 +81,8 @@
         <div>
       </div>
     </div>
-  <% end%>
+  <% end %>
+
 </div>
 <script>
 $(document).ready(function(){
@@ -85,4 +106,7 @@ $( function() {
    this.form.submit()
  });
 });
+// $(document).ready(function(){
+//   $("#mydate").("setDate", new Date())
+// });
 </script>
