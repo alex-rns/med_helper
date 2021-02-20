@@ -6,8 +6,14 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
+// import '../stylesheets/application'
 import "channels"
 import "bootstrap"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+// THIS IS MAKING jQuery AVAILABLE EVEN INSIDE Views FOLDER
+global.$ = require("jquery")
+
+// import "jquery" // Don't really need to require this...
+import "jquery-ui"
