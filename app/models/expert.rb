@@ -8,6 +8,7 @@ class Expert < ApplicationRecord
     search_scope = Expert.all
     search_scope = search_scope.query(params[:query]) if params[:query].present?
     search_scope = search_scope.filters(params[:filter]) if params[:filter].present?
+    search_scope
    }
    scope :query, lambda { |params|
                        where('full_name ILIKE :search', search: "%#{params}%")
