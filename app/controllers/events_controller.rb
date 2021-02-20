@@ -28,6 +28,8 @@ class EventsController < ApplicationController
 
   def find_user
     unless user_signed_in?
+      # store_location
+      redirect_to new_user_session_path
     else
      current_user
    end
