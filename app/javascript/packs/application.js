@@ -9,11 +9,12 @@ import * as ActiveStorage from "@rails/activestorage"
 // import '../stylesheets/application'
 import "channels"
 import "bootstrap"
+import "jquery-ui/ui/widgets/autocomplete"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 // THIS IS MAKING jQuery AVAILABLE EVEN INSIDE Views FOLDER
-global.$ = require("jquery")
+// global.$ = require("jquery")
 
 // import "jquery" // Don't really need to require this...
-import "jquery-ui"
+import "jquery-ui/ui/widgets/autocomplete"
