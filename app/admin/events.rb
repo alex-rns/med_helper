@@ -5,7 +5,7 @@ ActiveAdmin.register Event do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :user_id, :expert_id, :name, :phone, :email, :time, :comment
+  permit_params :user_id, :expert_id, :name, :phone, :email, :time, :comment
   #
   # or
   #

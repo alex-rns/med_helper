@@ -5,7 +5,7 @@ ActiveAdmin.register Level do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :name, :level_status
+  permit_params :name, :level_status
   #
   # or
   #
