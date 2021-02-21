@@ -7,5 +7,7 @@ Rails.application.routes.draw do
   resources :experts, only: [:show, :index] do
     resources :events, only: [:new, :create, :show]
   end
-  resources :users
+  resources :users do
+    resources :vaccines, only: [:show]
+  end
 end

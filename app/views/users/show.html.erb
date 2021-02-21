@@ -9,5 +9,9 @@
     <p>Phone:<%= @user.phone %></p>
     <p>Birthday:<%= @user.birthday.strftime("%d of %B, %Y") if @user.birthday %></p>
   </div>
+
+  <div>
+    <%= link_to "Vaccine list", user_vaccine_path(@user) %>
+  </div>
 </div>
 
