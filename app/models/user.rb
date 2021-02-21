@@ -4,4 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable
   has_many :events
   has_many :experts, :through => :events
+  has_one :vaccine
 end
