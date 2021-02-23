@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/search', to: 'experts#index', as: 'search_experts'
-  devise_for :users
+  devise_for :users, controllers: {
+                            omniauth_callbacks: 'omniauth_callbacks' }
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root 'pages#testbootstrap', as: "home"

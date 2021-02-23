@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_115100) do
+ActiveRecord::Schema.define(version: 2021_02_22_203646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,8 +110,46 @@ ActiveRecord::Schema.define(version: 2021_02_19_115100) do
     t.string "address"
     t.integer "phone"
     t.datetime "birthday"
+    t.string "access_token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vaccines", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "hepatitis_a_1w"
+    t.datetime "hepatitis_a_2w"
+    t.datetime "hepatitis_b_1w"
+    t.datetime "hepatitis_b_2w"
+    t.datetime "hepatitis_b_3w"
+    t.datetime "tuberculosis"
+    t.datetime "pneumococcus_1w"
+    t.datetime "pneumococcus_2w"
+    t.datetime "pneumococcus_3w"
+    t.datetime "meningococcus_1w"
+    t.datetime "meningococcus_2w"
+    t.datetime "varicella_1w"
+    t.datetime "varicella_2w"
+    t.datetime "morbilli_mumps_rubella_1w"
+    t.datetime "morbilli_mumps_rubella_2w"
+    t.datetime "diphtheria_tetanus_pertussis_1w"
+    t.datetime "diphtheria_tetanus_pertussis_2w"
+    t.datetime "diphtheria_tetanus_pertussis_3w"
+    t.datetime "diphtheria_tetanus_pertussis_1rw"
+    t.datetime "diphtheria_tetanus_pertussis_2rw"
+    t.datetime "diphtheria_tetanus_pertussis_3rw"
+    t.datetime "hib_desease_1w"
+    t.datetime "hib_desease_2w"
+    t.datetime "hib_desease_3w"
+    t.datetime "hib_desease_4w"
+    t.datetime "rota_1w"
+    t.datetime "rota_2w"
+    t.datetime "covid19_1w"
+    t.datetime "covid19_2w"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
