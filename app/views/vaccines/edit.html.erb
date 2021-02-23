@@ -1,1 +1,28 @@
-<h3>Добавить запись в карту вакцинаций</h3>
+<h3 class="my-3">Добавить запись в карту вакцинаций</h3>
+<%= form_with url: user_vaccine_path, :method => :put do |f| %>
+  <div class="d-flex flex-wrap">
+    <div class="p-2">
+      <p>Гепатит А - 1я</p>
+      <% if @vaccines.hepatitis_a_1w %>
+        <p class="m-0 alert alert-success p-2"><%= @vaccines.hepatitis_a_1w.strftime('%d-%m-%Y') %></p>
+      <% else %>
+        <%= f.date_field :hepatitis_a_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
+      <% end %>
+    </div>
+    <div class="p-2">
+      <p>Гепатит А - 2я</p>
+      <% if @vaccines.hepatitis_a_2w %>
+        <p class="m-0 alert alert-success p-2"><%= @vaccines.hepatitis_a_1w.strftime('%d-%m-%Y') %></p>
+      <% else %>
+        <%= f.date_field :hepatitis_a_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
+      <% end %>
+    </div>
+
+  </div>
+  <div class="py-3">
+    <%= f.submit "Change", class: "btn btn-success w-100" %>
+  </div>
+
+
+
+<% end %>
