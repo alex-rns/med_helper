@@ -9,6 +9,6 @@ Rails.application.routes.draw do
     resources :events, only: [:new, :create, :show]
   end
   resources :users do
-    resources :vaccines, only: [:show, :edit]
+    resources :vaccines, only: [:show, :edit, :update]
   end
 end
