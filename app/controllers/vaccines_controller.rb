@@ -2,6 +2,7 @@ class VaccinesController < ApplicationController
   before_action :set_user, only: [:show, :edit]
 
   def show
+    binding.pry
     @vaccines = @user.vaccine
   end
 

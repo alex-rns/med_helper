@@ -1,0 +1,266 @@
+<div class="container-fluid" id="bgimage">
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm-5 border event-border-doctor shadow p-3 mb-5 bg-body rounded-3">
+      <h4 class="text-center">Обновить профиль</h4>
+      <hr>
+
+      <%= form_with model: @expert, method: :put do |f| %>
+      <div class = "form-group">
+        <%= f.label "ФИО" %>
+        <%= f.text_field :full_name, class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:full_name).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Краткое описание:" %>
+        <%= f.text_area :description, class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:full_name).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Опыт:" %>
+        <%= number_field_tag 'expert[experience]', "#{current_user.expert.experience}", class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:experience).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Образование:" %>
+        <%= f.text_area :education, class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:education).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Дополнительное образование:" %>
+        <%= f.text_area :additional_education, class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:additional_education).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Процедуры:" %>
+        <%= f.text_area :procedure, class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:procedure).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Место работы:" %>
+        <%= f.text_area :medical_center, class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:medical_center).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Адрес:" %>
+        <%= email_field_tag 'expert[address]', "#{current_user.expert.address}", class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:address).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Email:" %>
+        <%= email_field_tag 'expert[email]', "#{current_user.expert.email}", class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:email).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Teлефон" %>
+        <%= f.telephone_field :phone, class: 'form-control' %>
+        <% @expert.errors.full_messages_for(:phone).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+      <p>Рабочие часы: </p>
+      <div class = "form-group">
+        <%= f.label "Понедельник:" %>
+        <div class="row">
+          <div class="col-sm-1">
+            <span>C</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_start_monday]', options_for_select(set_time, @expert.hw_start_monday), class:'form-control') %>
+            <% @expert.errors.full_messages_for(:hw_start_monday).each do |message| %>
+              <div class="alert alert-warning alert-event"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="col-sm-1">
+            <span>До</span>
+          </div>
+          <div class="col-sm-5">
+             <%= select_tag('expert[hw_end_monday]', options_for_select(set_time, @expert.hw_end_monday), class:'form-control') %>
+             <% @expert.errors.full_messages_for(:phone).each do |message| %>
+               <div class="alert alert-warning alert-event"><%= message %></div>
+             <% end %>
+           </div>
+        </div>
+      </div>
+
+      <div class = "form-group">
+        <%= f.label "Вторник:" %>
+        <div class="row">
+          <div class="col-sm-1">
+            <span>C</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_start_tuesday]', options_for_select(set_time, @expert.hw_start_tuesday), class:'form-control') %>
+            <% @expert.errors.full_messages_for(:phone).each do |message| %>
+              <div class="alert alert-warning alert-event"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="col-sm-1">
+            <span>До</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_end_tuesday]', options_for_select(set_time, @expert.hw_end_tuesday), class:'form-control') %>
+             <% @expert.errors.full_messages_for(:phone).each do |message| %>
+               <div class="alert alert-warning alert-event"><%= message %></div>
+             <% end %>
+           </div>
+        </div>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Среда:" %>
+        <div class="row">
+          <div class="col-sm-1">
+            <span>C</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_start_wednesday]', options_for_select(set_time, @expert.hw_start_wednesday), class:'form-control') %>
+            <% @expert.errors.full_messages_for(:phone).each do |message| %>
+              <div class="alert alert-warning alert-event"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="col-sm-1">
+            <span>До</span>
+          </div>
+          <div class="col-sm-5">
+             <%= select_tag('expert[hw_end_wednesday]', options_for_select(set_time, @expert.hw_end_wednesday), class:'form-control') %>
+             <% @expert.errors.full_messages_for(:phone).each do |message| %>
+               <div class="alert alert-warning alert-event"><%= message %></div>
+             <% end %>
+           </div>
+        </div>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Четверг:" %>
+        <div class="row">
+          <div class="col-sm-1">
+            <span>C</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_start_thursday]', options_for_select(set_time, @expert.hw_start_thursday), class:'form-control') %>
+            <% @expert.errors.full_messages_for(:phone).each do |message| %>
+              <div class="alert alert-warning alert-event"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="col-sm-1">
+            <span>До</span>
+          </div>
+          <div class="col-sm-5">
+             <%= select_tag('expert[hw_end_thursday]', options_for_select(set_time, @expert.hw_end_thursday), class:'form-control') %>
+             <% @expert.errors.full_messages_for(:phone).each do |message| %>
+               <div class="alert alert-warning alert-event"><%= message %></div>
+             <% end %>
+           </div>
+        </div>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Пятница:" %>
+        <div class="row">
+          <div class="col-sm-1">
+            <span>C</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_start_friday]', options_for_select(set_time, @expert.hw_start_friday), class:'form-control') %>
+            <% @expert.errors.full_messages_for(:phone).each do |message| %>
+              <div class="alert alert-warning alert-event"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="col-sm-1">
+            <span>До</span>
+          </div>
+          <div class="col-sm-5">
+             <%= select_tag('expert[hw_end_friday]', options_for_select(set_time, @expert.hw_end_friday), class:'form-control') %>
+             <% @expert.errors.full_messages_for(:phone).each do |message| %>
+               <div class="alert alert-warning alert-event"><%= message %></div>
+             <% end %>
+           </div>
+        </div>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Cуббота:" %>
+        <div class="row">
+          <div class="col-sm-1">
+            <span>C</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_start_saturday]', options_for_select(set_time, @expert.hw_start_saturday), class:'form-control') %>
+            <% @expert.errors.full_messages_for(:phone).each do |message| %>
+              <div class="alert alert-warning alert-event"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="col-sm-1">
+            <span>До</span>
+          </div>
+          <div class="col-sm-5">
+             <%= select_tag('expert[hw_end_saturday]', options_for_select(set_time, @expert.hw_end_saturday), class:'form-control') %>
+             <% @expert.errors.full_messages_for(:phone).each do |message| %>
+               <div class="alert alert-warning alert-event"><%= message %></div>
+             <% end %>
+           </div>
+        </div>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Воскресенье:" %>
+        <div class="row">
+          <div class="col-sm-1">
+            <span>C</span>
+          </div>
+          <div class="col-sm-5">
+            <%= select_tag('expert[hw_start_sunday]', options_for_select(set_time, @expert.hw_start_sunday), class:'form-control') %>
+            <% @expert.errors.full_messages_for(:phone).each do |message| %>
+              <div class="alert alert-warning alert-event"><%= message %></div>
+            <% end %>
+          </div>
+          <div class="col-sm-1">
+            <span>До</span>
+          </div>
+          <div class="col-sm-5">
+             <%= select_tag('expert[hw_end_sunday]', options_for_select(set_time, @expert.hw_end_sunday), class:'form-control') %>
+             <% @expert.errors.full_messages_for(:phone).each do |message| %>
+               <div class="alert alert-warning alert-event"><%= message %></div>
+             <% end %>
+           </div>
+        </div>
+      </div>
+      <div class = "form-group">
+        <%= f.label "Категория" %>
+         <%= select_tag('expert[category_id]', options_for_select(selector_element(@category)), class:'form-control') %>
+        <% @expert.errors.full_messages_for(:phone).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+
+      <div class = "form-group">
+        <%= f.label "Уровень" %>
+          <%= select_tag('expert[level_id]', options_for_select(selector_element(@level)), class:'form-control') %>
+        <% @expert.errors.full_messages_for(:phone).each do |message| %>
+          <div class="alert alert-warning alert-event"><%= message %></div>
+        <% end %>
+      </div>
+
+      <%= f.submit "Обновить", class: "btn btn-info text-center" %>
+      <% end %>
+    </div>
+    <div class="col-sm">
+    </div>
+  </div>
+
+</div>

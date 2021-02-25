@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :events
   has_many :experts, :through => :events
   has_one :vaccine
+  has_one :expert
+  has_one :client
 
   def self.from_omniauth(access_token)
     data = access_token.info

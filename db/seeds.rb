@@ -16,7 +16,7 @@ Level.create!(name: "Врач второй категории", level_status: 2)
 Level.create!(name: "Врач третей категории", level_status: 3)
 
 products_data = csv.to_a.map { |row| row.to_hash }
-
+user = User.create(email: "test@user.com", password: '12345678')
 products_data.each do |item|
 
   category = Category.where(name: item[:category]).first_or_create!
@@ -32,7 +32,7 @@ products_data.each do |item|
   hw_end_thursday: item[:hw_end_thursday], hw_start_friday: item[:hw_start_friday],
   hw_end_friday: item[:hw_end_friday], hw_start_saturday: item[:hw_start_saturday],
   hw_end_saturday: item[:hw_end_saturday], hw_start_sunday: item[:hw_start_sunday],
-  hw_end_sunday: item[:hw_end_sunday], education: item[:education])
+  hw_end_sunday: item[:hw_end_sunday], education: item[:education], user_id: user.id)
   # product.attachment.attach(io: File.open(Rails.root.join('app', 'assets', 'images', item[:image])),
   #                           filename: item[:image])
 end

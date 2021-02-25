@@ -10,6 +10,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.expires_at = auth.credentials.expires_at
       @user.refresh_token = auth.credentials.refresh_token
       @user.save!
+      cookies.delete :user_type
       sign_in(:user, @user)
       redirect_to home_path
     else
@@ -21,8 +22,20 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.email = auth.info.email
       @user.password = '12345123'
       @user.save!
+      set_role(cookies[:user_type], @user)
+      cookies.delete :user_type
       sign_in(:user, @user)
       redirect_to home_path
+    end
+  end
+
+  private
+
+  def set_role(cookies, user)
+    if cookies == 'pacient'
+      Client.create(user_id: user.id, email: user.email)
+    else
+      Expert.create(user_id: user.id, category_id: 1, email: user.email)
     end
   end
 end
