@@ -25,8 +25,12 @@ gem 'jbuilder', '~> 2.7'
 gem 'activeadmin'
 gem 'devise'
 #bootstrap
+gem "omniauth", "~> 1.9.1"
 gem 'bootstrap', '~> 5.0.0.alpha3'
 gem 'pry'
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+gem 'omniauth-oauth2', '~> 1.3.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

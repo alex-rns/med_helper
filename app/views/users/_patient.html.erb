@@ -1,0 +1,8 @@
+<h3 class="text-center my-4">Профиль <%= @user.name %></h3>
+<p>E-mail:<%= @user.email %></p>
+<p>Address:<%= @user.address %></p>
+<p>Phone:<%= @user.phone %></p>
+<p>Birthday:<%= @user.birthday.strftime("%d of %B, %Y") if @user.birthday %></p>
+<div>
+  <%= link_to "Vaccine list", user_vaccine_path(@user) %>
+</div>

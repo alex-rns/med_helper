@@ -16,8 +16,8 @@
 @import "vaccines";
 @import 'bootstrap';
 .event-border{
-  height: 500px;
-  width: 500px;
+  height: 700px;
+  width: 600px;
   margin-top: 50px;
   margin-left: 10px;
 
@@ -52,6 +52,10 @@ body {
 }
 .ui-autocomplete {
   background-color: white;
+}
+.accaunt-button{
+  margin-top: 20px;
+  width: 300px;
 }
 #menu li{
 	display: inline-block;
@@ -89,4 +93,11 @@ body {
 }
 .alert-event{
   padding: 0px;
+}
+.event-border-doctor{
+  height: 1500px;
+  width: 900px;
+  margin-top: 50px;
+  margin-left: 10px;
+
 }

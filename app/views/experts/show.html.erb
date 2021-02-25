@@ -10,7 +10,7 @@
          <h6 class="text-secondary"><%= @expert.category.name %></h6>
         </div>
         <div class="col-sm-6">
-         <strong><%= @expert.level.name%></strong>
+         <strong><%= @expert.level.name if @expert.level.present?%></strong>
         </div>
 
         <div class="col-sm-6">
