@@ -16,7 +16,7 @@ Level.create!(name: "Врач второй категории", level_status: 2)
 Level.create!(name: "Врач третей категории", level_status: 3)
 
 products_data = csv.to_a.map { |row| row.to_hash }
-user = User.create(email: "test@user.com", password: '12345678')
+user = User.first_or_create!(email: "test@user.com", password: '12345678')
 products_data.each do |item|
 
   category = Category.where(name: item[:category]).first_or_create!
