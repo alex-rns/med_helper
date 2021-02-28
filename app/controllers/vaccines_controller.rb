@@ -3,7 +3,6 @@ class VaccinesController < ApplicationController
   before_action :set_vaccine, only: [:show, :edit, :update]
 
   def show
-    @vaccines = @user.vaccine
   end
 
   def edit
