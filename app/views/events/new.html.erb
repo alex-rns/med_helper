@@ -41,7 +41,7 @@
 
       <div class = "form-group">
         <%= f.label "Начало приема" %>
-        <input type='datetime-local' name = 'event[start_time]', class = 'form-control'>
+        <input type='datetime-local' name = 'event[start_time]', class = 'form-control', value = params[:q] >
         <% @event.errors.full_messages_for(:start_time).each do |message| %>
           <div class="alert alert-warning alert-event"><%= message %></div>
         <% end %>

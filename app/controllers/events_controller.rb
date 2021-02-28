@@ -9,7 +9,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    binding.pry
     @links = google_event(params)
     @event = @expert.events.build(event_params)
     if @event.save
