@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@activeadmin/activeadmin@^2.9.0":
+"@activeadmin/activeadmin@2.9.0":
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/@activeadmin/activeadmin/-/activeadmin-2.9.0.tgz#ad277ef4a49b250377afd3df615f9acc3c84d577"
   integrity sha512-KZqr1MrvpCXN/8SCF4MgqGscmuWPHivz5RPHKR9R8bKIB0InUHm7tzQoQOT9ZdYuHCBkf3cqlzBoKNNNV3x3ww==
@@ -827,7 +827,7 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@fortawesome/fontawesome-free@^5.15.2":
+"@fortawesome/fontawesome-free@5.15.2":
   version "5.15.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.2.tgz#218cd7276ab4f9ab57cc3d2efa2697e6a579f25d"
   integrity sha512-7l/AX41m609L/EXI9EKH3Vs3v0iA8tKlIOGtw+kgcoanI7p+e4I4GYLqW3UXWiTnjSFymKSmTTPKYrivzbxxqA==
@@ -840,22 +840,22 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@rails/actioncable@^6.0.0":
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.2.tgz#c2eb025afd3f97d2328aef5c647c1b44dcecb83c"
-  integrity sha512-KGl8Vd5MWAIE6X/QVr36y5LLkqNRgt8frflIUkuMm/zB/+vnL6vO8jXQgSzpmPHZ7+j7fJv4JmfL1jofKUDFdw==
+"@rails/actioncable@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.0.0.tgz#8bff9c902be1531ef7a9e191562e9771efcfdfe1"
+  integrity sha512-DieouotYHpI6k2EGTCnh1eMvD3W8p3zqjWXEYj4z0khJ+A0qQ5tHxihjTEkio54MVwqHt1DcpUm2woh2n/alCA==
 
-"@rails/activestorage@^6.0.0":
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.1.2.tgz#e56c01314a85cacb53e5911ddc957578ac720c9c"
-  integrity sha512-7rwFGtUBDrwDAjXs2jl7MG20Z5Pd9+42RpH1N3xDF4PaqC9wfBzvPfT31hd5JTgXJH+/DtYepgrZK2e5Zps4Bg==
+"@rails/activestorage@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/activestorage/-/activestorage-6.0.0.tgz#6d9cc98f3dcf195c38ca65e80acd2e759336dd7a"
+  integrity sha512-RZqTVlUYSWcI88pSJ7ImuTtDYQvqVc2PNuOo+5R3hcVupD+d2TO8xmluqQ5TvByjPqKX4acEK0mjEIK5ip9kCg==
   dependencies:
     spark-md5 "^3.0.0"
 
-"@rails/ujs@^6.0.0":
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.1.2.tgz#ccafb8d8e7ae3bfd21824b018be9f1c417bef5b4"
-  integrity sha512-WEXne46Srl3CegO4ngPSWLL7UYWoL1N78254LSzWJgE2mr7XZlbX8S0vltLHDYj5YRFCYEslsBMPisVb59tpYA==
+"@rails/ujs@6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@rails/ujs/-/ujs-6.0.0.tgz#6c1957870ba075f7e82fdf875f5ed2181ff9355e"
+  integrity sha512-0oh/MnpZzluItU/vgaxZv+JtMXxOtA0HPK6ZiMoPd2sLH06q58QdCKPVlC36YMnP4451rcrvxO6xns3w97C1og==
 
 "@rails/webpacker@5.2.1":
   version "5.2.1"
@@ -1502,7 +1502,7 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
-bootstrap@^4.6.0:
+bootstrap@4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.0.tgz#97b9f29ac98f98dfa43bf7468262d84392552fd7"
   integrity sha512-Io55IuQY3kydzHtbGvQya3H+KorS/M9rSNyfCGCg9WZ4pyT/lCxIlpJgG1GXW/PswzC84Tr2fBYi+7+jFVQQBw==
@@ -4064,7 +4064,7 @@ jest-worker@^26.5.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery-ui-dist@^1.12.1:
+jquery-ui-dist@1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/jquery-ui-dist/-/jquery-ui-dist-1.12.1.tgz#5c0815d3cc6f90ff5faaf5b268a6e23b4ca904fa"
   integrity sha1-XAgV08xvkP9fqvWyaKbiO0ypBPo=
@@ -4081,7 +4081,7 @@ jquery-ujs@^1.2.2:
   dependencies:
     jquery ">=1.8.0"
 
-jquery@>=1.8.0, jquery@^3.3.1, jquery@^3.4.1, jquery@^3.5.1:
+jquery@3.5.1, jquery@>=1.8.0, jquery@^3.3.1, jquery@^3.4.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
@@ -5268,7 +5268,7 @@ pnp-webpack-plugin@^1.6.4:
   dependencies:
     ts-pnp "^1.1.6"
 
-popper.js@^1.16.1:
+popper.js@1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
@@ -7287,7 +7287,7 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-turbolinks@^5.2.0:
+turbolinks@5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/turbolinks/-/turbolinks-5.2.0.tgz#e6877a55ea5c1cb3bb225f0a4ae303d6d32ff77c"
   integrity sha512-pMiez3tyBo6uRHFNNZoYMmrES/IaGgMhQQM+VFF36keryjb5ms0XkVpmKHkfW/4Vy96qiGW3K9bz0tF5sK9bBw==
@@ -7604,7 +7604,7 @@ webpack-dev-server@^3.11.2:
     ws "^6.2.1"
     yargs "^13.3.2"
 
-webpack-jquery-ui@^2.0.1:
+webpack-jquery-ui@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/webpack-jquery-ui/-/webpack-jquery-ui-2.0.1.tgz#7b061beaed848da3d6f5a0acdfdf9dedbac0baed"
   integrity sha512-ykG5qttZmTraCktCOgacVRAmD8TQi6N83smVH8D7/yahi63vH31uP0ZXN2o/qwNICn9GMLsi8jVjR0M3u2MEkw==

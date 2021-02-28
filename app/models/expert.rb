@@ -1,8 +1,10 @@
 class Expert < ApplicationRecord
    has_many :events
    has_many :users, :through => :events
+   # has_many :clients, :through => :events
    belongs_to :category
    belongs_to :level, optional: true
+   validates :category, presence: false
 
    scope :searcher, lambda {|params|
     search_scope = Expert.all
@@ -25,7 +27,4 @@ class Expert < ApplicationRecord
                           order(level_id: :asc)
                         end
                         }
-  # scope :upcategory, lambda { |parameter| if parameter.present? }
-  # scope :downexperience, lambda { |parameter| if parameter.present? }
-  # scope :upexperience, lambda { |parameter| if parameter.present? }
 end

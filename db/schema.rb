@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_21_111027) do
+ActiveRecord::Schema.define(version: 2021_02_24_161915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,16 +47,29 @@ ActiveRecord::Schema.define(version: 2021_02_21_111027) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "clients", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.integer "expert_id"
     t.string "name"
     t.integer "phone"
     t.string "email"
-    t.datetime "time"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "type"
+    t.string "calendar_link"
+    t.string "meeting_link"
   end
 
   create_table "experts", force: :cascade do |t|
@@ -89,6 +102,8 @@ ActiveRecord::Schema.define(version: 2021_02_21_111027) do
     t.integer "category_id"
     t.text "education"
     t.integer "level_id"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_experts_on_user_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -110,6 +125,9 @@ ActiveRecord::Schema.define(version: 2021_02_21_111027) do
     t.string "address"
     t.integer "phone"
     t.datetime "birthday"
+    t.string "access_token"
+    t.datetime "expires_at"
+    t.string "refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -149,4 +167,5 @@ ActiveRecord::Schema.define(version: 2021_02_21_111027) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "experts", "users"
 end
