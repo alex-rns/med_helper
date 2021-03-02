@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
   def self.from_omniauth(access_token)
     data = access_token.info
-    binding.pry
     user = User.where(:email => data["email"]).first
 
     unless user
