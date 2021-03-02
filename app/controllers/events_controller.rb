@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :phone, :email, :start_time, :end_time, :comment).merge(user_id: current_user.id).merge(calendar_link: @links.first).merge(meeting_link: @links.second)
+    params.require(:event).permit(:name, :phone, :start_time, :end_time, :comment).merge(user_id: current_user.id).merge(calendar_link: @links.first).merge(meeting_link: @links.second)
   end
 
 end
