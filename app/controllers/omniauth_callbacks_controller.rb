@@ -35,6 +35,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def set_role(cookies, user)
     if cookies == 'pacient'
       Client.create(user_id: user.id, email: user.email, dob: Time.now)
+      Vaccine.create(user_id: user.id)
     elsif cookies == 'doctor'
       Expert.create(user_id: user.id, category_id: 1, email: user.email)
     else
