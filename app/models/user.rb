@@ -17,7 +17,7 @@ class User < ApplicationRecord
           name: data["name"],
           email: data["email"],
           birthday: Time.now.strftime("%d of %B, %Y"),
-          encrypted_password: Devise.friendly_token[0,20]
+          password: '12383929'
       )
     end
     user

@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-sm">
       </div>
+      <%= content_tag(:div, flash[:notice], :id => "flash_notice", class: "alert alert-notice") if flash[:notice] %>
       <div class="col-sm-5 border event-border shadow p-3 mb-5 bg-body rounded-3">
         <h2 class="text-center py-5">Регистрация</h2>
         <p class="text-secondary">Для начала регистрации Вам нужно выбрать профиль и затем авторизирваться через Google аккаунт</p>
