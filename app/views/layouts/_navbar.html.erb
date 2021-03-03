@@ -9,7 +9,9 @@
   <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "Medical experts", search_experts_path, class: "nav-link" %>
+        <% if user_signed_in?&&(current_user.client.present?||current_user.expert.present?) %>
+          <%= link_to "Medical experts", search_experts_path, class: "nav-link" %>
+        <% end %>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,22 +26,12 @@
       </li>
     </ul>
 
-    <!-- <form class="d-flex">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit" href="/search" method="get">Search</button>
-    </form> -->
-    <!-- <%= form_tag(search_experts_path, :method => "get") do %>
-		   <div class="input-group">
-        <%= search_field_tag :query, params[:query], placeholder: "Search...", class: "form-control input-lg", id: "tags" %>
-        <div class="input-group-btn">
-          <%= button_tag "Search", :class => 'btn btn-outline-success', :name => nil %>
-        </div>
-      </div>
-     <% end %> -->
     <div class="d-flex">
       <% if user_signed_in? %>
         <div class="p-2">
+          <% if current_user.client.present?||current_user.expert.present? %>
           <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success" %>
+          <% end %>
         </div>
         <div class="p-2">
         </div>
