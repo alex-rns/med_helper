@@ -47,4 +47,5 @@ module EventsHelper
     client.authorization.grant_type = "refresh_token"
     client
   end
+
 end

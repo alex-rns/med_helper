@@ -15,15 +15,15 @@ module ExpertsHelper
      x = Time.now.strftime('%A').downcase
      start_time = expert.send("hw_start_#{x}").to_i
      end_time =  expert.send("hw_end_#{x}").to_i
-     time >= Time.now&&(start_time..end_time).include?(time.hour)
+     event_time = check_event(expert)
+     time >= Time.now&&(start_time..end_time).include?(time.hour)&&event_time.exclude?(time.hour)
   end
 
   def check_event(expert)
     arr = []
     expert.events.each do |ev|
-      arr << (ev.start_time.hour..ev.finish_time.hour)
+      arr << (ev.start_time.hour..ev.end_time.hour).to_a
     end
+    arr.flatten
   end
-
-
 end
