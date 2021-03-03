@@ -1,11 +1,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-  # after_action :create_vaccine_card, only: [:create]
 
   def create
     cookies[:user_type] = params[:user][:type]
     redirect_to user_google_oauth2_omniauth_authorize_path
   end
-
+  
   def edit
   end
 
