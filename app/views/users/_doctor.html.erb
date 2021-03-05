@@ -1,6 +1,5 @@
 <h2>Профиль врача</h2>
 <% if @user.expert.image.attached? || @user.image.present? %>
-<% binding.pry %>
   <p><%= image_tag(@user.expert.image.url || @user.image , size: "150x150") %></p>
 <%end%>
 <p><strong>ФИО:</strong> <%= @user.expert.full_name %></p>
