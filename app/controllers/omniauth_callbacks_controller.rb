@@ -8,6 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.access_token = auth.credentials.token
       @user.expires_at = auth.credentials.expires_at
       @user.refresh_token = auth.credentials.refresh_token
+      @user.image = auth.info.image
       @user.save!
       if cookies[:user_type].present?
         set_role(cookies[:user_type], @user)
