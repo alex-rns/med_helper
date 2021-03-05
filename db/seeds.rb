@@ -33,7 +33,7 @@ products_data.each do |item|
   hw_end_friday: item[:hw_end_friday], hw_start_saturday: item[:hw_start_saturday],
   hw_end_saturday: item[:hw_end_saturday], hw_start_sunday: item[:hw_start_sunday],
   hw_end_sunday: item[:hw_end_sunday], education: item[:education], user_id: user.id)
-  product.image.attach(io: File.open("app/assets/images/" + "#{item[:image]}"),
+  product.image.attach(io: File.open("app/assets/images/#{item[:image]}"),
                             filename: item[:image])
 end
 
