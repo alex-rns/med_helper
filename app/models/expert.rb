@@ -4,7 +4,10 @@ class Expert < ApplicationRecord
    # has_many :clients, :through => :events
    belongs_to :category
    belongs_to :level, optional: true
+   has_one_attached :image
    validates :category, presence: false
+   belongs_to :user
+   geocoded_by :address
 
    scope :searcher, lambda {|params|
     search_scope = Expert.all

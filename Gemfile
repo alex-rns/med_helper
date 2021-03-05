@@ -32,6 +32,7 @@ gem 'omniauth-google-oauth2', ">= 0.8.0"
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 gem 'omniauth-oauth2', '~> 1.6.0'
 gem 'jwt', '~> 2.2.2'
+gem 'geocoder'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

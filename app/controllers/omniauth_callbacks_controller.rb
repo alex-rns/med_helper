@@ -8,6 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.access_token = auth.credentials.token
       @user.expires_at = auth.credentials.expires_at
       @user.refresh_token = auth.credentials.refresh_token
+      @user.image = auth.info.image
       @user.save!
       if cookies[:user_type].present?
         set_role(cookies[:user_type], @user)
@@ -37,7 +38,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       Client.create(user_id: user.id, email: user.email, dob: Time.now)
       Vaccine.create(user_id: user.id)
     elsif cookies == 'doctor'
-      Expert.create(user_id: user.id, category_id: 1, email: user.email)
+      Expert.create(user_id: user.id, category_id: 1, email: user.email, latitude: 51.501564, longitude: -0.141944)
     else
     end
   end
