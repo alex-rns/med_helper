@@ -7,7 +7,10 @@ class Expert < ApplicationRecord
    has_one_attached :image
    validates :category, presence: false
    belongs_to :user
+<<<<<<< HEAD
    geocoded_by :address
+=======
+>>>>>>> 61e6d9a27fe2410f79c9a263a3df7a9d079b4eb1
 
    scope :searcher, lambda {|params|
     search_scope = Expert.all

@@ -25,7 +25,7 @@ products_data.each do |item|
   product = category.experts.create!(full_name: item[:full_name], description: item[:description],
   level_id: item[:level], experience: item[:experience], additional_education: item[:additional_education],
   procedure: item[:procedure], address: item[:address], medical_center: item[:medical_center],
-  email: item[:email], phone: item[:phone], image: item[:image], hw_start_monday: item[:hw_start_monday],
+  email: item[:email], phone: item[:phone], hw_start_monday: item[:hw_start_monday],
   hw_end_monday: item[:hw_end_monday], hw_start_tuesday: item[:hw_start_tuesday],
   hw_end_tuesday: item[:hw_end_tuesday], hw_start_wednesday: item[:hw_start_wednesday],
   hw_end_wednesday: item[:hw_end_wednesday], hw_start_thursday: item[:hw_start_thursday],
@@ -33,8 +33,8 @@ products_data.each do |item|
   hw_end_friday: item[:hw_end_friday], hw_start_saturday: item[:hw_start_saturday],
   hw_end_saturday: item[:hw_end_saturday], hw_start_sunday: item[:hw_start_sunday],
   hw_end_sunday: item[:hw_end_sunday], education: item[:education], user_id: user.id)
-  # product.attachment.attach(io: File.open(Rails.root.join('app', 'assets', 'images', item[:image])),
-  #                           filename: item[:image])
+  product.image.attach(io: File.open("app/assets/images/#{item[:image]}"),
+                            filename: item[:image])
 end
 
 AdminUser.first_or_create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
