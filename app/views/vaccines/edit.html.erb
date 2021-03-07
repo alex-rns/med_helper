@@ -1,7 +1,6 @@
 <h3 class="my-3">Добавить запись в карту вакцинаций</h3>
-<%= form_with url: user_vaccine_path, :method => :put do |f| %>
+<%= form_with(model: @vaccine, url: params[:child_id] ? user_child_vaccine_path : user_vaccine_path, :method => :put) do |f| %>
   <div class="d-flex flex-wrap edit-vaccine-table">
-
     <div class="p-2 col-2">
       <p class="m-0">Гепатит А</p>
       <small>1-я вакцинация</small>
@@ -86,10 +85,10 @@
     <div class="p-2 col-2">
       <p class="m-0">Менингокок</p>
       <small>1-я вакцинация</small>
-      <% if @vaccines.meningococcus_2w %>
-        <p class="m-0 alert alert-success p-2"><%= @vaccines.meningococcus_2w.strftime('%d-%m-%Y') %></p>
+      <% if @vaccines.meningococcus_1w %>
+        <p class="m-0 alert alert-success p-2"><%= @vaccines.meningococcus_1w.strftime('%d-%m-%Y') %></p>
       <% else %>
-        <%= f.date_field :meningococcus_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
+        <%= f.date_field :meningococcus_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
       <% end %>
     </div>
     <div class="p-2 col-2">
@@ -131,10 +130,10 @@
     <div class="p-2 col-2">
       <p class="m-0"><abbr title="Корь - Паротит - Краснуха">КПК</abbr></p>
       <small>2-я вакцинация</small>
-      <% if @vaccines.morbilli_mumps_rubella_1w %>
-        <p class="m-0 alert alert-success p-2"><%= @vaccines.morbilli_mumps_rubella_1w.strftime('%d-%m-%Y') %></p>
+      <% if @vaccines.morbilli_mumps_rubella_2w %>
+        <p class="m-0 alert alert-success p-2"><%= @vaccines.morbilli_mumps_rubella_2w.strftime('%d-%m-%Y') %></p>
       <% else %>
-        <%= f.date_field :morbilli_mumps_rubella_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
+        <%= f.date_field :morbilli_mumps_rubella_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
       <% end %>
     </div>
     <div class="p-2 col-2">

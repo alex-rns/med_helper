@@ -39,7 +39,7 @@ class ExpertsController < ApplicationController
       :phone, :hw_start_monday, :hw_end_monday, :hw_start_tuesday, :hw_end_tuesday,
       :hw_start_wednesday, :hw_end_wednesday, :hw_start_thursday, :hw_end_thursday,
       :hw_start_friday, :hw_end_friday, :hw_start_saturday, :hw_end_saturday,
-      :hw_start_sunday, :hw_end_sunday, :category_id, :education, :level_id)
+      :hw_start_sunday, :hw_end_sunday, :category_id, :education, :level_id, :image)
   end
 
 end

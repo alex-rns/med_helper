@@ -1,0 +1,11 @@
+<%= form_with model: [@user, @user.children.build] do |f| %>
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div>
+    <%= f.label :birthday %><br />
+    <%= f.date_field :birthday %>
+  </div>
+  <%= f.submit %>
+<% end %>
