@@ -1,8 +1,13 @@
 <h2 class="text-center my-4">Карта вакцинации</h2>
-<h4><%= @user.birthday.strftime("%d of %B, %Y") %></h4>
+<h4>Имя: <%= @user.name %></h4>
+<h4>Дата рождения: <%= @user.birthday.strftime("%d of %B, %Y") %></h4>
 
 <% if @user.birthday %>
-  <%= link_to "Добавить запись о прививке", edit_user_vaccine_path %>
+  <% if params[:child_id].present? %>
+    <%= link_to "Добавить запись о прививке", edit_user_child_vaccine_path(url: "user_child_vaccine_path")  %>
+  <% else %>
+    <%= link_to "Добавить запись о прививке", edit_user_vaccine_path(url: "user_vaccine_path") %>
+  <% end %>
   <% v = @vaccines %>
   <div class="text-center fs-4">
     <p>Гепатит А</p>
@@ -401,4 +406,6 @@
 <% else %>
   <p>Для рассчёта графика вакцинаций добавьте дату рождения в вашем профиле</p>
   <%= link_to "Редактировать профиль", edit_user_path(@user) %>
+  <%= link_to "Редактировать профиль ребёнка", edit_user_child_path(current_user, current_user.children.first) %>
+  <%= @child %>
 <% end %>

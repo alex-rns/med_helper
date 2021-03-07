@@ -1,7 +1,6 @@
 <h3 class="my-3">Добавить запись в карту вакцинаций</h3>
-<%= form_with url: user_vaccine_path, :method => :put do |f| %>
+<%= form_with(model: @vaccine, url: params[:child_id] ? user_child_vaccine_path : user_vaccine_path, :method => :put) do |f| %>
   <div class="d-flex flex-wrap edit-vaccine-table">
-
     <div class="p-2 col-2">
       <p class="m-0">Гепатит А</p>
       <small>1-я вакцинация</small>

@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
   has_many :events, dependent: :destroy
   has_many :experts, :through => :events, dependent: :destroy
+  has_many :children, dependent: :destroy
   has_one :vaccine, dependent: :destroy
   has_one :expert, dependent: :destroy
   has_one :client, dependent: :destroy
