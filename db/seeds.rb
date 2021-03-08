@@ -16,16 +16,14 @@ Level.create!(name: "Врач второй категории", level_status: 2)
 Level.create!(name: "Врач третей категории", level_status: 3)
 
 products_data = csv.to_a.map { |row| row.to_hash }
-user = User.first_or_create!(email: "test@user.com", password: '12345678')
+user = User.first_or_create!(email: "user@test.com", password: '12345678')
+
 products_data.each do |item|
-
   category = Category.where(name: item[:category]).first_or_create!
-
-
   product = category.experts.create!(full_name: item[:full_name], description: item[:description],
   level_id: item[:level], experience: item[:experience], additional_education: item[:additional_education],
   procedure: item[:procedure], address: item[:address], medical_center: item[:medical_center],
-  email: item[:email], phone: item[:phone], hw_start_monday: item[:hw_start_monday],
+  email: item[:email] , phone: item[:phone], hw_start_monday: item[:hw_start_monday],
   hw_end_monday: item[:hw_end_monday], hw_start_tuesday: item[:hw_start_tuesday],
   hw_end_tuesday: item[:hw_end_tuesday], hw_start_wednesday: item[:hw_start_wednesday],
   hw_end_wednesday: item[:hw_end_wednesday], hw_start_thursday: item[:hw_start_thursday],
