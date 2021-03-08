@@ -10,15 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
+
 ActiveRecord::Schema.define(version: 2021_03_05_192807) do
-=======
-ActiveRecord::Schema.define(version: 2021_03_07_105859) do
->>>>>>> 6b8eac74eaddfd248512f88aa2c119fa030ce1f6
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
+  
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
