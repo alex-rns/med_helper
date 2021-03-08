@@ -157,7 +157,6 @@ GEM
       actionpack (>= 5.2.0)
     formtastic_i18n (0.6.0)
     gems (1.2.0)
-    geocoder (1.6.6)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     google-api-client (0.53.0)
@@ -438,7 +437,6 @@ DEPENDENCIES
   cloudinary (~> 1.18.1)
   devise
   dotenv-rails
-  geocoder
   google-api-client
   jbuilder (~> 2.7)
   jwt (~> 2.2.2)

@@ -36,7 +36,6 @@ gem 'cloudinary', '~> 1.18.1'
 gem 'paperclip', '~> 6.0.0'
 gem 'mini_magick'
 gem 'rails_12factor', '0.0.2'
-gem 'geocoder'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

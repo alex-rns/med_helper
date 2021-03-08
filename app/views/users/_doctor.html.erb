@@ -29,5 +29,12 @@
   </div>
 </div>
 <p>
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=400x300&center=#{@user.expert.latitude},#{@user.expert.longitude}&key=AIzaSyCsuzxArIHPkwHysfDWvW9y97mhoZkL3Io", alt: "Map" %>
-</p>
+  <iframe
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+      &q=Черкассы+<%= set_address(@user.expert.address) %>">
+  </iframe>
