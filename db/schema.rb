@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_03_05_192807) do
+=======
+ActiveRecord::Schema.define(version: 2021_03_07_105859) do
+>>>>>>> 6b8eac74eaddfd248512f88aa2c119fa030ce1f6
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +77,15 @@ ActiveRecord::Schema.define(version: 2021_03_05_192807) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "children", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.datetime "birthday"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_children_on_user_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -197,6 +210,8 @@ ActiveRecord::Schema.define(version: 2021_03_05_192807) do
     t.datetime "covid19_2w"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "child_id"
+    t.index ["child_id"], name: "index_vaccines_on_child_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

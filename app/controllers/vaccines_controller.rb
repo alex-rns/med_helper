@@ -10,13 +10,22 @@ class VaccinesController < ApplicationController
 
   def update
     @vaccines.update(vaccines_params)
-    redirect_to user_vaccine_path(@user)
+    if params[:child_id].present?
+      redirect_to user_child_vaccine_path(@user)
+    else
+      redirect_to user_vaccine_path(@user)
+    end
   end
 
   private
 
   def set_user
-    @user = User.find(params[:id])
+    if params[:child_id].present?
+      @user = Child.find(params[:id])
+    else
+      @user = User.find(params[:id])
+
+    end
   end
 
   def set_vaccine
