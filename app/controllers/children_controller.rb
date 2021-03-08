@@ -25,8 +25,9 @@ class ChildrenController < ApplicationController
     @child.user_id = current_user.id
     if @child.save
       Vaccine.create!(child_id: @child.id)
-      redirect_to user_children_path, notice: "Thank you for @children!"
+      redirect_to user_children_path, info: "Ребёнок добавлен"
     else
+      flash.now[:danger] = "Ребёнок не добавлен"
       render "new"
     end
   end

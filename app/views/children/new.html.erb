@@ -1,10 +1,21 @@
+<% if @child.errors.any? %>
+  <div class="alert alert-danger">
+    <h6>При добавлении ребёнка возникли ошибки:</h6>
+    <ul>
+      <% @child.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with model: [@user, @user.children.build] do |f| %>
   <div>
-    <%= f.label :name %><br />
+    <%= f.label :name %><br/>
     <%= f.text_field :name, autofocus: true %>
   </div>
   <div>
-    <%= f.label :birthday %><br />
+    <%= f.label :birthday %><br/>
     <%= f.date_field :birthday %>
   </div>
   <%= f.submit %>
