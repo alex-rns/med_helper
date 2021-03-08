@@ -7,7 +7,6 @@ class Expert < ApplicationRecord
    has_one_attached :image
    validates :category, presence: false
    belongs_to :user
-
    scope :searcher, lambda {|params|
     search_scope = Expert.all
     search_scope = search_scope.query(params[:query]) if params[:query].present?

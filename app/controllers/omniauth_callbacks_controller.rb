@@ -38,7 +38,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       Client.create(user_id: user.id, email: user.email, dob: Time.now)
       Vaccine.create(user_id: user.id)
     elsif cookies == 'doctor'
-      Expert.create(user_id: user.id, category_id: 1, email: user.email)
+      Expert.create(user_id: user.id, category_id: 1, email: user.email, latitude: 51.501564, longitude: -0.141944)
     else
     end
   end

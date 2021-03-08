@@ -28,3 +28,13 @@
     <%= link_to "Редактировать", edit_expert_path(@user.expert) %>
   </div>
 </div>
+<p>
+  <iframe
+    width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+      &q=Черкассы+<%= set_address(@user.expert.address) %>">
+  </iframe>

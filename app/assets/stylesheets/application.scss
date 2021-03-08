@@ -15,6 +15,13 @@
  */
 @import "vaccines";
 @import 'bootstrap';
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+
 .event-border{
   height: 700px;
   width: 600px;
@@ -95,7 +102,7 @@ body {
   padding: 0px;
 }
 .event-border-doctor{
-  height: 1500px;
+  height: 1600px;
   width: 900px;
   margin-top: 50px;
   margin-left: 10px;

@@ -6,5 +6,8 @@
 <p>Phone:<%= @user.phone %></p>
 <p>Birthday:<%= @user.birthday.strftime("%d of %B, %Y") if @user.birthday %></p>
 <div>
-  <%= link_to "Vaccine list", user_vaccine_path(@user) %>
+  <ul>
+    <li><%= link_to "Ваша карта вакцинации", user_vaccine_path(@user) %></li>
+    <li><%= link_to "Дети", user_children_path(@user) %></li>
+  </ul>
 </div>

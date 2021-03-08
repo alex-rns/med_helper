@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   end
   resources :users do
     resources :vaccines, only: [:show, :edit, :update]
+    resources :children do
+      resources :vaccines, only: [:show, :edit, :update]
+    end
   end
 end

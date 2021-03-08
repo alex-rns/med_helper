@@ -1,0 +1,10 @@
+<li><%= link_to "Добавить ребёнка", new_user_child_path(@user) %></li>
+
+<div>
+  <% @children.each do |child|%>
+    <p>Имя ребёнка: <%= child.name %></p>
+    <p>Дата рождения: <%= child.birthday.strftime("%d of %B, %Y") %></p>
+    <p><%= link_to "Карта вакцинации - #{child.name}", user_child_vaccine_path(@user, child, child.id)%></p>
+    <p>----------------</p>
+  <% end %>
+</div>
