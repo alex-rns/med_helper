@@ -11,9 +11,9 @@ class VaccinesController < ApplicationController
   def update
     @vaccines.update(vaccines_params)
     if params[:child_id].present?
-      redirect_to user_child_vaccine_path(@user)
+      redirect_to user_child_vaccine_path(@user), success: "Карта вакцинации Вашего ребёнка обновлена"
     else
-      redirect_to user_vaccine_path(@user)
+      redirect_to user_vaccine_path(@user), success: "Ваша карта вакцинации обновлена"
     end
   end
 
