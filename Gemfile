@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'activeadmin'
 gem 'devise'
-#bootstrap
+gem 'will_paginate', '~> 3.3'
 gem "omniauth", "~> 1.9.1"
 gem 'bootstrap', '~> 5.0.0.alpha3'
 gem 'pry'
