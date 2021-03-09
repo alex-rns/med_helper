@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :vaccine, dependent: :destroy
   has_one :expert, dependent: :destroy
   has_one :client, dependent: :destroy
+  has_one_attached :image
 
   def self.from_omniauth(access_token)
     data = access_token.info

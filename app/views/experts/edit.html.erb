@@ -7,9 +7,10 @@
       <hr>
 
       <%= form_with model: @expert, method: :put do |f| %>
-      <%= image_tag @expert.image.url || current_user.image, size: "50x50", class: "rounded mx-auto d-block"%>
+      <%= image_tag @expert.image.url || current_user.image, size: "150x150", class: "rounded mx-auto d-block"%>
       <div class="form-group">
-         <%= f.file_field(:image, direct_upload: true, class: "rounded mx-auto d-block", size: "500x400") %>
+         <%= f.label "Фото" %>
+         <%= f.file_field(:image, direct_upload: true, class: "rounded mx-auto d-block", id: "customFile") %>
       </div>
 
       <div class = "form-group">
@@ -269,3 +270,10 @@
   </div>
 
 </div>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>

@@ -12,9 +12,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     if params[:user][:type] == 'pacient'
       Client.create(user_id: current_user.id, email: current_user.email, dob: Time.now)
+      current_user.image.attach(io: File.open("app/assets/images/avatar.png"),
+                                filename: "avatar.png")
       create_vaccine_card
     else
       Expert.create(user_id: current_user.id, category_id: 1, email: current_user.email)
+      expert.image.attach(io: File.open("app/assets/images/avatar.png"),
+                                filename: "avatar.png")
     end
     cookies.delete :user_type
     redirect_to home_path
