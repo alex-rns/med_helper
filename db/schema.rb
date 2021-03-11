@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_002600) do
+ActiveRecord::Schema.define(version: 2021_03_10_210712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,9 +106,10 @@ ActiveRecord::Schema.define(version: 2021_03_09_002600) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "type"
+    t.integer "type_of_call"
     t.string "calendar_link"
     t.string "meeting_link"
+    t.integer "status"
   end
 
   create_table "experts", force: :cascade do |t|

@@ -32,6 +32,11 @@
           <% if current_user.client.present?||current_user.expert.present? %>
           <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success" %>
           <% end %>
+          <% if current_user.expert.present? %>
+            <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success" %>
+          <% else %>
+            <%= link_to "Мои записи на прием", user_events_path(current_user), class: "btn btn-success" %>
+          <% end %>
         </div>
         <div class="p-2">
         </div>
