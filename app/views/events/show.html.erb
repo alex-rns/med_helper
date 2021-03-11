@@ -48,16 +48,17 @@
       <br>
       <div class="row">
         <div class="col-sm-6">
+        <% if @event.status == 'approve'%>
           <%= link_to('Календарь', @event.calendar_link, class: "btn btn-success") %>
         </div>
         <div class="col-sm-6">
           <%= link_to('Онлайн митинг', @event.meeting_link, class: "btn btn-info ") %>
         </div>
+        <% end %>
       </div>
 
     </div>
     <div class="col-sm">
     </div>
   </div>
-
 </div>

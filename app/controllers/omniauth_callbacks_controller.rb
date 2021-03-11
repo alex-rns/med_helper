@@ -39,7 +39,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
                                 filename: "avatar.png")
       Vaccine.create(user_id: user.id)
     elsif cookies == 'doctor'
-      expert = Expert.create(user_id: user.id, category_id: 1, email: user.emailu)
+      expert = Expert.create(user_id: user.id, category_id: 1, email: user.email)
       expert.image.attach(io: File.open("app/assets/images/avatar.png"),
                                 filename: "avatar.png")
     else

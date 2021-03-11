@@ -1,0 +1,71 @@
+<div class="container">
+<h4 class="text-center">Мои записи на прием</h4>
+
+<% @events.each do |event|%>
+<div class="card card-event">
+  <div class="card-header show-header">
+    <% if event.approve? %>
+     Одобрено
+    <% elsif event.rejected? %>
+     Отменен
+    <% else %>
+    Ожидает подтверждения врача
+    <% end %>
+  </div>
+  <div class="card-body">
+    <div class="row">
+
+      <div class="col-sm-2">
+        <%= image_tag event.expert.image, size:150 %>
+        <p></p>
+      </div>
+      <div class="col-sm-6">
+        <h5><strong><%= event.expert.full_name %></strong></h5>
+        <h6><p class="text-secondary"><%= event.expert.category.name%></p></h6>
+        <p class="fw-lighter">Пациент: <span><%= event.name %></span></p>
+        <p class="fw-lighter">Комментарии: <span><%= event.comment%></span></p>
+        <span class="fw-lighter">Начало приема: <span class="border border-2 rounded-pill badge bg-primary text-wrap"><%= event.start_time.strftime("%d-%b-%Y %H:%M") %></span></span><br>
+        <span class="fw-lighter">Конец приема:  <span class="border border-2 rounded-pill badge bg-primary text-wrap"> <%= event.end_time.strftime("%d-%b-%Y %H:%M") %></span></span>
+      </div>
+      <div class="col-sm-4">
+
+
+        <% if current_user.expert.present? %>
+          <%= link_to "Детально", expert_event_path(event.expert, event), class: "btn btn-outline-success btn-show-event"%><br>
+          <% if event.approve? %>
+
+            <% if event.type_of_call == 'offline'%>
+              <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event"%>
+            <% else %>
+              <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event"%><br>
+              <%= link_to "Митинг", event.meeting_link, class: "btn btn-outline-primary btn-show-event"%>
+            <% end %>
+
+          <% elsif event.rejected? %>
+          <% else %>
+            <%= link_to "Одобрить", expert_event_path(event.expert, event, q:'approve'), method: 'PUT', class: "btn btn-outline-primary btn-show-event"%><br>
+            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event"%>
+          <% end %>
+        <% else %>
+          <%= link_to "Детально", expert_event_path(event.expert, event), class: "btn btn-outline-success btn-show-event"%><br>
+
+          <% if event.pending?%>
+            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event"%>
+          <% elsif event.approve? %>
+            <% if event.type_of_call == 'offline'%>
+              <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event"%>
+            <% else %>
+              <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event"%><br>
+              <%= link_to "Митинг", event.meeting_link, class: "btn btn-outline-primary btn-show-event"%>
+            <% end %>
+          <% else %>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% end %>
+</div>

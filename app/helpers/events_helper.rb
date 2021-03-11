@@ -2,19 +2,19 @@ module EventsHelper
   require "google/apis/calendar_v3"
   require "google/api_client/client_secrets.rb"
 
-  def google_event(params)
+  def google_event(event)
     user_email = current_user.email
     expert_email = @expert.email
     attendees = "#{user_email}, #{expert_email}".split(',').map{ |t| {email: t.strip} }
     client = get_google_calendar_client current_user
     event = Google::Apis::CalendarV3::Event.new({
-      summary: params[:event][:comment],
-      description: "Пациент: #{params[:event][:name]}",
+      summary: event.comment,
+      description: "Пациент: #{event.name}",
       start: {
-         date_time: params[:event][:start_time].to_datetime,
+         date_time: event.start_time.to_datetime,
       },
       end: {
-        date_time: params[:event][:end_time].to_datetime,
+        date_time: event.end_time.to_datetime,
       },
        attendees: attendees,
        conference_data: Google::Apis::CalendarV3::ConferenceData.new(
@@ -28,8 +28,6 @@ module EventsHelper
     })
     new_event = client.insert_event('primary', event, conference_data_version: 1)
     event_link = [new_event.html_link, new_event.hangout_link]
-
-
   end
 
   def get_google_calendar_client current_user
