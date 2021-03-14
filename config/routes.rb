@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'pages#testbootstrap', as: "home"
   get '/role', to: 'pages#role', as: "role"
+  resources :comments
   resources :experts, only: [:show, :index, :edit, :update] do
     resources :events, only: [:index, :new, :create, :show, :update]
   end

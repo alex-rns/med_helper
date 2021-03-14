@@ -1,0 +1,27 @@
+<% if @comment.errors.any? %>
+  <div class="alert alert-danger">
+    <h6>При добавлении комментария возникли ошибки:</h6>
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @comment) do |f| %>
+
+  <div class="field py-2">
+    <%= f.label :body, class: "pb-2" %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="field py-2">
+    <%= f.label :rating, class: "pb-2" %>
+    <%= f.select :rating, [*1..5], :prompt => 'Select', class: "form-control" %>
+  </div>
+
+  <%= f.hidden_field :user_id, class: "pb-2" %>
+  <%= f.hidden_field :expert_id, class: "form-control" %>
+  <%= f.submit %>
+<% end %>
