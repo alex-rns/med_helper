@@ -4,8 +4,13 @@ module ApplicationHelper
     session.delete(:forwarding_url)
   end
 
-
   def store_location
     session[:forwarding_url] = request.url if request.get?
+  end
+
+  def render_stars(value)
+    output = ''
+    value.times { output += '⭐' } + (5-value).times { output += '☆' }
+    output
   end
 end
