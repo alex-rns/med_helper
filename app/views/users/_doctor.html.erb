@@ -1,7 +1,8 @@
 <h2>Профиль врача</h2>
+<p>Мой рейтинг на этом супер-пупер портале: <%= @user.expert.rating %></p>
 <% if @user.expert.image.attached? || @user.image.present? %>
-  <p><%= image_tag(@user.expert.image.url || @user.image , size: "150x150") %></p>
-<%end%>
+  <p><%= image_tag(@user.expert.image.url || @user.image, size: "150x150") %></p>
+<% end %>
 <p><strong>ФИО:</strong> <%= @user.expert.full_name %></p>
 <p><strong>Краткое описание:</strong> <%= @user.expert.description %></p>
 <p><strong>Опыт:</strong> <%= @user.expert.experience %></p>
@@ -12,7 +13,7 @@
 <p><strong>Адрес:</strong> <%= @user.expert.address %></p>
 <p><strong>Email:</strong> <%= @user.email %></p>
 <p><strong>Телефон:</strong> <%= @user.expert.phone %></p>
-<p><strong>Уровень:</strong> <%=  @user.expert.level.name if @user.expert.level.present? %></p>
+<p><strong>Уровень:</strong> <%= @user.expert.level.name if @user.expert.level.present? %></p>
 <p><strong>Категория:</strong> <%= @user.expert.category.name %></p>
 <p><strong>Рабочие часы:</strong></p>
 <p><strong>Пн:</strong> с <%= @user.expert.hw_start_monday %> до <%= @user.expert.hw_end_monday %></p>
@@ -23,30 +24,39 @@
 <p><strong>Сб:</strong> с <%= @user.expert.hw_start_saturday %> до <%= @user.expert.hw_end_saturday %></p>
 <p><strong>Вс:</strong> с <%= @user.expert.hw_start_sunday %> до <%= @user.expert.hw_end_sunday %></p>
 
+<div>
+  <%= link_to "Редактировать", edit_expert_path(@user.expert) %>
 </div>
-  <div>
-    <%= link_to "Редактировать", edit_expert_path(@user.expert) %>
-  </div>
-</div>
-<p>
+
+<div>
   <% if @user.expert.address.present? %>
-  <iframe
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+    <iframe
+      width="600"
+      height="450"
+      style="border:0"
+      loading="lazy"
+      allowfullscreen
+      src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
       &q=Черкассы+<%= set_address(@user.expert.address) %>">
-  </iframe>
+    </iframe>
   <% else %>
-  <iframe
-    width="600"
-    height="450"
-    style="border:0"
-    loading="lazy"
-    allowfullscreen
-    src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+    <iframe
+      width="600"
+      height="450"
+      style="border:0"
+      loading="lazy"
+      allowfullscreen
+      src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
       &q=Черкассы">
-  </iframe>
+    </iframe>
   <% end %>
+</div>
+
+<div>
+  <h4>Оставленные мне комментарии</h4>
+  <% @user.expert.comments.each do |comment| %>
+    <%= comment.user.email %>:
+    <%= comment.body %>
+    <br>
+  <% end %>
+</div>
