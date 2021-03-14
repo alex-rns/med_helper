@@ -8,7 +8,7 @@
       </div>
       <div class="col-sm-9 border-right">
         <h4><%= @expert.full_name %></h4>
-        <p>Рейтинг: <%= @expert.rating %></p>
+        <p>⭐<%= @expert.rating %></p>
         <div class="col-sm-6">
           <h6 class="text-secondary"><%= @expert.category.name %></h6>
         </div>
@@ -43,12 +43,26 @@
 
   <div>
     <h4>Комментарии</h4>
-    <%= link_to "Add comment", new_comment_path(user: current_user, expert_id: @expert), method: :get, class: "btn btn-small btn-primary" %>
+    <%= link_to "Add comment", new_comment_path(expert_id: @expert), method: :get, class: "btn btn-small btn-primary" %>
 
-    <% @expert.comments.each do |comment| %>
-      <%= comment.user.email %>:
-      <%= comment.body %>
-      <br>
+    <% if @expert.comments.present? %>
+      <div class="m-2 d-flex-column">
+        <% @expert.comments.each do |comment| %>
+          <div class="col- pt-4 bg-white mb-3">
+            <strong class="p-2"><%= comment.user.email %></strong>
+            <strong class="text-right p-2"><%= render_stars(comment.rating) %></strong>
+            <p class="p-3 m-0"><%= comment.body %></p>
+            <div class="text-right p-1 btn-group-sm">
+              <% if current_user == comment.user %>
+                <%= link_to 'Edit', edit_comment_path(comment), class: "btn btn-secondary" %>
+                <%= link_to 'Delete', comment_path(comment), method: :delete, class: "btn btn-danger" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>Никто не пишет((</p>
     <% end %>
   </div>
 </div>
