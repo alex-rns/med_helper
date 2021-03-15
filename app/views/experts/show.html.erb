@@ -8,7 +8,15 @@
       </div>
       <div class="col-sm-9 border-right">
         <h4><%= @expert.full_name %></h4>
-        <p>⭐<%= @expert.rating %></p>
+        <div class="my-2">
+          <p>Рейтинг <i class='fas fa-star fa-lg gold-star'></i><%= @expert.rating %></p>
+          <p>Количество отзывов: <%= @expert.comments.count %></p>
+          <span>Рекомендации:
+            <i class="fas fa-thumbs-up fa-lg text-success px-1"></i><%= recommendent_count(true) %>
+            <i class="fas fa-thumbs-down fa-lg text-danger px-1"></i><%= recommendent_count(false) %>
+          </span>
+        </div>
+
         <div class="col-sm-6">
           <h6 class="text-secondary"><%= @expert.category.name %></h6>
         </div>
@@ -52,6 +60,14 @@
             <strong class="p-2"><%= comment.user.email %></strong>
             <strong class="text-right p-2"><%= render_stars(comment.rating) %></strong>
             <p class="p-3 m-0"><%= comment.body %></p>
+            <div class="p-3">
+              <span>Рекомендация </span>
+              <% if comment.recommendation == true %>
+                <i class="fas fa-thumbs-up fa-lg text-success"></i>
+              <% else %>
+                <i class="fas fa-thumbs-down fa-lg text-danger"></i>
+              <% end %>
+            </div>
             <div class="text-right p-1 btn-group-sm">
               <% if current_user == comment.user %>
                 <%= link_to 'Edit', edit_comment_path(comment), class: "btn btn-secondary" %>
