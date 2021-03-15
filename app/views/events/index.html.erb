@@ -36,21 +36,23 @@
 
             <% if event.type_of_call == 'offline'%>
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%>
+              <%= link_to "Добавить событие", new_expert_event_visit_path(event.expert, event), class: "btn btn-outline-info btn-show-event"%>
             <% else %>
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%><br>
               <%= link_to "Митинг", event.meeting_link, class: "btn btn-outline-primary btn-show-event", target: :_blank%>
+              <%= link_to "Добавить событие", new_expert_event_visit_path(event.expert, event), class: "btn btn-outline-info btn-show-event"%>
             <% end %>
 
           <% elsif event.rejected? %>
           <% else %>
-            <%= link_to "Одобрить", expert_event_path(event.expert, event, q:'approve'), method: 'PUT', class: "btn btn-outline-primary btn-show-event", target: :_blank%><br>
-            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event", target: :_blank%>
+            <%= link_to "Одобрить", expert_event_path(event.expert, event, q:'approve'), method: 'PUT', class: "btn btn-outline-primary btn-show-event"%><br>
+            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event"%>
           <% end %>
         <% else %>
           <%= link_to "Детально", expert_event_path(event.expert, event), class: "btn btn-outline-success btn-show-event", target: :_blank%><br>
 
           <% if event.pending?%>
-            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event", target: :_blank%>
+            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event"%>
           <% elsif event.approve? %>
             <% if event.type_of_call == 'offline'%>
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%>
@@ -58,6 +60,7 @@
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%><br>
               <%= link_to "Митинг", event.meeting_link, class: "btn btn-outline-primary btn-show-event", target: :_blank%>
             <% end %>
+
           <% else %>
           <% end %>
 

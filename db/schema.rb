@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_10_210712) do
+ActiveRecord::Schema.define(version: 2021_03_15_085117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,22 @@ ActiveRecord::Schema.define(version: 2021_03_10_210712) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "full_name"
+    t.string "gender"
+    t.string "email"
+    t.string "address"
+    t.string "work"
+    t.string "member"
+    t.string "comment"
+    t.bigint "user_id"
+    t.bigint "expert_id"
+    t.index ["expert_id"], name: "index_cards_on_expert_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -212,7 +228,25 @@ ActiveRecord::Schema.define(version: 2021_03_10_210712) do
     t.index ["child_id"], name: "index_vaccines_on_child_id"
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.string "complaint"
+    t.string "therapy"
+    t.string "diagnosis"
+    t.string "state"
+    t.string "symptom"
+    t.string "anamnesis_of_life"
+    t.string "medical_history"
+    t.bigint "event_id", null: false
+    t.integer "type_of_inspection"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_visits_on_event_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "experts"
+  add_foreign_key "cards", "users"
   add_foreign_key "experts", "users"
+  add_foreign_key "visits", "events"
 end
