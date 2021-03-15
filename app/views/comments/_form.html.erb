@@ -1,0 +1,45 @@
+<%= form_with(model: @comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div class="alert alert-danger">
+      <h6>При добавлении комментария возникли ошибки:</h6>
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field py-2">
+    <%= f.label :body, class: "pb-2" %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="py-4 d-flex">
+    <p>Рейтинг:</p>
+    <div class="form-check form-check-inline">
+      <%= f.radio_button :rating, '1', class: "my-1" %>
+      <%= label :rating_1, '1', class: "pr-3" %>
+      <%= f.radio_button :rating, '2', class: "my-1" %>
+      <%= label :rating_2, '2', class: "pr-3" %>
+      <%= f.radio_button :rating, '3', class: "my-1" %>
+      <%= label :rating_3, '3', class: "pr-3" %>
+      <%= f.radio_button :rating, '4', class: "my-1" %>
+      <%= label :rating_4, '4', class: "pr-3" %>
+      <%= f.radio_button :rating, '5', class: "my-1" %>
+      <%= label :rating_5, '5', class: "pr-3" %>
+    </div>
+  </div>
+
+  <div class="field py-2">
+    <%= f.label :recommendation, class: "pb-2" %>
+    <%= f.check_box :recommendation %>
+  </div>
+
+  <%= f.hidden_field :user_id%>
+  <%= f.hidden_field :expert_id %>
+
+  <div>
+    <%= f.submit "Добавить комментарий", class: "btn btn-success" %>
+  </div>
+<% end %>

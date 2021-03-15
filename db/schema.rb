@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_03_15_085117) do
+=======
+ActiveRecord::Schema.define(version: 2021_03_15_192434) do
+>>>>>>> 7a976f00c80e2a0402471f83944096c33ea63f94
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +113,18 @@ ActiveRecord::Schema.define(version: 2021_03_15_085117) do
     t.string "dob"
     t.string "image"
     t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "expert_id"
+    t.text "body"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "recommendation"
+    t.index ["expert_id"], name: "index_comments_on_expert_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
