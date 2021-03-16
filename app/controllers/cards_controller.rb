@@ -1,26 +1,36 @@
 class CardsController < ApplicationController
-  def new
-   @expert = Expert.find(params[:expert_id])
-   @card = @expert.build_card
-  end
-
-  def create
-    @expert = Expert.find(params[:expert_id])
-    @card = @expert.build_card(permit_params)
-    if @card.save!
-      redirect_to home_path
+  def show
+    if current_user.expert.present?
+      user = User.find(params[:user_id])
+      @card = user.card
+      @protocols = protocols
     else
-      render 'new'
+     @card = current_user.card
+     @protocols = protocols
     end
   end
 
-  def show
-    @expert = Expert.find(params[:expert_id])
+  def edit
+    @card = Card.find(params[:id])
+  end
+
+  def update
+    card = Card.find(params[:id])
+    card.update(permit_params)
+    redirect_to user_path(current_user)
   end
 
   private
 
+  def protocols
+    if current_user.expert.present?
+      @card.protocols.where(expert_id: current_user.expert.id)
+    else
+      @card.protocols
+    end
+  end
+
   def permit_params
-    params.require(:card).permit(:full_name, :email, :gender, :address, :work, :member, :comment, :user_id)
+      params.permit(:full_name, :gender, :member, :address, :comment, :email, :work)
   end
 end

@@ -2,49 +2,64 @@
   <div class="row">
     <div class="col-sm-10 offset-md-1">
       <div class="card card-pacient-first">
-  <div class="card-header card-pacient text-center">
-    Карта пациента
-  </div>
-  <div class="card-body">
-  </div>
-    <div class="row">
-      <div class="col-sm-3">
-        <%= image_tag(@expert.card.user.image, size:150, class: 'rounded-circle card-client-show')%>
-
+        <div class="card-header card-pacient text-center">
+        Карта пациента
+        </div>
+        <div class="card-body">
+          </div>
+            <div class="row">
+              <div class="col-sm-3">
+                <%= image_tag(@card.user&.image, size:150, class: 'rounded-circle card-client-show')%>
+              </div>
+              <div class="col-sm-9">
+                <h7 class="fw-lighter"><strong>ФИО:</strong><%= @card&.full_name %></h7><br>
+                <h7 class="fw-lighter"><strong>Пол:</strong> <%= @card&.gender %></h7><br>
+                <h7 class="fw-lighter"><strong>Email:</strong> <%= @card&.email %></h7><br>
+                <h7 class="fw-lighter"><strong>Адрес:</strong> <%= @card&.address %></h7><br>
+                <h7 class="fw-lighter"><strong>Место работы:</strong> <%= @card&.work %></h7><br>
+                <h7 class="fw-lighter"><strong>Поручитель:</strong> <%= @card&.member %></h7><br>
+                <h7 class="fw-lighter"><strong>Примечания:</strong> <%= @card&.comment %></h7><br>
+                <br>
+                <% if current_user.expert.present? %>
+                 <%= link_to "Создать протокол приема пациента", new_user_card_protocol_path(@card.user, @card), class: "btn btn-primary btn-show-event"%>
+                <% end %>
+             </div>
+           </div>
+        </div>
       </div>
-      <div class="col-sm-9">
-        <br>
-        <h5><%= @expert.card.full_name %></h5>
-        <h7 class="fw-lighter"><strong>Пол:</strong> <%= @expert.card.gender %></h7>
-        <h7 class="fw-lighter"><strong>Email:</strong> <%= @expert.card.email %></h7>
-        <h7 class="fw-lighter"><strong>Адрес:</strong> <%= @expert.card.address %></h7><br>
-        <h7 class="fw-lighter"><strong>Место работы:</strong> <%= @expert.card.work %></h7>
-        <h7 class="fw-lighter"><strong>Поручитель:</strong> <%= @expert.card.member %></h7>
-        <h7 class="fw-lighter"><strong>Примечания:</strong> <%= @expert.card.comment %></h7>
-
-      </div>
-    </div>
    </div>
-  </div>
- </div>
 </div>
 <br>
-<h5 class="text-center">История</h5>
+<h5 class="text-center">История приемов</h5>
+<% @protocols.each do |protocol| %>
 <div class="row">
-<% @expert.card.visits.each do |visit| %>
-<div class="col-sm-10 offset-md-1">
-<div class="card card-pacient-first">
-  <div class="card-header card-pacient text-center">
-    Выполнен
+  <div class="col-sm-10 offset-md-1">
+    <div class="card card-pacient-first">
+      <div class="card-header card-pacient text-center">
+        Протокол приема № <%= @card.id + protocol.id %>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-2">
+            <%= image_tag(protocol.expert&.image, size:80, class: 'rounded-circle card-client-show')%>
+          </div>
+          <div class="col-sm-8">
+            <h7 class="fw-lighter"><strong><%= protocol&.expert.full_name %></strong></h7><br>
+            <h8 class="fw-lighter"><strong></strong><%= protocol&.expert.category.name %></h8><br>
+            <h8 class="fw-lighter"><strong>Жалобы пациента: </strong><%= protocol&.complaint %></h8><br>
+            <% if protocol&.type_of_inspection == "first_visit"%>
+             <span class="fw-lighter"><span class="border border-2 rounded-pill badge bg-primary text-wrap">Первичный прием</span></span><br>
+            <% else %>
+            <span class="fw-lighter"><span class="border border-2 rounded-pill badge bg-info text-wrap">Повторный прием</span></span><br>
+            <% end %>
+          </div>
+          <div class="col-sm-2">
+            <%= link_to "Подробнее", user_card_protocol_path(@card.user, @card, protocol), class: "btn btn-outline-dark" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-   <div class="card-body">
-     <div class="row">
-       <div class="col-sm-2">
-       </div>
-     </div>
-
-   </div>
 </div>
-</div>
+<br>
 <% end %>
-</div>

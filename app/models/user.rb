@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
   has_many :events, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :experts, :through => :events
+  has_many :experts, :through => :events, dependent: :destroy
   has_many :children, dependent: :destroy
   has_many :visits, through: :events
   has_one :vaccine, dependent: :destroy
@@ -24,6 +24,8 @@ class User < ApplicationRecord
           birthday: Time.now.strftime("%d of %B, %Y"),
           password: '12383929'
       )
+      Card.create(email: data["email"],
+                  user_id: user.id)
     end
     user
   end

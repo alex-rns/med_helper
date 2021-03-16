@@ -1,14 +1,12 @@
 class Expert < ApplicationRecord
-   has_many :events
+   has_many :events, dependent: :destroy
    has_many :users, :through => :events
-   # has_many :clients, :through => :events
    belongs_to :category
    belongs_to :level, optional: true
    has_one_attached :image
-   has_one :card, dependent: :destroy
    validates :category, presence: false
    has_many :comments, dependent: :destroy
-   # belongs_to :user
+   has_many :protocols, dependent: :destroy
    scope :searcher, lambda {|params|
     search_scope = Expert.all
     search_scope = search_scope.query(params[:query]) if params[:query].present?

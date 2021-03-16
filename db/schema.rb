@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_03_15_085117) do
-=======
-ActiveRecord::Schema.define(version: 2021_03_15_192434) do
->>>>>>> 7a976f00c80e2a0402471f83944096c33ea63f94
+ActiveRecord::Schema.define(version: 2021_03_16_092052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,8 +80,6 @@ ActiveRecord::Schema.define(version: 2021_03_15_192434) do
     t.string "member"
     t.string "comment"
     t.bigint "user_id"
-    t.bigint "expert_id"
-    t.index ["expert_id"], name: "index_cards_on_expert_id"
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
@@ -187,6 +181,23 @@ ActiveRecord::Schema.define(version: 2021_03_15_192434) do
     t.integer "level_status"
   end
 
+  create_table "protocols", force: :cascade do |t|
+    t.string "complaint"
+    t.string "therapy"
+    t.string "diagnosis"
+    t.string "state"
+    t.string "symptom"
+    t.string "anamnesis_of_life"
+    t.string "medical_history"
+    t.integer "type_of_inspection"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "card_id", null: false
+    t.bigint "expert_id", null: false
+    t.index ["card_id"], name: "index_protocols_on_card_id"
+    t.index ["expert_id"], name: "index_protocols_on_expert_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -244,25 +255,10 @@ ActiveRecord::Schema.define(version: 2021_03_15_192434) do
     t.index ["child_id"], name: "index_vaccines_on_child_id"
   end
 
-  create_table "visits", force: :cascade do |t|
-    t.string "complaint"
-    t.string "therapy"
-    t.string "diagnosis"
-    t.string "state"
-    t.string "symptom"
-    t.string "anamnesis_of_life"
-    t.string "medical_history"
-    t.bigint "event_id", null: false
-    t.integer "type_of_inspection"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_visits_on_event_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "cards", "experts"
   add_foreign_key "cards", "users"
   add_foreign_key "experts", "users"
-  add_foreign_key "visits", "events"
+  add_foreign_key "protocols", "cards"
+  add_foreign_key "protocols", "experts"
 end

@@ -17,8 +17,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       create_vaccine_card
     else
       Expert.create(user_id: current_user.id, category_id: 1, email: current_user.email)
-      expert.image.attach(io: File.open("app/assets/images/avatar.png"),
-                                filename: "avatar.png")
+      current_user.image.attach(io: File.open("app/assets/images/avatar.png"),
+                                filename: "doctor0.png")
     end
     cookies.delete :user_type
     redirect_to home_path

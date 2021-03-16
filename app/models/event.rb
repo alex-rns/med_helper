@@ -5,5 +5,4 @@ class Event < ApplicationRecord
   validates :comment, length: { maximum: 256 }
   enum type_of_call: { offline: 0, online: 1}
   enum status: { pending: 0, approve: 1, rejected: 2 }
-  has_one :visit
 end
