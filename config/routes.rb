@@ -7,10 +7,14 @@ Rails.application.routes.draw do
   root 'pages#testbootstrap', as: "home"
   get '/role', to: 'pages#role', as: "role"
   resources :comments
+  resources :pacients, only: [:index]
   resources :experts, only: [:show, :index, :edit, :update] do
     resources :events, only: [:index, :new, :create, :show, :update]
   end
   resources :users do
+    resources :cards, only: [:show, :edit, :update] do
+      resources :protocols, only: [:new, :create, :show]
+    end
     resources :events, only: [:index, :show, :update]
     resources :vaccines, only: [:show, :edit, :update]
     resources :children do

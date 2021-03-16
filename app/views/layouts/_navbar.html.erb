@@ -34,8 +34,10 @@
           <% end %>
           <% if current_user.expert.present? %>
             <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success" %>
+            <%= link_to "Мои пациенты", pacients_path, class: "btn btn-success" %>
           <% else %>
             <%= link_to "Мои записи на прием", user_events_path(current_user), class: "btn btn-success" %>
+            <%= link_to "Карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success"%>
           <% end %>
         </div>
         <div class="p-2">

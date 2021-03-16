@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_15_192434) do
+ActiveRecord::Schema.define(version: 2021_03_16_092052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,20 @@ ActiveRecord::Schema.define(version: 2021_03_15_192434) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "full_name"
+    t.string "gender"
+    t.string "email"
+    t.string "address"
+    t.string "work"
+    t.string "member"
+    t.string "comment"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -167,6 +181,23 @@ ActiveRecord::Schema.define(version: 2021_03_15_192434) do
     t.integer "level_status"
   end
 
+  create_table "protocols", force: :cascade do |t|
+    t.string "complaint"
+    t.string "therapy"
+    t.string "diagnosis"
+    t.string "state"
+    t.string "symptom"
+    t.string "anamnesis_of_life"
+    t.string "medical_history"
+    t.integer "type_of_inspection"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "card_id", null: false
+    t.bigint "expert_id", null: false
+    t.index ["card_id"], name: "index_protocols_on_card_id"
+    t.index ["expert_id"], name: "index_protocols_on_expert_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -226,5 +257,8 @@ ActiveRecord::Schema.define(version: 2021_03_15_192434) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "users"
   add_foreign_key "experts", "users"
+  add_foreign_key "protocols", "cards"
+  add_foreign_key "protocols", "experts"
 end

@@ -35,7 +35,7 @@
     <div class="row border expert-cart shadow p-3 mb-5 bg-body rounded">
       <div class="row col-12 col-sm-8 col-md-8 col-lg-8">
         <div class="col-3 col-sm-12 col-md-3 col-lg-3">
-          <%= image_tag(expert.image.url || expert.user.image, size: "150x150") %>
+          <%= image_tag(expert.image.url || current_user.image, size: "150x150") %>
         </div>
         <div class="col-12 col-sm-9 border-right">
           <h4><%= link_to expert.full_name, expert_path(expert) %></h4>
@@ -52,7 +52,7 @@
            <span class="badge rounded-pill bg-success"><%= expert.experience%></span><span> лет опыта</span>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12">
-           <%= truncate(expert.description, length: 240, separator: '...') %>
+           <%= truncate(expert.description, length: 140, separator: '...') %>
           </div>
        </div>
       </div>

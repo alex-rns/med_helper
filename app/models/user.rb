@@ -6,9 +6,11 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :experts, :through => :events, dependent: :destroy
   has_many :children, dependent: :destroy
+  has_many :visits, through: :events
   has_one :vaccine, dependent: :destroy
   has_one :expert, dependent: :destroy
   has_one :client, dependent: :destroy
+  has_one :card, dependent: :destroy
   has_one_attached :image
 
   def self.from_omniauth(access_token)
@@ -22,6 +24,8 @@ class User < ApplicationRecord
           birthday: Time.now.strftime("%d of %B, %Y"),
           password: '12383929'
       )
+      Card.create(email: data["email"],
+                  user_id: user.id)
     end
     user
   end

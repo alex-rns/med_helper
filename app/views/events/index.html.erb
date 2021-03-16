@@ -16,41 +16,54 @@
     <div class="row">
 
       <div class="col-sm-2">
+        <% if current_user.expert.present? %>
+        <%= image_tag event.user.image, size:150 %>
+        <% else %>
         <%= image_tag event.expert.image, size:150 %>
+        <% end %>
+
         <p></p>
       </div>
       <div class="col-sm-6">
-        <h5><strong><%= event.expert.full_name %></strong></h5>
-        <h6><p class="text-secondary"><%= event.expert.category.name%></p></h6>
-        <p class="fw-lighter">Пациент: <span><%= event.name %></span></p>
+        <% if current_user.expert.present? %>
+        <h5><%= link_to event.name, user_card_path(event.user, event.user.card)%></h5>
         <p class="fw-lighter">Комментарии: <span><%= event.comment%></span></p>
         <span class="fw-lighter">Начало приема: <span class="border border-2 rounded-pill badge bg-primary text-wrap"><%= event.start_time.strftime("%d-%b-%Y %H:%M") %></span></span><br>
         <span class="fw-lighter">Конец приема:  <span class="border border-2 rounded-pill badge bg-primary text-wrap"> <%= event.end_time.strftime("%d-%b-%Y %H:%M") %></span></span>
+        <% else %>
+        <h5><strong><%=link_to event.expert.full_name, expert_path(event.expert)%></strong></h5>
+        <h6><p class="text-secondary"><%= event.expert.category.name%></p></h6>
+        <p class="fw-lighter">Комментарии: <span><%= event.comment%></span></p>
+        <span class="fw-lighter">Начало приема: <span class="border border-2 rounded-pill badge bg-primary text-wrap"><%= event.start_time.strftime("%d-%b-%Y %H:%M") %></span></span><br>
+        <span class="fw-lighter">Конец приема:  <span class="border border-2 rounded-pill badge bg-primary text-wrap"> <%= event.end_time.strftime("%d-%b-%Y %H:%M") %></span></span>
+        <% end %>
       </div>
       <div class="col-sm-4">
 
 
         <% if current_user.expert.present? %>
-          <%= link_to "Детально", expert_event_path(event.expert, event), class: "btn btn-outline-success btn-show-event", target: :_blank%><br>
+          <%= link_to "Подробно", expert_event_path(event.expert, event), class: "btn btn-outline-success btn-show-event", target: :_blank%><br>
           <% if event.approve? %>
 
             <% if event.type_of_call == 'offline'%>
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%>
+              <%= link_to "Карта пациентв", user_card_path(event.user, event.user.card), class: "btn btn-outline-info btn-show-event"%>
             <% else %>
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%><br>
               <%= link_to "Митинг", event.meeting_link, class: "btn btn-outline-primary btn-show-event", target: :_blank%>
+              <%= link_to "Карта пациентв", user_card_path(event.user, event.user.card), class: "btn btn-outline-info btn-show-event"%>
             <% end %>
 
           <% elsif event.rejected? %>
           <% else %>
-            <%= link_to "Одобрить", expert_event_path(event.expert, event, q:'approve'), method: 'PUT', class: "btn btn-outline-primary btn-show-event", target: :_blank%><br>
-            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event", target: :_blank%>
+            <%= link_to "Одобрить", expert_event_path(event.expert, event, q:'approve'), method: 'PUT', class: "btn btn-outline-primary btn-show-event"%><br>
+            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event"%>
           <% end %>
         <% else %>
-          <%= link_to "Детально", expert_event_path(event.expert, event), class: "btn btn-outline-success btn-show-event", target: :_blank%><br>
+          <%= link_to "Подробно", expert_event_path(event.expert, event), class: "btn btn-outline-success btn-show-event", target: :_blank%><br>
 
           <% if event.pending?%>
-            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event", target: :_blank%>
+            <%= link_to "Отменить", expert_event_path(event.expert, event, q:'reject'), method: 'PUT', class: "btn btn-outline-danger btn-show-event"%>
           <% elsif event.approve? %>
             <% if event.type_of_call == 'offline'%>
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%>
@@ -58,6 +71,7 @@
               <%= link_to "Календарь", event.calendar_link, class: "btn btn-outline-warning btn-show-event", target: :_blank%><br>
               <%= link_to "Митинг", event.meeting_link, class: "btn btn-outline-primary btn-show-event", target: :_blank%>
             <% end %>
+
           <% else %>
           <% end %>
 
