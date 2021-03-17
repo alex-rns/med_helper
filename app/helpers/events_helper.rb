@@ -43,6 +43,8 @@ module EventsHelper
     })
     client.authorization = secrets.to_authorization
     client.authorization.grant_type = "refresh_token"
+    client.authorization.fetch_access_token!
+    client.authorization
     client
   end
 
