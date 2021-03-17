@@ -1,6 +1,6 @@
 # **GeekHub X | RoR | Collective Graduation Project | Med Helper**
 
-## Production: http://medhelper.sytes.net/
+## Production: https://medhelper.sytes.net/
 
 ## Description
 Медицинский сервис.
