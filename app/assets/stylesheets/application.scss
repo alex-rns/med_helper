@@ -21,6 +21,7 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/regular';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
+$fa-font-path: "font-awesome/fonts" !default;
 #customFile{
   border: 1px solid #ced4da;
   width: 855px;
