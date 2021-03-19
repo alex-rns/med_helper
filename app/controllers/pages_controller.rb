@@ -1,4 +1,4 @@
 class PagesController < ApplicationController
-  def testbootstrap
+  def home
   end
 end
