@@ -31,7 +31,6 @@ $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/brands';
 @import '@fortawesome/fontawesome-free/scss/v4-shims';
 
-
 a {
   color: #ffffff!important;
 
@@ -39,6 +38,7 @@ a {
   background-color: #2eb2ff;
 }
 
+$fa-font-path: "font-awesome/fonts" !default;
 
 #customFile{
   border: 1px solid #ced4da;

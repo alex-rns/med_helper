@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'pages#home', as: "home"
   get '/role', to: 'pages#role', as: "role"
+  get '/privacy_policy', to: 'pages#rule', as: "rules"
   resources :comments
   resources :pacients, only: [:index]
   resources :experts, only: [:show, :index, :edit, :update] do
