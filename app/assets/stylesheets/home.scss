@@ -1,5 +1,8 @@
 .welcome-page {
   height: calc(100vh - 50px);
-  background: url("welcome_bg.jpg") no-repeat center center;
+  background-image: url(asset_path('welcome_bg.jpg'));
+  background-repeat: no-repeat;
+  background-position: center;
+  //background: url("images/welcome_bg.jpg") no-repeat center center;
   background-size: cover;
 }
