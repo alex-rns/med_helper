@@ -1,8 +1,12 @@
 <div class="container">
-  <h3 class="my-4 text-primary text-center">Добавить запись в карту вакцинаций</h3>
+  <h2 class="my-4 text-primary text-center">Добавить запись в карту вакцинаций</h2>
+  <div class="position-relative mb-4">
+    <%= link_to "Назад", :back, class: "btn btn-primary text-white position-absolute" %>
+    <h4 class="text-center text-black-50"><%= @user.name if @user.name.present?%></h4>
+  </div>
   <%= form_with(model: @vaccine, url: params[:child_id] ? user_child_vaccine_path : user_vaccine_path, :method => :put) do |f| %>
     <div class="d-flex flex-wrap edit-vaccine-table">
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Гепатит А</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.hepatitis_a_1w %>
@@ -11,7 +15,7 @@
           <%= f.date_field :hepatitis_a_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Гепатит А</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.hepatitis_a_2w %>
@@ -20,7 +24,7 @@
           <%= f.date_field :hepatitis_a_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Гепатит B</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.hepatitis_b_1w %>
@@ -29,7 +33,7 @@
           <%= f.date_field :hepatitis_b_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Гепатит B</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.hepatitis_b_2w %>
@@ -38,7 +42,7 @@
           <%= f.date_field :hepatitis_b_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Гепатит B</p>
         <small>3-я вакцинация</small>
         <% if @vaccines.hepatitis_b_3w %>
@@ -47,7 +51,7 @@
           <%= f.date_field :hepatitis_b_3w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Туберкулёз</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.tuberculosis %>
@@ -56,7 +60,7 @@
           <%= f.date_field :tuberculosis, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Пневмокок</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.pneumococcus_1w %>
@@ -65,7 +69,7 @@
           <%= f.date_field :pneumococcus_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Пневмокок</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.pneumococcus_2w %>
@@ -74,7 +78,7 @@
           <%= f.date_field :pneumococcus_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Пневмокок</p>
         <small>3-я вакцинация</small>
         <% if @vaccines.pneumococcus_3w %>
@@ -83,7 +87,7 @@
           <%= f.date_field :pneumococcus_3w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Менингокок</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.meningococcus_1w %>
@@ -92,7 +96,7 @@
           <%= f.date_field :meningococcus_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Менингокок</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.meningococcus_2w %>
@@ -101,7 +105,7 @@
           <%= f.date_field :meningococcus_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Ветряная оспа</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.varicella_1w %>
@@ -110,7 +114,7 @@
           <%= f.date_field :varicella_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Ветряная оспа</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.varicella_2w %>
@@ -119,7 +123,7 @@
           <%= f.date_field :varicella_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Корь - Паротит - Краснуха">КПК</abbr></p>
         <small>1-я вакцинация</small>
         <% if @vaccines.morbilli_mumps_rubella_1w %>
@@ -128,7 +132,7 @@
           <%= f.date_field :morbilli_mumps_rubella_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Корь - Паротит - Краснуха">КПК</abbr></p>
         <small>2-я вакцинация</small>
         <% if @vaccines.morbilli_mumps_rubella_2w %>
@@ -137,7 +141,7 @@
           <%= f.date_field :morbilli_mumps_rubella_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Коклюш - Дифтерия - Столбняк">АКДС</abbr></p>
         <small>1-я вакцинация</small>
         <% if @vaccines.diphtheria_tetanus_pertussis_1w %>
@@ -146,7 +150,7 @@
           <%= f.date_field :diphtheria_tetanus_pertussis_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Коклюш - Дифтерия - Столбняк">АКДС</abbr></p>
         <small>2-я вакцинация</small>
         <% if @vaccines.diphtheria_tetanus_pertussis_2w %>
@@ -155,7 +159,7 @@
           <%= f.date_field :diphtheria_tetanus_pertussis_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Коклюш - Дифтерия - Столбняк">АКДС</abbr></p>
         <small>3-я вакцинация</small>
         <% if @vaccines.diphtheria_tetanus_pertussis_3w %>
@@ -164,7 +168,7 @@
           <%= f.date_field :diphtheria_tetanus_pertussis_3w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Коклюш - Дифтерия - Столбняк">АКДС</abbr></p>
         <small>1-я ревакцинация</small>
         <% if @vaccines.diphtheria_tetanus_pertussis_1rw %>
@@ -173,7 +177,7 @@
           <%= f.date_field :diphtheria_tetanus_pertussis_1rw, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Коклюш - Дифтерия - Столбняк">АКДС</abbr></p>
         <small>2-я ревакцинация</small>
         <% if @vaccines.diphtheria_tetanus_pertussis_2rw %>
@@ -182,7 +186,7 @@
           <%= f.date_field :diphtheria_tetanus_pertussis_2rw, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0"><abbr title="Коклюш - Дифтерия - Столбняк">АКДС</abbr></p>
         <small>3-я ревакцинация</small>
         <% if @vaccines.diphtheria_tetanus_pertussis_3rw %>
@@ -191,7 +195,7 @@
           <%= f.date_field :diphtheria_tetanus_pertussis_3rw, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">ХИБ-инфекция</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.hib_desease_1w %>
@@ -200,7 +204,7 @@
           <%= f.date_field :hib_desease_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">ХИБ-инфекция</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.hib_desease_2w %>
@@ -209,7 +213,7 @@
           <%= f.date_field :hib_desease_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">ХИБ-инфекция</p>
         <small>3-я вакцинация</small>
         <% if @vaccines.hib_desease_3w %>
@@ -218,7 +222,7 @@
           <%= f.date_field :hib_desease_3w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">ХИБ-инфекция</p>
         <small>4-я вакцинация</small>
         <% if @vaccines.hib_desease_4w %>
@@ -227,7 +231,7 @@
           <%= f.date_field :hib_desease_4w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Ротавирус</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.rota_1w %>
@@ -236,7 +240,7 @@
           <%= f.date_field :rota_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Ротавирус</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.rota_2w %>
@@ -245,7 +249,7 @@
           <%= f.date_field :rota_2w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Covid-19</p>
         <small>1-я вакцинация</small>
         <% if @vaccines.covid19_1w %>
@@ -254,7 +258,7 @@
           <%= f.date_field :covid19_1w, :value => Time.now.strftime('%d-%m-%Y'), :class => "form-control" %>
         <% end %>
       </div>
-      <div class="p-2 col-2">
+      <div class="p-2 col-6 col-sm-4 col-md-3 col-lg-2">
         <p class="m-0">Covid-19</p>
         <small>2-я вакцинация</small>
         <% if @vaccines.covid19_2w %>
@@ -265,7 +269,7 @@
       </div>
     </div>
     <div class="py-3">
-      <%= f.submit "Сохранить", class: "btn btn-success w-100" %>
+      <%= f.submit "Сохранить", class: "btn btn-primary btn-lg text-white w-100 my-3" %>
     </div>
   <% end %>
 </div>
