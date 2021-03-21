@@ -5,7 +5,7 @@
 
     <% if @user.birthday %>
       <% if params[:child_id].present? %>
-        <%= link_to "Добавить запись о прививке", edit_user_child_vaccine_path(url: "user_child_vaccine_path") %>
+        <%= link_to "Добавить запись о прививке", edit_user_child_vaccine_path(url: "user_child_vaccine_path"), class: "btn btn-primary btn-lg text-white w-100 my-3" %>
       <% else %>
         <%= link_to "Добавить запись о прививке", edit_user_vaccine_path(url: "user_vaccine_path"), class: "btn btn-primary btn-lg text-white w-100 my-3" %>
       <% end %>
