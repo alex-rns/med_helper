@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.create(comment_params)
     if @comment.save
-      redirect_to expert_path(@comment.expert), info: "Комментарий добавлен"
+      redirect_to expert_path(@comment.expert), success: "Комментарий добавлен"
     else
       flash.now[:error] = "Комментарий не добавлен"
       render 'new'
@@ -20,13 +20,17 @@ class CommentsController < ApplicationController
   end
 
   def update
-    @comment.update(comment_params)
-    redirect_to @comment.expert
+    if @comment.update(comment_params)
+      redirect_to @comment.expert, success: "Комментарий изменён"
+    else
+      flash.now[:error] = "Комментарий не изменён"
+      render 'edit'
+    end
   end
 
   def destroy
     @comment.destroy
-    redirect_to @comment.expert
+    redirect_to @comment.expert, success: "Комментарий удалён"
   end
 
   private
