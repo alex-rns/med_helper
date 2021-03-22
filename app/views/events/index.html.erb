@@ -17,16 +17,16 @@
 
       <div class="col-sm-2">
         <% if current_user.expert.present? %>
-        <%= image_tag event.user.image, size:150 %>
+          <%= image_tag event.user.image, size:150 %>
         <% else %>
-        <%= image_tag event.expert.image, size:150 %>
+          <%= image_tag(event.expert.image.url || current_user.image, size: "150x150") %>
         <% end %>
 
         <p></p>
       </div>
       <div class="col-sm-6">
         <% if current_user.expert.present? %>
-        <h5><%= link_to event.name, user_card_path(event.user, event.user.card)%></h5>
+        <h5><%= link_to event.user.card.full_name, user_card_path(event.user, event.user.card)%></h5>
         <p class="fw-lighter">Комментарии: <span><%= event.comment%></span></p>
         <span class="fw-lighter">Начало приема: <span class="border border-2 rounded-pill badge bg-primary text-wrap"><%= event.start_time.strftime("%d-%b-%Y %H:%M") %></span></span><br>
         <span class="fw-lighter">Конец приема:  <span class="border border-2 rounded-pill badge bg-primary text-wrap"> <%= event.end_time.strftime("%d-%b-%Y %H:%M") %></span></span>

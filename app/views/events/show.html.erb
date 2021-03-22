@@ -7,18 +7,13 @@
       <h6>Спасибо за оставленную заявку на прием к врачу на MedHelper.</h6>
       <hr>
       <tr>
-        <td><strong>Имя: </strong></td>
-        <td><%= @event.name %></td>
-      </tr>
-      <br>
-      <tr>
-        <td><strong>Телефон: </strong></td>
-        <td><%= @event.phone %></td>
+        <td><strong>Имя пациента: </strong></td>
+        <td><%= @event.user.card.full_name %></td>
       </tr>
       <br>
       <tr>
         <td><strong>Email: </strong></td>
-        <td><%= @event.email %></td>
+        <td><%= @event.user.email %></td>
       </tr>
       <br>
       <tr>

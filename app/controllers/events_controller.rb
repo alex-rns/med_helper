@@ -62,6 +62,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :phone, :start_time, :end_time, :comment, :type_of_call, :status).merge(user_id: current_user.id)
+    params.require(:event).permit(:start_time, :end_time, :comment, :type_of_call, :status).merge(user_id: current_user.id)
   end
 end

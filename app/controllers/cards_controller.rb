@@ -31,6 +31,6 @@ class CardsController < ApplicationController
   end
 
   def permit_params
-      params.permit(:full_name, :gender, :member, :address, :comment, :email, :work)
+      params.permit(:full_name, :gender, :member, :address, :comment, :phone, :work)
   end
 end
