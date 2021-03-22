@@ -8,19 +8,6 @@
 
       <%= form_with model: [@expert, @event] do |f| %>
       <div class = "form-group">
-        <%= f.label "Имя и фамилия пациента" %>
-        <%= f.text_field :name, class: 'form-control', required: true%>
-      </div>
-
-      <div class = "form-group">
-        <%= f.label "Tелефон" %>
-        <%= f.text_field :phone, class: 'form-control', required: true %>
-        <% @event.errors.full_messages_for(:phone).each do |message| %>
-          <div class="alert alert-warning alert-event"><%= message %></div>
-        <% end %>
-      </div>
-
-      <div class = "form-group">
         <%= f.label "Тип приема" %>
         <%= select_tag('event[type_of_call]', options_for_select([['Офлайн консультация', 'offline' ], ['Онлайн консультация', 'online']]), class:'form-control', required: true) %>
         <% @event.errors.full_messages_for(:type).each do |message| %>

@@ -9,43 +9,43 @@
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "ФИО" %>
-               <%= f.text_field :full_name, class: 'form-control', required: true%>
+               <%= f.text_field :full_name, value: current_user.card&.full_name, class: 'form-control', required: true%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Пол" %>
-               <%= f.text_area :gender, class: 'form-control', required: true%>
+               <%= f.text_area :gender, value: current_user.card&.gender, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Адрес" %>
-               <%= f.text_area :address, class: 'form-control', required: true%>
+               <%= f.text_area :address, value: current_user.card&.address, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Поручитель" %>
-               <%= f.text_area :member, class: 'form-control', required: true%>
+               <%= f.text_area :member, value: current_user.card&.address, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Примечания" %>
-               <%= f.text_area :comment, class: 'form-control', required: true%>
+               <%= f.text_area :comment, value: current_user.card&.comment, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
-               <%= f.label "Email" %>
-               <%= f.text_area :email, class: 'form-control', required: true%>
+               <%= f.label "Телефон" %>
+               <%= f.text_area :phone, value: current_user.card&.phone, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Работа" %>
-               <%= f.text_area :work, class: 'form-control', required: true%>
+               <%= f.text_area :work, value: current_user.card&.work, class: 'form-control'%>
              </div>
            </div>
            <div class="d-flex justify-content-center">

@@ -9,7 +9,7 @@ module EventsHelper
     client = get_google_calendar_client current_user
     event = Google::Apis::CalendarV3::Event.new({
       summary: event.comment,
-      description: "Пациент: #{event.name}",
+      description: "Пациент: #{event.user.card.full_name}",
       start: {
          date_time: event.start_time.to_datetime,
       },
