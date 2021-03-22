@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 				    registrations: "users/registrations" }
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  root 'pages#testbootstrap', as: "home"
+  root 'pages#home', as: "home"
   get '/role', to: 'pages#role', as: "role"
   get '/privacy_policy', to: 'pages#rule', as: "rules"
   resources :comments

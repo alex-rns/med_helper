@@ -1,43 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <h2 class="pl-2 m-0 text-uppercase">
-    <%= link_to (image_tag "medical-icon.png", class: "p-1", width: "80", height: "70") + "MEDHELPER", home_path, class: "navbar-brand text-decoration-none fs-4" %>
+    <%= link_to (image_tag "logo.png", class: "p-1", width: "180"), home_path, class: "navbar-brand text-decoration-none fs-4" %>
   </h2>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <% if user_signed_in?&&(current_user.client.present?||current_user.expert.present?) %>
-          <%= link_to "Medical experts", search_experts_path, class: "nav-link" %>
+        <% if user_signed_in? && (current_user.client.present? || current_user.expert.present?) %>
+          <%= link_to "Medical experts", search_experts_path, class: "nav-link btn btn-secondary" %>
         <% end %>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+      <li class="nav-item">
+        <%= link_to "О нас", home_path, class: "nav-link text-primary" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "О вас", home_path, class: "nav-link text-primary" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "О них", home_path, class: "nav-link text-primary" %>
       </li>
     </ul>
-
     <div class="d-flex">
       <% if user_signed_in? %>
         <div class="p-2">
-          <% if current_user.client.present?||current_user.expert.present? %>
-          <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success" %>
+          <% if current_user.client.present? || current_user.expert.present? %>
+            <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success" %>
           <% end %>
           <% if current_user.expert.present? %>
             <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success" %>
             <%= link_to "Мои пациенты", pacients_path, class: "btn btn-success" %>
           <% else %>
             <%= link_to "Мои записи на прием", user_events_path(current_user), class: "btn btn-success" %>
-            <%= link_to "Карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success"%>
+            <%= link_to "Карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success" %>
           <% end %>
         </div>
         <div class="p-2">
@@ -47,10 +45,10 @@
         </div>
       <% else %>
         <div class="p-2">
-          <%= link_to "Зарегистрироваться", new_user_registration_path, class: "btn btn-success" %>
+          <%= link_to "Зарегистрироваться", new_user_registration_path, class: "btn btn-primary" %>
         </div>
         <div class="p-2">
-          <%= link_to "Войти", user_session_path, class: "btn btn-success" %>
+          <%= link_to "Войти", user_session_path, class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>

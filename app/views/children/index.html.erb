@@ -5,6 +5,7 @@
     <p>Имя ребёнка: <%= child.name %></p>
     <p>Дата рождения: <%= child.birthday.strftime("%d of %B, %Y") %></p>
     <p><%= link_to "Карта вакцинации - #{child.name}", user_child_vaccine_path(@user, child, child.id)%></p>
+    <%= link_to 'Удалить ребёнка из списка', user_child_path(@user, child), method: :delete, class: "btn btn-danger", data: { confirm: 'Удалить ребёнка из списка?' } %>
     <p>----------------</p>
   <% end %>
 </div>
