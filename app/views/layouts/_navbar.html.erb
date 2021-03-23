@@ -10,8 +10,8 @@
 
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <% if user_signed_in? && (current_user.client.present? || current_user.expert.present?) %>
-          <%= link_to "Medical experts", search_experts_path, class: "nav-link btn btn-secondary" %>
+        <% if user_signed_in? && current_user.patient?%>
+          <%= link_to "Врачи", search_experts_path, class: "nav-link btn btn-secondary" %>
         <% end %>
       </li>
       <li class="nav-item">
@@ -27,15 +27,16 @@
     <div class="d-flex">
       <% if user_signed_in? %>
         <div class="p-2">
-          <% if current_user.client.present? || current_user.expert.present? %>
+          <% if current_user.patient? || current_user.doctor? %>
             <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success" %>
           <% end %>
-          <% if current_user.expert.present? %>
+          <% if current_user.doctor? %>
             <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success" %>
             <%= link_to "Мои пациенты", pacients_path, class: "btn btn-success" %>
-          <% else %>
+          <% elsif  current_user.patient?%>
             <%= link_to "Мои записи на прием", user_events_path(current_user), class: "btn btn-success" %>
             <%= link_to "Карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success" %>
+          <%else%>
           <% end %>
         </div>
         <div class="p-2">

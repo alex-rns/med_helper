@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_170800) do
+ActiveRecord::Schema.define(version: 2021_03_23_124812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,17 +98,6 @@ ActiveRecord::Schema.define(version: 2021_03_22_170800) do
     t.index ["user_id"], name: "index_children_on_user_id"
   end
 
-  create_table "clients", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "name"
-    t.string "email"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "dob"
-    t.string "image"
-    t.index ["user_id"], name: "index_clients_on_user_id"
-  end
-
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "expert_id"
@@ -143,7 +132,6 @@ ActiveRecord::Schema.define(version: 2021_03_22_170800) do
     t.text "procedure"
     t.string "address"
     t.string "medical_center"
-    t.string "email"
     t.string "phone"
     t.string "image"
     t.string "hw_start_monday"
@@ -209,6 +197,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_170800) do
     t.datetime "expires_at"
     t.string "refresh_token"
     t.string "image"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

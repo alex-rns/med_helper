@@ -70,13 +70,6 @@
         <% end %>
       </div>
       <div class = "form-group">
-        <%= f.label "Email:" %>
-        <%= email_field_tag 'expert[email]', "#{current_user.expert.email}", class: 'form-control' %>
-        <% @expert.errors.full_messages_for(:email).each do |message| %>
-          <div class="alert alert-warning alert-event"><%= message %></div>
-        <% end %>
-      </div>
-      <div class = "form-group">
         <%= f.label "Teлефон" %>
         <%= f.telephone_field :phone, class: 'form-control' %>
         <% @expert.errors.full_messages_for(:phone).each do |message| %>

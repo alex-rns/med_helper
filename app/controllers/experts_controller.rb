@@ -36,7 +36,7 @@ class ExpertsController < ApplicationController
 
   def expert_params
     params.require(:expert).permit(:full_name, :description, :experience,
-      :additional_education, :procedure, :address, :medical_center, :email,
+      :additional_education, :procedure, :address, :medical_center,
       :phone, :hw_start_monday, :hw_end_monday, :hw_start_tuesday, :hw_end_tuesday,
       :hw_start_wednesday, :hw_end_wednesday, :hw_start_thursday, :hw_end_thursday,
       :hw_start_friday, :hw_end_friday, :hw_start_saturday, :hw_end_saturday,

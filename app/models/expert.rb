@@ -2,6 +2,7 @@ class Expert < ApplicationRecord
    has_many :events, dependent: :destroy
    has_many :users, :through => :events
    belongs_to :category
+   belongs_to :user
    belongs_to :level, optional: true
    has_one_attached :image
    validates :category, presence: false

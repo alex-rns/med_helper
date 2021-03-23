@@ -1,37 +1,80 @@
-<h2>Профиль врача</h2>
-<p>Мой рейтинг на этом супер-пупер портале: <%= @user.expert.rating %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-md-1">
+      <div class="card card-pacient-first">
+        <div class="card-header card-pacient text-center">
+          Профиль врача</div>
+         <div class="card-body text-center">
 <% if @user.expert.image.attached? || @user.image.present? %>
   <p><%= image_tag(@user.expert.image.url || @user.image, size: "150x150") %></p>
 <% end %>
+<p>Рейтинг: <%= @user.expert.rating %></p>
+<% if @user.expert.full_name.present? %>
 <p><strong>ФИО:</strong> <%= @user.expert.full_name %></p>
+<% end %>
+<% if @user.expert.description.present? %>
 <p><strong>Краткое описание:</strong> <%= @user.expert.description %></p>
+<% end %>
+<% if @user.expert.experience.present? %>
 <p><strong>Опыт:</strong> <%= @user.expert.experience %></p>
+<% end %>
+ <% if @user.expert.education.present? %>
 <p><strong>Образование:</strong> <%= @user.expert.education %></p>
+<%end %>
+<% if @user.expert.additional_education.present? %>
 <p><strong>Дополнительное образование:</strong> <%= @user.expert.additional_education %></p>
+<% end %>
+<% if @user.expert.procedure.present? %>
 <p><strong>Процедуры:</strong> <%= @user.expert.procedure %></p>
+<% end %>
+<% if @user.expert.medical_center.present? %>
 <p><strong>Место работы:</strong> <%= @user.expert.medical_center %></p>
+<% end %>
+<% if @user.expert.address.present? %>
 <p><strong>Адрес:</strong> <%= @user.expert.address %></p>
+<% end %>
+<% if @user.email.present? %>
 <p><strong>Email:</strong> <%= @user.email %></p>
+<% end %>
+<% if @user.expert.phone.present? %>
 <p><strong>Телефон:</strong> <%= @user.expert.phone %></p>
-<p><strong>Уровень:</strong> <%= @user.expert.level.name if @user.expert.level.present? %></p>
+<% end %>
+<% if @user.expert.level.present? %>
+<p><strong>Уровень:</strong> <%= @user.expert.level.name %></p>
+<% end %>
+<% if @user.expert.category.name.present? %>
 <p><strong>Категория:</strong> <%= @user.expert.category.name %></p>
+<% end %>
 <p><strong>Рабочие часы:</strong></p>
-<p><strong>Пн:</strong> с <%= @user.expert.hw_start_monday %> до <%= @user.expert.hw_end_monday %></p>
-<p><strong>Вт:</strong> с <%= @user.expert.hw_start_tuesday %> до <%= @user.expert.hw_end_tuesday %></p>
-<p><strong>Ср:</strong> с <%= @user.expert.hw_start_wednesday %> до <%= @user.expert.hw_end_wednesday %></p>
-<p><strong>Чт:</strong> с <%= @user.expert.hw_start_thursday %> до <%= @user.expert.hw_end_thursday %></p>
-<p><strong>Пт:</strong> с <%= @user.expert.hw_start_friday %> до <%= @user.expert.hw_end_friday %></p>
-<p><strong>Сб:</strong> с <%= @user.expert.hw_start_saturday %> до <%= @user.expert.hw_end_saturday %></p>
-<p><strong>Вс:</strong> с <%= @user.expert.hw_start_sunday %> до <%= @user.expert.hw_end_sunday %></p>
+<table class="table">
+  <thead>
+    <tr class="table-info">
+      <th scope="col"><strong>Пн</strong></th>
+      <th scope="col"><strong>Вт</strong></th>
+      <th scope="col"><strong>Ср</strong></th>
+      <th scope="col"><strong>Чт</strong></th>
+      <th scope="col"><strong>Пт</strong></th>
+      <th scope="col"><strong>Сб</strong></th>
+      <th scope="col"><strong>Вс</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>с <%= @user.expert.hw_start_monday %> до <%= @user.expert.hw_end_monday %></td>
+      <td>с <%= @user.expert.hw_start_tuesday %> до <%= @user.expert.hw_end_tuesday %></td>
+      <td>с <%= @user.expert.hw_start_wednesday %> до <%= @user.expert.hw_end_wednesday %></td>
+      <td>с <%= @user.expert.hw_start_thursday %> до <%= @user.expert.hw_end_thursday %></td>
+      <td>с <%= @user.expert.hw_start_friday %> до <%= @user.expert.hw_end_friday %></td>
+      <td>с <%= @user.expert.hw_start_saturday %> до <%= @user.expert.hw_end_saturday %></td>
+      <td>с <%= @user.expert.hw_start_sunday %> до <%= @user.expert.hw_end_sunday %></td>
+  </tbody>
+</table>
 
-<div>
-  <%= link_to "Редактировать", edit_expert_path(@user.expert) %>
-</div>
 
 <div>
   <% if @user.expert.address.present? %>
     <iframe
-      width="600"
+      width="860"
       height="450"
       style="border:0"
       loading="lazy"
@@ -41,7 +84,7 @@
     </iframe>
   <% else %>
     <iframe
-      width="600"
+      width="860"
       height="450"
       style="border:0"
       loading="lazy"
@@ -50,9 +93,17 @@
       &q=Черкассы">
     </iframe>
   <% end %>
+  <div>
+    <%= link_to "Редактировать", edit_expert_path(@user.expert) %>
+  </div>
 </div>
 
-<div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center">
   <h4>Оставленные мне комментарии</h4>
   <% @user.expert.comments.each do |comment| %>
     <%= comment.user.email %>:

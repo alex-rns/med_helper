@@ -9,9 +9,9 @@ class User < ApplicationRecord
   has_many :visits, through: :events
   has_one :vaccine, dependent: :destroy
   has_one :expert, dependent: :destroy
-  has_one :client, dependent: :destroy
   has_one :card, dependent: :destroy
   has_one_attached :image
+  enum role: [ :patient, :doctor ]
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -19,13 +19,10 @@ class User < ApplicationRecord
 
     unless user
       user = User.create(
-          name: data["name"],
-          email: data["email"],
-          birthday: Time.now.strftime("%d of %B, %Y"),
-          password: '12383929'
-      )
-      Card.create(email: data["email"],
-                  user_id: user.id)
+      name: data["name"],
+      email: data["email"],
+      birthday: Time.now.strftime("%d of %B, %Y"),
+      password: '12383929')
     end
     user
   end

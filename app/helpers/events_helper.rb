@@ -3,8 +3,8 @@ module EventsHelper
   require "google/api_client/client_secrets.rb"
 
   def google_event(event)
-    user_email = current_user.email
-    expert_email = @expert.email
+    user_email = event.user.email
+    expert_email = current_user.email
     attendees = "#{user_email}, #{expert_email}".split(',').map{ |t| {email: t.strip} }
     client = get_google_calendar_client current_user
     event = Google::Apis::CalendarV3::Event.new({
