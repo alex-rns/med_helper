@@ -36,11 +36,11 @@
       <div class="row col-12 col-sm-8 col-md-8 col-lg-8">
         <div class="col-3 col-sm-12 col-md-3 col-lg-3">
           <%= image_tag(expert.image.url || current_user.image, size: "150x150") %>
+          <small><i class='fas fa-star gold-star'></i><%= expert.rating %></small>
+          <small>Отзывов: <%= expert.comments.count %></small>
         </div>
         <div class="col-12 col-sm-9 border-right">
           <h4><%= link_to expert.full_name, expert_path(expert) %></h4>
-          <h5><i class='fas fa-star gold-star'></i><%= expert.rating %></h5>
-          <small>Отзывов: <%= expert.comments.count %></small>
           <div class="col-12 col-sm-6  col-md-6 col-ld-6">
            <h6 class="text-secondary"><%= expert.category.name %></h6>
           </div>
