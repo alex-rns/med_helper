@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/kristianmandrup/world-flags.git
+  revision: 800a069e29f6ebb6f442cd86cff617cda500179a
+  branch: master
+  specs:
+    world-flags (0.6.5)
+      hashie (>= 1.2)
+      i18n (>= 0.6)
+
+GIT
   remote: https://github.com/seuros/capistrano-puma.git
   revision: 133aa8e0a0d891114a818a5413a97c6ccea0eeb3
   specs:
@@ -463,6 +472,7 @@ DEPENDENCIES
   webdrivers
   webpacker (~> 5.0)
   will_paginate (~> 3.3)
+  world-flags!
 
 RUBY VERSION
    ruby 2.7.0p0

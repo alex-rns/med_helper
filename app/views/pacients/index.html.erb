@@ -10,8 +10,8 @@
               <%= image_tag event.user.image, size: 100, class: 'rounded-circle' %>
             </div>
             <div class="col-sm-6">
-              <h5 class="fw-lighter"><strong><%= event.user.card.full_name %></strong></h5>
-              <p class="fw-lighter">Email: <%= event.user.card.email %></p>
+              <h5 class="fw-lighter"><strong><%= event.user.card&.full_name %></strong></h5>
+              <p class="fw-lighter">Email: <%= event.user.email %></p>
             </div>
             <div class="col-sm-4">
               <%= link_to "Карта пациентв", user_card_path(event.user, event.user.card), class: "btn btn-outline-info btn-show-event"%>

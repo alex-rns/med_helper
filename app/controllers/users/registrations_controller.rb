@@ -10,14 +10,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    if params[:user][:type] == 'pacient'
-      Client.create(user_id: current_user.id, email: current_user.email, dob: Time.now)
+    if params[:user][:type] == 'patient'
+      current_user.patient!
       current_user.image.attach(io: File.open("app/assets/images/avatar.png"),
                                 filename: "avatar.png")
+      Card.create(user_id: current_user.id)
       create_vaccine_card
     else
-      Expert.create(user_id: current_user.id, category_id: 1, email: current_user.email)
-      current_user.image.attach(io: File.open("app/assets/images/avatar.png"),
+      current_user.doctor!
+      expert = Expert.create(user_id: current_user.id, category_id: 1)
+      expert.image.attach(io: File.open("app/assets/images/doctor0.png"),
                                 filename: "doctor0.png")
     end
     cookies.delete :user_type
