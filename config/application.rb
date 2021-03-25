@@ -11,6 +11,8 @@ module MedHelper
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.serve_static_files = true
+    config.time_zone = "Europe/Kiev"
+    config.active_record.default_timezone = :local
 
     # Configuration for the application, engines, and railties goes here.
     #

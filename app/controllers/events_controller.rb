@@ -19,7 +19,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = @expert.events.build(event_params)
+    params[:event][:end_time] = params[:event][:start_time].to_datetime+1.hour
+    @event = @expert.events.create(event_params)
     @event.pending!
     if @event.save
       redirect_to expert_event_path(@expert, @event)
@@ -47,8 +48,14 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  private
+  def check_time
+    @time = params[:time]
+    expert = Expert.find(params[:expert])
+    @avail_time = available_time(expert, @time)
+    render partial: "time_slots"
+  end
 
+  private
   def find_expert
     @expert = Expert.find(params[:expert_id])
   end

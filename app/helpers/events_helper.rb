@@ -47,5 +47,41 @@ module EventsHelper
     client.authorization
     client
   end
+  def available_time(expert, time)
+    day_of_week = time.to_datetime.strftime("%A").downcase
+    start_time = expert.send("hw_start_#{day_of_week}").to_i
+    end_time =  expert.send("hw_end_#{day_of_week}").to_i
+    set_time = (start_time..end_time).to_a
+    time_now = (0..Time.now.hour).to_a
+    event_time = get_event(expert, time)
+    if Time.now.strftime("%Y-%m-%d") == time
+      availiabe = set_time - event_time - time_now
+    else
+      availiabe = set_time - event_time
+    end
+    arr = {}
+    if day_of_week == 0
+      return arr[0] = availiabe
+    elsif day_of_week == 1
+      return arr[1] = availiabe
+    elsif day_of_week == 2
+      return arr[2] = availiabe
+    elsif day_of_week == 3
+      return arr[3] = availiabe
+    elsif day_of_week == 4
+      return arr[4] = availiabe
+    elsif day_of_week == 5
+      return arr[5] = availiabe
+    else
+      return arr[6] = availiabe
+    end
+  end
 
+  def get_event(expert, time)
+    arr = []
+    expert.events.where(start_time:time.to_datetime.beginning_of_day...time.to_datetime.end_of_day).where(status: "pending").where(status: "approve").each do |ev|
+      arr << ev.start_time.hour
+    end
+    arr.flatten.uniq
+  end
 end

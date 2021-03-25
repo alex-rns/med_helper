@@ -1,42 +1,38 @@
-<div class="container-fluid" id="bgimage">
+<div class="container">
   <div class="row">
-    <div class="col-sm">
-    </div>
-    <div class="col-sm-5 border event-border shadow p-3 mb-5 bg-body rounded-3">
-      <h4 class="text-center">Запись на прием к врачу</h4>
-      <hr>
-
+    <div class="col-sm-8 offset-md-2">
+      <div class="card card-pacient-first">
+        <div class="card-header card-pacient text-center">
+          Запись на прием</div>
+         <div class="card-body text-center">
       <%= form_with model: [@expert, @event] do |f| %>
       <div class = "form-group">
+        <div class="mb-3">
         <%= f.label "Тип приема" %>
         <%= select_tag('event[type_of_call]', options_for_select([['Офлайн консультация', 'offline' ], ['Онлайн консультация', 'online']]), class:'form-control', required: true) %>
         <% @event.errors.full_messages_for(:type).each do |message| %>
           <div class="alert alert-warning alert-event"><%= message %></div>
         <% end %>
+        </div>
       </div>
-
+      <div class="mb-3">
       <div class = "form-group">
-        <%= f.label "Начало приема" %><br>
-        <input type='datetime-local' name = 'event[start_time]', value= <%= params[:q]%>, class = 'form-control', required='true'>
-        <% @event.errors.full_messages_for(:start_time).each do |message| %>
-          <div class="alert alert-warning alert-event"><%= message %></div>
-        <% end %>
+        <%= f.label "Дата" %><br>
+        <%= f.date_field 'event[start_time]', class: "form-control", min: 0.days.ago, id: 'eventStartDate', required: true %>
+      </div>
       </div>
 
-      <div class = "form-group">
-        <%= f.label "Конец приема" %>
-        <input type='datetime-local' name = 'event[end_time]', class = 'form-control', required='true'>
-        <% @event.errors.full_messages_for(:end_time).each do |message| %>
-          <div class="alert alert-warning alert-event"><%= message %></div>
-        <% end %>
+      <div id="time">
       </div>
 
+      <div class="mb-3">
       <div class = "form-group">
        <%= f.label "Комментарий" %>
        <%= f.text_area(:comment,  cols: 3, rows: 3, class: 'form-control', required: true) %>
        <%@event.errors.full_messages_for(:comment).each do |message| %>
          <div class="alert alert-warning alert-event"><%= message %></div>
        <% end %>
+       </div>
       </div>
 
       <%= f.submit "Отправить заявку", class: "btn btn-info btn-event" %>
@@ -47,3 +43,22 @@
   </div>
 
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    $('#eventStartDate').on('change', function () {
+      var self = this;
+      var date_time = self.value;
+      $.ajax({
+        url: '/experts/'+<%=@expert.id%>+'/events/check_time.js',
+        type: 'get',
+        data: {time: date_time, expert: '<%=@expert.id%>' },
+        success: function (response) {
+          $('#time').html(response);
+        }
+      });
+    })
+</script>
