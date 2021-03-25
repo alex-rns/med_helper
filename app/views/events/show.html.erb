@@ -1,59 +1,67 @@
-<div class="container-fluid" id="bgimage">
+<div class="container">
   <div class="row">
-    <div class="col-sm">
-    </div>
-    <div class="col-sm-5 border event-border shadow-sm p-3 mb-5 bg-body rounded">
-      <h4 class="text-center">Спасибо за заявку!</h4>
-      <h6>Спасибо за оставленную заявку на прием к врачу на MedHelper.</h6>
-      <hr>
-      <tr>
-        <td><strong>Имя пациента: </strong></td>
-        <td><%= @event.user.card.full_name %></td>
-      </tr>
-      <br>
-      <tr>
-        <td><strong>Email: </strong></td>
-        <td><%= @event.user.email %></td>
-      </tr>
-      <br>
-      <tr>
-        <td><strong>Начало приема: </strong></td>
-        <td><%= @event.start_time %></td>
-      </tr>
-      <br>
-      <tr>
-        <td><strong>Конец приема: </strong></td>
-        <td><%= @event.end_time %></td>
-      </tr>
-      <br>
-      <tr>
-        <td><strong>Комментарий: </strong></td>
-        <td><%= @event.comment %></td>
-      </tr>
-      <br>
-      <tr>
-        <td><strong>Доктор: </strong></td>
-        <td><%= @expert.full_name %></td>
-      </tr>
-      <br>
-      <tr>
-        <td><strong>Адрес: </strong></td>
-        <td><%= @expert.address %></td>
-      </tr>
-      <br>
-      <div class="row">
-        <div class="col-sm-6">
-        <% if @event.status == 'approve'%>
-          <%= link_to('Календарь', @event.calendar_link, class: "btn btn-success", target: :_blank) %>
+    <div class="col-sm-8 offset-md-2">
+      <div class="card card-pacient-first">
+        <div class="card-header card-pacient text-center">
+          Талон</div>
+        <div class="card-body card-pacient-secondary text-center">
+          <div class="row">
+            <p class="text-center info-card text-uppercase">Врач</p>
+            <div class="col-4 offset-md-4 text-center">
+              <%= image_tag @event.expert.image, size: 150, class: "border border-info rounded-circle"%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 offset-md-4 text-center fw-bold">
+              <%= @event.expert.full_name%>
+            </div>
+          </div>
         </div>
-        <div class="col-sm-6">
-          <%= link_to('Онлайн митинг', @event.meeting_link, class: "btn btn-info ", target: :_blank) %>
+        <div class="row">
+          <div class="col-4 offset-md-4 text-center">
+          <div class="fw-light"><%= @event.expert.category.name %></div>
+          </div>
         </div>
-        <% end %>
-      </div>
+        <br>
+        <div class="row">
+          <p class="text-center info-card text-uppercase">Пациент</p>
+          <div class="col-4 offset-md-4 text-center">
+            <%= image_tag @event.user.image, size: 150, class: "border border-info rounded-circle"%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 offset-md-4 text-center">
+            <%= @event.user.card.full_name%>
+          </div>
+        </div>
+        <br>
+        <div class="row info-card">
+          <p class="text-center info-card text-uppercase">Информация о приеме</p>
+          <div class="col-4 offset-4 text-center">
+          <div class="text-info"><span><i class="fa fa-calendar"></i></span> Начало приема</div>
+          <span class="fw-lighter"><%= @event.start_time.strftime('%Y-%m-%d %H:00') %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 offset-4 text-center">
+          <div class="text-info"><span><i class="fa fa-calendar"></i></span> Конец приема </div>
+           <span class="fw-lighter"><%= @event.end_time.strftime('%Y-%m-%d %H:00') %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 offset-4 text-center">
+          <div class="text-info"><span><i class="fa fa-phone-alt"></i></span> Тип приема </div>
+          <span class="fw-lighter"><%= @event.type_of_call %></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4 offset-4 text-center">
+          <div class="text-info"><span><i class="fa fa-comment"></i></span><span> Комментарий </div>
+           <span class="fw-lighter"><%= @event.comment %></span>
+          </div>
+        </div>
 
-    </div>
-    <div class="col-sm">
-    </div>
-  </div>
+      </div>
 </div>
+</div>
+<br>
