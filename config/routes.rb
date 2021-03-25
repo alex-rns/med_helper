@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   resources :comments
   resources :pacients, only: [:index]
   resources :experts, only: [:show, :index, :edit, :update] do
-    resources :events, only: [:index, :new, :create, :show, :update]
+    resources :events, only: [:index, :new, :create, :show, :update] do
+      collection do
+       get 'check_time'
+      end
+    end
   end
   resources :users do
     resources :cards, only: [:show, :edit, :update] do

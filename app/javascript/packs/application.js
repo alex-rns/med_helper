@@ -20,3 +20,9 @@ ActiveStorage.start()
 
 // import "jquery" // Don't really need to require this...
 import "jquery-ui/ui/widgets/autocomplete"
+
+$(document).on('ready', function () {
+  $('#eventStartDate').on('change', function () {
+    debugger
+  })
+})

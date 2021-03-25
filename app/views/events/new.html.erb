@@ -16,19 +16,11 @@
       </div>
 
       <div class = "form-group">
-        <%= f.label "Начало приема" %><br>
-        <input type='datetime-local' name = 'event[start_time]', value= <%= params[:q]%>, class = 'form-control', required='true'>
-        <% @event.errors.full_messages_for(:start_time).each do |message| %>
-          <div class="alert alert-warning alert-event"><%= message %></div>
-        <% end %>
+        <%= f.label "Дата" %><br>
+        <%= f.date_field 'event[start_time]', class: "form-control", min: 0.days.ago, id: 'eventStartDate', required: true %>
       </div>
 
-      <div class = "form-group">
-        <%= f.label "Конец приема" %>
-        <input type='datetime-local' name = 'event[end_time]', class = 'form-control', required='true'>
-        <% @event.errors.full_messages_for(:end_time).each do |message| %>
-          <div class="alert alert-warning alert-event"><%= message %></div>
-        <% end %>
+      <div id="time">
       </div>
 
       <div class = "form-group">
@@ -47,3 +39,17 @@
   </div>
 
 </div>
+<script>
+    $('#eventStartDate').on('change', function () {
+      var self = this;
+      var date_time = self.value;
+      $.ajax({
+        url: '/experts/'+<%=@expert.id%>+'/events/check_time.js',
+        type: 'get',
+        data: {time: date_time, expert: '<%=@expert.id%>' },
+        success: function (response) {
+          $('#time').html(response);
+        }
+      });
+    })
+</script>
