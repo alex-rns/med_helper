@@ -15,7 +15,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       elsif cookies[:user_type].present?
           if cookies[:user_type] == 'doctor'
             @user.doctor!
-            expert = Expert.create!(user: @user.id, category: Category.first.id)
+            expert = Expert.create!(user: @user, category: Category.first)
             expert.image.attach(io: File.open("app/assets/images/doctor0.png"),
                                     filename: "doctor0.png")
             sign_in(:user, @user)

@@ -18,7 +18,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       create_vaccine_card
     else
       current_user.doctor!
-      expert = Expert.create(user: current_user.id, category: Category.first.id)
+      expert = Expert.create(user: current_user, category: Category.first)
       expert.image.attach(io: File.open("app/assets/images/doctor0.png"),
                                 filename: "doctor0.png")
     end
