@@ -1,7 +1,7 @@
 <div class="container">
+  <%= link_to "Назад", :back, class: "btn btn-primary text-white" %>
   <h2 class="my-4 text-primary text-center">Добавить запись в карту вакцинаций</h2>
   <div class="position-relative mb-4">
-    <%= link_to "Назад", :back, class: "btn btn-primary text-white position-absolute" %>
     <h4 class="text-center text-black-50"><%= @user.name if @user.name.present?%></h4>
   </div>
   <%= form_with(model: @vaccine, url: params[:child_id] ? user_child_vaccine_path : user_vaccine_path, :method => :put) do |f| %>
@@ -269,7 +269,7 @@
       </div>
     </div>
     <div class="py-3">
-      <%= f.submit "Сохранить", class: "btn btn-primary btn-lg text-white w-100 my-3" %>
+      <%= f.submit "Сохранить", class: "btn btn-primary btn-lg text-white w-100 my-3", data: { confirm: 'Проверьте правильность введения дат, изменить Вы их не сможете' } %>
     </div>
   <% end %>
 </div>

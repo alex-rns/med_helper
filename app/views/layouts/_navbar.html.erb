@@ -1,13 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <h2 class="pl-2 m-0 text-uppercase">
-    <%= link_to (image_tag "logo.png", class: "p-1", width: "180"), home_path, class: "navbar-brand text-decoration-none fs-4" %>
+    <%= link_to (image_tag "logo.png", class: "p-1", width: "180"), home_path, class: "navbar-brand text-decoration-none fs-4 bg-white" %>
   </h2>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
         <% if user_signed_in? && current_user.patient?%>
@@ -15,13 +13,13 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to "О нас", home_path, class: "nav-link text-primary" %>
+        <%= link_to "О нас", home_path, class: "nav-link text-primary bg-white" %>
       </li>
       <li class="nav-item">
-        <%= link_to "О вас", home_path, class: "nav-link text-primary" %>
+        <%= link_to "О вас", home_path, class: "nav-link text-primary bg-white" %>
       </li>
       <li class="nav-item">
-        <%= link_to "О них", home_path, class: "nav-link text-primary" %>
+        <%= link_to "О них", home_path, class: "nav-link text-primary bg-white" %>
       </li>
     </ul>
     <div class="d-flex">

@@ -21,8 +21,15 @@ ActiveStorage.start()
 // import "jquery" // Don't really need to require this...
 import "jquery-ui/ui/widgets/autocomplete"
 
-$(document).on('ready', function () {
-  $('#eventStartDate').on('change', function () {
-    debugger
+// $(document).on('ready', function () {
+//   $('#eventStartDate').on('change', function () {
+//     debugger
+//   })
+// })
+document.addEventListener("turbolinks:load", function() {
+  $(function () {
+    setTimeout(function(){
+      $(".alert-hidden" ).slideUp(500);
+    }, 2000);
   })
 })
