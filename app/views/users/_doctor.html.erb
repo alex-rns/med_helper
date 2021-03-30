@@ -6,7 +6,7 @@
           Профиль врача</div>
          <div class="card-body text-center">
 <% if @user.expert.image.attached? || @user.image.present? %>
-  <p><%= image_tag(@user.expert.image.url || @user.image, size: "150x150") %></p>
+  <p><%= image_tag(@user.expert.image.url || @user.image, size: "150x150", class: "avatar-contain") %></p>
 <% end %>
 <p>Рейтинг: <%= @user.expert.rating %></p>
 <% if @user.expert.full_name.present? %>

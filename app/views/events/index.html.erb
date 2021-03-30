@@ -17,9 +17,9 @@
 
       <div class="col-sm-2">
         <% if current_user.expert.present? %>
-          <%= image_tag event.user.image, size:150 %>
+          <%= image_tag event.user.image, size:150, class: "avatar-contain"%>
         <% else %>
-          <%= image_tag(event.expert.image.url || current_user.image, size: "150x150") %>
+          <%= image_tag(event.expert.image.url || current_user.image, size: "150x150", class: "avatar-contain") %>
         <% end %>
 
         <p></p>
