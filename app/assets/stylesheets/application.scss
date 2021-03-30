@@ -165,4 +165,6 @@ $fa-font-path: "font-awesome/fonts" !default;
 .form-check input[type="radio"]:checked ~ .role-image {
   background:#b8dd5c !important;
   border-color:#b8dd5c !important;
+  transition: all .2s ease-in-out;
+  transform: scale(1.1);
 }
