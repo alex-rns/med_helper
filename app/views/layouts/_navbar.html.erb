@@ -7,49 +7,43 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav me-auto">
-      <li class="nav-item">
-        <% if user_signed_in? && current_user.patient?%>
-          <%= link_to "Врачи", search_experts_path, class: "nav-link btn btn-secondary" %>
-        <% end %>
+      <li class="nav-item px-2">
+        <%= link_to "Найти врача", search_experts_path, class: "btn btn-secondary d-block mb-1" if user_signed_in? && current_user.patient? %>
       </li>
-      <li class="nav-item">
-        <%= link_to "О нас", home_path, class: "nav-link text-primary bg-white" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "О вас", home_path, class: "nav-link text-primary bg-white" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "О них", home_path, class: "nav-link text-primary bg-white" %>
-      </li>
-    </ul>
-    <div class="d-flex">
       <% if user_signed_in? %>
-        <div class="p-2">
-          <% if current_user.patient? || current_user.doctor? %>
-            <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success" %>
-          <% end %>
-          <% if current_user.doctor? %>
-            <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success" %>
-            <%= link_to "Мои пациенты", pacients_path, class: "btn btn-success" %>
-          <% elsif  current_user.patient?%>
-            <%= link_to "Мои записи на прием", user_events_path(current_user), class: "btn btn-success" %>
-            <%= link_to "Карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success" %>
-          <%else%>
-          <% end %>
-        </div>
-        <div class="p-2">
-        </div>
-        <div class="p-2">
-          <%= link_to "Выйти", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
-        </div>
+        <li class="nav-item ">
+          <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? || current_user.doctor? %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Мои пациенты", pacients_path, class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Мои записи на прием", user_events_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Моя карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
       <% else %>
-        <div class="p-2">
-          <%= link_to "Зарегистрироваться", new_user_registration_path, class: "btn btn-primary" %>
-        </div>
-        <div class="p-2">
-          <%= link_to "Войти", user_session_path, class: "btn btn-primary" %>
-        </div>
       <% end %>
+    </ul>
+    <div>
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item ">
+            <%= link_to "Выйти", destroy_user_session_path, method: :delete, class: "btn btn-danger mx-2 d-block mb-1" %>
+          </li>
+        <% else %>
+          <li class="nav-item ">
+            <%= link_to "Зарегистрироваться", new_user_registration_path, class: "btn btn-primary mx-2 d-block mb-1" %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to "Войти", user_session_path, class: "btn btn-primary mx-2 d-block mb-1" %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </nav>
