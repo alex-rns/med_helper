@@ -25,6 +25,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
             Card.create(user_id: @user.id)
             @user.image.attach(io: File.open("app/assets/images/avatar.png"),
                                     filename: "avatar.png")
+            Vaccine.create(user_id: @user.id)
             sign_in(:user, @user)
             redirect_to home_path
           end
