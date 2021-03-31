@@ -33,6 +33,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           sign_in(:user, @user)
           redirect_to edit_user_registration_path
         end
+
+        
       end
       cookies.delete :user_type
     end
