@@ -48,3 +48,10 @@
     background-position: 35% 50%;
   }
 }
+
+@media (max-width: 430px) {
+  .welcome-text {
+    position: relative;
+    bottom: 50px
+  }
+}
