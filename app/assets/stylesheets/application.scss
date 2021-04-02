@@ -19,7 +19,9 @@ $theme-colors: (
         "secondary": #ffbe3b,
         "success": #a6d433,
         "danger": red,
-        "warning": yellow
+        "warning": yellow,
+        "primary-light": #cee3ff,
+        "light": #f8f9fa
 );
 
 @import "vaccines";
