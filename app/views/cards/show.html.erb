@@ -104,28 +104,6 @@
           </div>
           <div class="col-sm-2">
             <%= link_to "Подробнее", user_card_protocol_path(@card.user, @card, protocol), class: "btn btn-outline-dark" %>
-=======
-          <div class="row">
-            <div class="col-sm-2">
-              <%= image_tag(protocol.expert&.image, size: 80, class: 'rounded-circle card-client-show') %>
-            </div>
-            <div class="col-sm-8">
-              <h7 class="fw-lighter"><strong><%= protocol&.expert.full_name %></strong></h7>
-              <br>
-              <h8 class="fw-lighter"><strong></strong><%= protocol&.expert.category.name %></h8>
-              <br>
-              <h8 class="fw-lighter"><strong>Жалобы пациента: </strong><%= protocol&.complaint %></h8>
-              <br>
-              <% if protocol&.type_of_inspection == "first_visit" %>
-                <span class="fw-lighter"><span class="border border-2 rounded-pill badge bg-primary text-wrap">Первичный прием</span></span><br>
-              <% else %>
-                <span class="fw-lighter"><span class="border border-2 rounded-pill badge bg-info text-wrap">Повторный прием</span></span><br>
-              <% end %>
-            </div>
-            <div class="col-sm-2">
-              <%= link_to "Подробнее", user_card_protocol_path(@card.user, @card, protocol), class: "btn btn-outline-dark" %>
-            </div>
->>>>>>> d593ef848c13e0ff1246481f3bd9876975bb5dba
           </div>
         </div>
       </div>
