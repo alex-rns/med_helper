@@ -22,9 +22,9 @@
                 <p class="fw-lighter"><strong>E-mail:</strong> <%= @card.user.email %></p>
                 <p class="fw-lighter"><strong>Birthday:</strong> <%= @card.birthday.strftime("%d of %B, %Y")%></p><br>
                 <% if current_user.expert.present? %>
-                 <%= link_to "Создать протокол приема пациента", new_user_card_protocol_path(@card.user, @card), class: "btn btn-primary btn-show-event"%>
+                 <%= link_to "Создать протокол приема пациента", new_user_card_protocol_path(@card.user, @card), class: "btn btn-primary"%>
                 <% else %>
-                <%= link_to "Редактировать карту", edit_user_card_path(current_user, current_user.card) %><br>
+                <%= link_to "Редактировать карту", edit_user_card_path(current_user, current_user.card), class: "btn btn-primary" %><br>
                 <% end %>
              </div>
            </div>
