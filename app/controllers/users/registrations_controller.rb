@@ -12,9 +12,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def update
     if params[:user][:type] == 'patient'
       current_user.patient!
-      current_user.image.attach(io: File.open("app/assets/images/avatar.png"),
+      card = Card.create(user_id: current_user.id, birthday: Time.now.strftime('%d/%m/%Y'))
+      card.image.attach(io: File.open("app/assets/images/avatar.png"),
                                 filename: "avatar.png")
-      Card.create(user_id: current_user.id)
       create_vaccine_card
     else
       current_user.doctor!

@@ -22,8 +22,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
             redirect_to home_path
           else
             @user.patient!
-            Card.create(user_id: @user.id)
-            @user.image.attach(io: File.open("app/assets/images/avatar.png"),
+            card = Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'))
+            card.image.attach(io: File.open("app/assets/images/avatar.png"),
                                     filename: "avatar.png")
             Vaccine.create(user_id: @user.id)
             sign_in(:user, @user)
@@ -33,8 +33,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
           sign_in(:user, @user)
           redirect_to edit_user_registration_path
         end
-
-        
       end
       cookies.delete :user_type
     end

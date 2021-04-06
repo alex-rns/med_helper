@@ -9,19 +9,22 @@
           </div>
             <div class="row">
               <div class="col-sm-3">
-                <%= image_tag(@card.user&.image, size:150, class: 'rounded-circle card-client-show')%>
+                 <%= image_tag(@card&.image, size:150, class: 'rounded-circle card-client-show')%>
               </div>
               <div class="col-sm-9">
-                <h7 class="fw-lighter"><strong>ФИО:</strong><%= @card&.full_name %></h7><br>
-                <h7 class="fw-lighter"><strong>Пол:</strong> <%= @card&.gender %></h7><br>
-                <h7 class="fw-lighter"><strong>Телефон:</strong> <%= @card&.phone %></h7><br>
-                <h7 class="fw-lighter"><strong>Адрес:</strong> <%= @card&.address %></h7><br>
-                <h7 class="fw-lighter"><strong>Место работы:</strong> <%= @card&.work %></h7><br>
-                <h7 class="fw-lighter"><strong>Поручитель:</strong> <%= @card&.member %></h7><br>
-                <h7 class="fw-lighter"><strong>Примечания:</strong> <%= @card&.comment %></h7><br>
-                <br>
+                <p class="fw-lighter"><strong>ФИО:</strong><%= @card&.full_name %></p>
+                <p class="fw-lighter"><strong>Пол:</strong> <%= @card&.gender %></p>
+                <p class="fw-lighter"><strong>Телефон:</strong> <%= @card&.phone %></p>
+                <p class="fw-lighter"><strong>Адрес:</strong> <%= @card&.address %></p>
+                <p class="fw-lighter"><strong>Место работы:</strong> <%= @card&.work %></p>
+                <p class="fw-lighter"><strong>Поручитель:</strong> <%= @card&.member %></p>
+                <p class="fw-lighter"><strong>Примечания:</strong> <%= @card&.comment %></p>
+                <p class="fw-lighter"><strong>E-mail:</strong> <%= @card.user.email %></p>
+                <p class="fw-lighter"><strong>Birthday:</strong> <%= @card.birthday.strftime("%d of %B, %Y")%></p><br>
                 <% if current_user.expert.present? %>
                  <%= link_to "Создать протокол приема пациента", new_user_card_protocol_path(@card.user, @card), class: "btn btn-primary btn-show-event"%>
+                <% else %>
+                <%= link_to "Редактировать карту", edit_user_card_path(current_user, current_user.card) %><br>
                 <% end %>
              </div>
            </div>

@@ -11,9 +11,6 @@
         <%= link_to "Найти врача", search_experts_path, class: "btn btn-secondary d-block mb-1" if user_signed_in? && current_user.patient? %>
       </li>
       <% if user_signed_in? %>
-        <li class="nav-item ">
-          <%= link_to "Мой профиль", user_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? || current_user.doctor? %>
-        </li>
         <li class="nav-item">
           <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
         </li>

@@ -10,7 +10,6 @@ class User < ApplicationRecord
   has_one :vaccine, dependent: :destroy
   has_one :expert, dependent: :destroy
   has_one :card, dependent: :destroy
-  has_one_attached :image
   enum role: [ :patient, :doctor ]
 
   def self.from_omniauth(access_token)

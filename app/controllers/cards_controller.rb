@@ -17,7 +17,7 @@ class CardsController < ApplicationController
   def update
     card = Card.find(params[:id])
     card.update(permit_params)
-    redirect_to user_path(current_user), success: "Ваша карта пациента изменена"
+    redirect_to user_card_path(current_user, current_user.card), success: "Ваша карта пациента изменена"
   end
 
   private
@@ -31,6 +31,6 @@ class CardsController < ApplicationController
   end
 
   def permit_params
-      params.permit(:full_name, :gender, :member, :address, :comment, :phone, :work)
+      params.permit(:full_name, :gender, :member, :address, :comment, :phone, :work, :birthday, :image)
   end
 end
