@@ -11,12 +11,6 @@
         <%= link_to "Найти врача", search_experts_path, class: "btn btn-secondary d-block mb-1" if user_signed_in? && current_user.patient? %>
       </li>
       <% if user_signed_in? %>
-<<<<<<< HEAD
-=======
-        <li class="nav-item ">
-          <%= link_to "Профиль", user_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? || current_user.doctor? %>
-        </li>
->>>>>>> d593ef848c13e0ff1246481f3bd9876975bb5dba
         <li class="nav-item">
           <%= link_to "Записи на прием", expert_events_path(current_user.expert), class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
         </li>
