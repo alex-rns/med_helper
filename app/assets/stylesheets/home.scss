@@ -6,6 +6,52 @@
   background-size: cover;
 }
 
+.welcome-text {
+  position: relative;
+  bottom: 150px
+}
+
 .welcome-about-item {
   line-height: 1.2;
+}
+
+.color-lightgray {
+  color: gray;
+  opacity: 0.5;
+}
+
+.blog-item {
+  &:hover {
+    border-radius: 40px 0 0 40px;
+    box-shadow: 4px 8px 8px 4px rgba(34, 60, 80, 0.2);
+    transition: all 0.15s ease-out;
+    transform: scale(1.01);
+  }
+
+  &-height {
+    min-height: 150px;
+  }
+
+  &-text {
+    border-radius: 40px 0 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-page {
+    background-position: 30% 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .welcome-page {
+    background-position: 35% 50%;
+  }
+}
+
+@media (max-width: 430px) {
+  .welcome-text {
+    position: relative;
+    bottom: 50px
+  }
 }

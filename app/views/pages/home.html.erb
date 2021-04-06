@@ -1,39 +1,96 @@
 <section class="welcome-page">
-  <div class="container d-flex flex-column justify-content-center h-100">
-    <div class="row text-black-50">
-      <div class="col-4">
+  <div class="container-fluid d-flex flex-column justify-content-around h-100">
+    <div class="row text-black-50 m-5 welcome-text">
+      <div class="col-7 col-md-4">
         <p class="fw-bold">MedHelper - это иновационная платформа, где вы можете получить все необходимые медицинские
           услуги онлайн 24/7</p>
       </div>
-      <ul>
-        <li>найти врача и записаться на приём</li>
-        <li> онлайн-консультация с докторами</li>
-        <li>записаться на обследование</li>
-        <li>составить график вакцинации</li>
+      <ul class="list-unstyled">
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>найти врача и записаться на приём</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>онлайн-консультация с докторами</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>записаться на обследование</span>
+        </li>
+        <li>
+          <%= image_tag("med-miniicon.png", size: "20x20") %>
+          <span>составить график вакцинации</span>
+        </li>
       </ul>
     </div>
   </div>
 </section>
 <section class="welcome-about text-black-50">
   <div class="container">
-    <div class="row text-center my-4">
-      <div class="col-4">
+    <div class="row text-center my-5">
+      <div class="col-12 col-md-4">
         <div class="px-4 welcome-about-item">
+          <%= image_tag("abacus-icon.png", size: "50x50", alt: "icon", class: "img-fluid my-3") %>
           <h4>Наш сервис бесплатен для пациентов</h4>
-          <small class="">Мы работаем без скрытых наценок и комиссий. Вы платите только клинике за предоставленные вам услуги</small>
+          <small class="">Мы работаем без скрытых наценок и комиссий. Вы платите только клинике за предоставленные Вам услуги</small>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <div class="px-4 welcome-about-item">
-          <h4>Наш сервис бесплатен для пациентов</h4>
-          <small class="">Мы работаем без скрытых наценок и комиссий. Вы платите только клинике за предоставленные вам услуги</small>
+          <%= image_tag("meet-icon.png", size: "50x50", alt: "icon", class: "img-fluid my-3") %>
+          <h4>В нашем call-центре работают врачи</h4>
+          <small class="">В нашем call-центре работают операторы с медицинским образованием, которые помогут Вам выбрать лучшего специалиста</small>
         </div>
       </div>
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <div class="px-4 welcome-about-item">
-          <h4>Наш сервис бесплатен для пациентов</h4>
-          <small class="">Мы работаем без скрытых наценок и комиссий. Вы платите только клинике за предоставленные вам услуги</small>
+          <%= image_tag("castle-icon.png", size: "50x50", alt: "icon", class: "img-fluid my-3") %>
+          <h4>Ваши данные в полной безопасности</h4>
+          <small class="">Мы гарантируем Вам конфиденциальность Ваших данных. Ваша персональная информация используется только для записи.</small>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <h4 class="color-lightgray mb-3">Как это работает</h4>
+        <%= image_tag("how_its_works.jpg", class: "img-fluid mb-5") %>
+      </div>
+      <div class="col-12 col-lg-6">
+        <h4 class="color-lightgray mb-3">Блог здоровья</h4>
+        <%= link_to home_path, class: "text-decoration-none" do %>
+          <div class="row no-gutters mb-3 text-white blog-item">
+            <div class="col-8 bg-success blog-item-height blog-item-text py-4 d-flex flex-column justify-content-center">
+              <h5 class="">Как улучшить зрение в домашних условиях</h5>
+              <p class="m-0">8 советов</p>
+            </div>
+            <div class="col-4 p-0 ">
+              <%= image_tag("blog-1.jpg", class: "img-fluid blog-item-height") %>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to home_path, class: "text-decoration-none" do %>
+          <div class="row no-gutters mb-3 text-white blog-item">
+            <div class="col-8 bg-primary blog-item-height blog-item-text py-4 d-flex flex-column justify-content-center">
+              <h5 class="">Зачем нужен кальций и откуда его брать</h5>
+              <p class="m-0">Почему кальций - главный минерал, и как избежать его дефицита</p>
+            </div>
+            <div class="col-4 p-0 ">
+              <%= image_tag("blog-2.jpg", class: "img-fluid blog-item-height") %>
+            </div>
+          </div>
+        <% end %>
+        <%= link_to home_path, class: "text-decoration-none" do %>
+          <div class="row no-gutters mb-3 text-white blog-item">
+            <div class="col-8 bg-success blog-item-height blog-item-text py-4 d-flex flex-column justify-content-center">
+              <h5 class="">Как бороться с бессонницей</h5>
+              <p class="m-0">Советы для полноценного и здорового отдыха</p>
+            </div>
+            <div class="col-4 p-0 ">
+              <%= image_tag("blog-3.jpg", class: "img-fluid blog-item-height") %>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

@@ -11,17 +11,29 @@
         <%= link_to "Найти врача", search_experts_path, class: "btn btn-secondary d-block mb-1" if user_signed_in? && current_user.patient? %>
       </li>
       <% if user_signed_in? %>
+<<<<<<< HEAD
+=======
+        <li class="nav-item ">
+          <%= link_to "Профиль", user_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? || current_user.doctor? %>
+        </li>
+>>>>>>> d593ef848c13e0ff1246481f3bd9876975bb5dba
         <li class="nav-item">
-          <%= link_to "Мои записи на прием", expert_events_path(current_user.expert), class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
+          <%= link_to "Записи на прием", expert_events_path(current_user.expert), class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
         </li>
         <li class="nav-item ">
-          <%= link_to "Мои пациенты", pacients_path, class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
+          <%= link_to "Пациенты", pacients_path, class: "btn btn-success mx-2 d-block mb-1" if current_user.doctor? %>
         </li>
         <li class="nav-item ">
-          <%= link_to "Мои записи на прием", user_events_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
+          <%= link_to "Записи на прием", user_events_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
         </li>
         <li class="nav-item ">
-          <%= link_to "Моя карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
+          <%= link_to "Карта пациента", user_card_path(current_user, current_user.card), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Карта вакцинации", user_vaccine_path(current_user, current_user.id), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
+        </li>
+        <li class="nav-item ">
+          <%= link_to "Дети", user_children_path(current_user), class: "btn btn-success mx-2 d-block mb-1" if current_user.patient? %>
         </li>
       <% else %>
       <% end %>

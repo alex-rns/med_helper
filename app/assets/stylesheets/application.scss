@@ -19,7 +19,9 @@ $theme-colors: (
         "secondary": #ffbe3b,
         "success": #a6d433,
         "danger": red,
-        "warning": yellow
+        "warning": yellow,
+        "primary-light": #cee3ff,
+        "light": #f8f9fa
 );
 
 @import "vaccines";
@@ -27,12 +29,17 @@ $theme-colors: (
 
 a {
   color: #ffffff!important;
-
-  //пока оставлю для хайлайта
-  background-color: #2eb2ff;
 }
 
 $fa-font-path: "font-awesome/fonts" !default;
+
+.card-border {
+  border-radius: 15px;
+  &-top {
+    border-radius: 15px 15px 0 0;
+  }
+}
+
 
 #customFile{
   border: 1px solid #ced4da;
@@ -138,19 +145,19 @@ $fa-font-path: "font-awesome/fonts" !default;
 
 
 }
-.show-header{
-  background-color: #303c6c;
-  color: white;
-}
-.btn-show-event{
-  width: 250px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-.card-event {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+//.show-header{
+//  background-color: #303c6c;
+//  color: white;
+//}
+//.btn-show-event{
+//  width: 250px;
+//  margin-bottom: 10px;
+//  margin-top: 10px;
+//}
+//.card-event {
+//  margin-top: 10px;
+//  margin-bottom: 10px;
+//}
 .card-header:first-child.card-pacient{
   background-color: #303c6c;
   color: white;
@@ -167,4 +174,12 @@ $fa-font-path: "font-awesome/fonts" !default;
   border-color:#b8dd5c !important;
   transition: all .2s ease-in-out;
   transform: scale(1.1);
+}
+
+.border-50 {
+  border-radius: 50px;
+}
+
+.border-20 {
+  border-radius: 20px;
 }
