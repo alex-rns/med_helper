@@ -6,31 +6,31 @@
       <div class="d-flex flex-column">
         <p>
           <strong>ФИО: </strong>
-          <span class="fw-lighter"><%= @card&.full_name %></span>
+          <span><%= @card&.full_name %></span>
         </p>
         <p>
           <strong>Пол: </strong>
-          <span class="fw-lighter"><%= @card&.gender %></span>
+          <span><%= @card&.gender %></span>
         </p>
         <p>
           <strong>Телефон: </strong>
-          <span class="fw-lighter"><%= @card&.phone %></span>
+          <span><%= @card&.phone %></span>
         </p>
         <p>
           <strong>Адрес: </strong>
-          <span class="fw-lighter"><%= @card&.address %></span>
+          <span><%= @card&.address %></span>
         </p>
         <p>
           <strong>Место работы: </strong>
-          <span class="fw-lighter"><%= @card&.work %></span>
+          <span><%= @card&.work %></span>
         </p>
         <p>
           <strong>Поручитель: </strong>
-          <span class="fw-lighter"><%= @card&.member %></span>
+          <span><%= @card&.member %></span>
         </p>
         <p>
           <strong>Примечания: </strong>
-          <span class="fw-lighter"><%= @card&.comment %></span>
+          <span><%= @card&.comment %></span>
         </p>
         <%= link_to "Создать протокол приема пациента", new_user_card_protocol_path(@card.user, @card),
                     class: "btn btn-primary btn-show-event" if current_user.expert.present? %>
