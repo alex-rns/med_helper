@@ -55,10 +55,10 @@
       </h5>
       <div class="row my-3">
         <div class="col-12 col-md-3 d-flex align-items-center justify-content-center ml-md-5">
-          <%= image_tag(protocol.expert&.image, size: 200, class: 'avatar-contain m-3 img-fluid') %>
+          <%= image_tag(protocol.expert&.image, size: 200, class: 'avatar-contain m-3 img-fluid px-md-2') %>
         </div>
         <div class="col-12 col-md-6 text-black-50 d-flex flex-column
-         justify-content-center align-items-center align-items-md-start">
+         justify-content-center align-items-center align-items-md-start px-4">
           <h5>
             <%= link_to protocol.expert.full_name, expert_path(protocol.expert), class: "text-success" %>
           </h5>
