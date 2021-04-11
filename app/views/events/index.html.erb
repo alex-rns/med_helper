@@ -15,7 +15,7 @@
       <div class="row my-3 ">
         <div class="col-12 col-md-2 d-flex align-items-center justify-content-center">
           <% if current_user.expert.present? %>
-            <%= image_tag event.user.image, size: 150, class: "avatar-contain m-3 img-fluid" %>
+            <%= image_tag event.user.card.image, size: 150, class: "avatar-contain m-3 img-fluid" %>
           <% else %>
             <%= image_tag(event.expert.image.url || current_user.image, size: 150, class: "avatar-contain m-3 img-fluid") %>
           <% end %>
