@@ -47,42 +47,35 @@
                   class: "btn btn-light text-primary d-block mb-4" %>
     <% end %>
   </div>
-</div>
-
-
-<h3 class="text-center text-primary pt-4 pb-3">История приемов</h3>
-<% @protocols.each do |protocol| %>
-  <div class="row">
-    <div class="col-sm-10 offset-md-1">
-      <div class="card card-pacient-first">
-        <div class="card-header card-pacient text-center">
-          Протокол приема № <%= @card.id + protocol.id %>
+  <h3 class="text-center text-primary pt-5 pb-3">История приемов</h3>
+  <% @protocols.each do |protocol| %>
+    <div class="border border-secondary my-3 card-border">
+      <h5 class="bg-secondary border border-secondary card-border-top text-white px-4 py-3 mb-0">
+        Протокол приема № <%= @card.id + protocol.id %>
+      </h5>
+      <div class="row my-3">
+        <div class="col-12 col-md-3 d-flex align-items-center justify-content-center ml-md-5">
+          <%= image_tag(protocol.expert&.image, size: 200, class: 'avatar-contain m-3 img-fluid') %>
         </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-2">
-              <%= image_tag(protocol.expert&.image, size: 80, class: 'rounded-circle card-client-show') %>
-            </div>
-            <div class="col-sm-8">
-              <h7 class="fw-lighter"><strong><%= protocol&.expert.full_name %></strong></h7>
-              <br>
-              <h8 class="fw-lighter"><strong></strong><%= protocol&.expert.category.name %></h8>
-              <br>
-              <h8 class="fw-lighter"><strong>Жалобы пациента: </strong><%= protocol&.complaint %></h8>
-              <br>
-              <% if protocol&.type_of_inspection == "first_visit" %>
-                <span class="fw-lighter"><span class="border border-2 rounded-pill badge bg-primary text-wrap">Первичный прием</span></span><br>
-              <% else %>
-                <span class="fw-lighter"><span class="border border-2 rounded-pill badge bg-info text-wrap">Повторный прием</span></span><br>
-              <% end %>
-            </div>
-            <div class="col-sm-2">
-              <%= link_to "Подробнее", user_card_protocol_path(@card.user, @card, protocol), class: "btn btn-outline-dark" %>
-            </div>
+        <div class="col-12 col-md-6 text-black-50 d-flex flex-column
+         justify-content-center align-items-center align-items-md-start">
+          <h5>
+            <%= link_to protocol.expert.full_name, expert_path(protocol.expert), class: "text-success" %>
+          </h5>
+          <p class="text-secondary fs-5"><%= protocol.expert.category.name %></p>
+          <p><strong>Диагноз: </strong> <%= protocol.diagnosis %></p>
+          <p><strong>Рекоммендации по лечению: </strong><%= protocol.therapy %></p>
+          <span class="border border-2 rounded-pill badge bg-primary text-wrap">
+             <%= protocol.type_of_inspection == "first_visit" ? "Первичный прием" : "Повторный прием" %>
+           </span>
+        </div>
+        <div class="col-12 col-md-3 d-flex flex-column justify-content-around">
+          <div class="mx-2 ">
+            <%= link_to "Подробнее", user_card_protocol_path(@card.user, @card, protocol),
+                        class: "btn btn-secondary d-block m-3" %>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <br>
-<% end %>
+  <% end %>
+</div>

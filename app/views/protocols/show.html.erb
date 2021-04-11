@@ -1,45 +1,37 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-10 offset-md-1">
-      <div class="card card-pacient-first">
-        <div class="card-header card-pacient text-center">
-          Протокол приема
-        </div>
-        <div class="card-body">
-          <div class="mb-3">
-             <div><strong>Жалобы пациента</strong></div><br>
-              <%= @protocol.complaint%>
-          </div>
-            <div class="mb-3">
-              <div><strong>Анамнез жизни</strong></div><br>
-               <%= @protocol.anamnesis_of_life%><br>
-            </div>
-            <div class="mb-3">
-              <div><strong>Анамнез болезни</strong></div><br>
-               <%= @protocol.medical_history%><br>
-            </div>
-            <div class="mb-3">
-              <div><strong>Анамнез болезни</strong></div><br>
-               <%= @protocol.medical_history%><br>
-            </div>
-            <div class="mb-3">
-              <div><strong>Симптомы</strong></div><br>
-               <%= @protocol.symptom%><br>
-            </div>
-            <div class="mb-3">
-              <div><strong>Cocтояние</strong></div><br>
-               <%= @protocol.state%><br>
-            </div>
-            <div class="mb-3">
-              <div><strong>Диагноз</strong></div><br>
-               <%= @protocol.diagnosis%><br>
-            </div>
-            <div class="mb-3">
-              <div><strong>Рекомендации по лечению</strong></div><br>
-               <%= @protocol.therapy%><br>
-            </div>
-       </div>
+  <h3 class="text-center text-primary pt-4 pb-3">Протокол приема №<%= @protocol.card.id + @protocol.id %></h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center">
+    <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+      <div class="d-flex flex-column">
+        <p>
+          <strong>Жалобы пациента: </strong><br>
+          <span><%= @protocol.complaint %></span>
+        </p>
+        <p>
+          <strong>Анамнез жизни: </strong><br>
+          <span><%= @protocol.anamnesis_of_life %></span>
+        </p>
+        <p>
+          <strong>Анамнез болезни: </strong><br>
+          <span><%= @protocol.medical_history %></span>
+        </p>
+        <p>
+          <strong>Симптомы: </strong><br>
+          <span><%= @protocol.symptom %></span>
+        </p>
+        <p>
+          <strong>Cocтояние: </strong><br>
+          <span><%= @protocol.state %></span>
+        </p>
+        <p>
+          <strong>Диагноз: </strong><br>
+          <span><%= @protocol.diagnosis %></span>
+        </p>
+        <p>
+          <strong>Рекомендации по лечению: </strong><br>
+          <span><%= @protocol.therapy %></span>
+        </p>
+      </div>
     </div>
   </div>
 </div>
-<br>
