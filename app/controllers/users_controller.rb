@@ -8,8 +8,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    redirect_to @user, notice: "Comment was edited."
+    if @user.update(user_params)
+      redirect_to @user, success: "Ваш профиль был изменён"
+    else
+      flash.now[:danger] = "Ваш профиль не был изменён"
+      render "edit"
+    end
   end
 
   private
@@ -19,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:birthday)
+    params.require(:user).permit(:birthday, :image)
   end
 
 end

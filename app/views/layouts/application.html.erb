@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html class="h-100">
-  <head>
-    <title>MedHelper</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>MedHelper</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   <%= stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css' %>
+   <meta name="google-signin-client_id" content="<%=ENV.fetch("GOOGLE_CLIENT_ID")%>.apps.googleusercontent.com">
+   <script src="https://apis.google.com/js/platform.js" async defer></script>
+   <% if Rails.env.production? %>
+     <meta name="google-site-verification" content="X6zgbF3iD6LmVdqIVtJboyt7ddTXHeHSrtqjmMy1EPE" />
+     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+   <% end %>
+  </head>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css' %>
-
-  <body class="d-flex flex-column h-100">
-  <%= render 'layouts/navbar' %>
-  <div class="container">
-    <%= yield %>
-  </div>
-  </body>
-  <%= render 'layouts/footer' %>
+<body class="d-flex flex-column h-100">
+<%= render 'layouts/navbar' %>
+<div class="pt-3">
+    <div class="col-12 text-center">
+      <% flash.each do |name, message| %>
+        <p class="alert alert-hidden alert-<%= name %>">
+          <%= message %>
+        </p>
+      <% end %>
+    </div>
+  <%= yield %>
+</div>
+</body>
+<%= render 'layouts/footer' %>
 </html>

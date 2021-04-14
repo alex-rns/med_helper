@@ -1,6 +1,10 @@
 require 'time'
 module ExpertsHelper
 
+  def set_address(address)
+    address.split(' ').join("+")
+  end
+
   def selector_element(arr)
     abc = arr.each_with_index.map { |x,i| [x.name, i+1] }
     abc

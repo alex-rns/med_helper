@@ -7,9 +7,10 @@
       <hr>
 
       <%= form_with model: @expert, method: :put do |f| %>
-      <%= image_tag @expert.image.url || current_user.image, size: "50x50", class: "rounded mx-auto d-block"%>
+      <%= image_tag @expert.image.url || current_user.image, size: "150x150", class: "rounded mx-auto d-block"%>
       <div class="form-group">
-         <%= f.file_field(:image, direct_upload: true, class: "rounded mx-auto d-block", size: "500x400") %>
+         <%= f.label "Фото" %>
+         <%= f.file_field(:image, direct_upload: true, class: "rounded mx-auto d-block", id: "customFile") %>
       </div>
 
       <div class = "form-group">
@@ -63,15 +64,8 @@
       </div>
       <div class = "form-group">
         <%= f.label "Адрес:" %>
-        <%= f.text_area :address, class: 'form-control' %>
+        <%= f.text_field :address, placeholder:"улица Смелянская, 132, Черкассы", class: 'form-control' %>
         <% @expert.errors.full_messages_for(:address).each do |message| %>
-          <div class="alert alert-warning alert-event"><%= message %></div>
-        <% end %>
-      </div>
-      <div class = "form-group">
-        <%= f.label "Email:" %>
-        <%= email_field_tag 'expert[email]', "#{current_user.expert.email}", class: 'form-control' %>
-        <% @expert.errors.full_messages_for(:email).each do |message| %>
           <div class="alert alert-warning alert-event"><%= message %></div>
         <% end %>
       </div>
@@ -247,7 +241,7 @@
       </div>
       <div class = "form-group">
         <%= f.label "Категория" %>
-         <%= select_tag('expert[category_id]', options_for_select(selector_element(@category)), class:'form-control') %>
+         <%= select_tag('expert[category_id]', options_for_select(Category.all.map {|category| [category.name, category.id]}), class:'select form-control') %>
         <% @expert.errors.full_messages_for(:phone).each do |message| %>
           <div class="alert alert-warning alert-event"><%= message %></div>
         <% end %>
@@ -255,7 +249,7 @@
 
       <div class = "form-group">
         <%= f.label "Уровень" %>
-          <%= select_tag('expert[level_id]', options_for_select(selector_element(@level)), class:'form-control') %>
+          <%= select_tag('expert[level_id]', options_for_select(Level.all.map {|level| [level.name, level.id]}), class:'select form-control') %>
         <% @expert.errors.full_messages_for(:phone).each do |message| %>
           <div class="alert alert-warning alert-event"><%= message %></div>
         <% end %>
@@ -269,3 +263,10 @@
   </div>
 
 </div>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>

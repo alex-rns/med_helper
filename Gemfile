@@ -17,6 +17,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+gem 'world-flags', github: 'kristianmandrup/world-flags', branch: 'master'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -24,7 +25,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'activeadmin'
 gem 'devise'
-#bootstrap
+gem 'will_paginate', '~> 3.3'
 gem "omniauth", "~> 1.9.1"
 gem 'bootstrap', '~> 5.0.0.alpha3'
 gem 'pry'
@@ -36,7 +37,6 @@ gem 'cloudinary', '~> 1.18.1'
 gem 'paperclip', '~> 6.0.0'
 gem 'mini_magick'
 gem 'rails_12factor', '0.0.2'
-
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -1,36 +1,9 @@
 <div class="container text-center">
-  <div class="row">
-    <div class="col-sm">
-      </div>
-      <%= content_tag(:div, flash[:notice], :id => "flash_notice", class: "alert alert-notice") if flash[:notice] %>
-      <div class="col-sm-5 border event-border shadow p-3 mb-5 bg-body rounded-3">
-        <h2 class="text-center py-5">Регистрация</h2>
-        <p class="text-secondary">Для начала регистрации Вам нужно выбрать профиль и затем авторизирваться через Google аккаунт</p>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-         <div class = "form-group">
-        <span class="badge bg-primary">1</span> <%= f.label "Выбрать профиль" %>
-          <div class="row">
-          <div class="col-sm-6">
-            <%= image_tag("doctor0.png", size: "200x200", alt: "Edit Entry") %>
-            <div class="form-check">
-              <label class="form-check-label" for="flexRadioDefault1">Врач</label>
-              <%= radio_button_tag 'user[type]','doctor', true %>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <%= image_tag("pacient.png", size: "200x200", alt: "Edit Entry") %>
-            <div class="form-check">
-              <label class="form-check-label" for="flexRadioDefault1">Пациент</label>
-                <%= radio_button_tag 'user[type]','pacient', false %>
-            </div>
-          </div>
-          </div>
-        </div>
-        <span class="badge bg-primary">2</span> <%= f.label "Google аккаунт" %><br>
-         <%= f.submit "Войти через Google аккаунт", class: "btn btn-primary accaunt-button" %>
-        <% end %>
-      </div>
-      <div class="col-sm">
-      </div>
-    </div>
+  <%= content_tag(:div, flash[:notice], :id => "flash_notice", class: "alert alert-notice") if flash[:notice] %>
+  <div class="p-3 mb-5">
+    <h2 class="text-center text-primary pt-4 pb-3">Регистрация</h2>
+    <p class="text-small text-black-50">Для начала регистрации Вам нужно выбрать профиль и затем авторизирваться через
+      Google аккаунт</p>
+    <%= render 'form' %>
+  </div>
 </div>

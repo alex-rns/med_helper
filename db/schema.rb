@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_07_105859) do
+ActiveRecord::Schema.define(version: 2021_04_06_201253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,22 @@ ActiveRecord::Schema.define(version: 2021_03_07_105859) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "cards", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "full_name"
+    t.string "gender"
+    t.string "phone"
+    t.string "address"
+    t.string "work"
+    t.string "member"
+    t.string "comment"
+    t.bigint "user_id"
+    t.datetime "birthday"
+    t.string "image"
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -84,30 +100,30 @@ ActiveRecord::Schema.define(version: 2021_03_07_105859) do
     t.index ["user_id"], name: "index_children_on_user_id"
   end
 
-  create_table "clients", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "name"
-    t.string "email"
+    t.bigint "expert_id"
+    t.text "body"
+    t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "dob"
-    t.index ["user_id"], name: "index_clients_on_user_id"
+    t.boolean "recommendation"
+    t.index ["expert_id"], name: "index_comments_on_expert_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.integer "expert_id"
-    t.string "name"
-    t.integer "phone"
-    t.string "email"
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "start_time"
     t.datetime "end_time"
-    t.integer "type"
+    t.integer "type_of_call"
     t.string "calendar_link"
     t.string "meeting_link"
+    t.integer "status"
   end
 
   create_table "experts", force: :cascade do |t|
@@ -118,7 +134,6 @@ ActiveRecord::Schema.define(version: 2021_03_07_105859) do
     t.text "procedure"
     t.string "address"
     t.string "medical_center"
-    t.string "email"
     t.string "phone"
     t.string "image"
     t.string "hw_start_monday"
@@ -141,6 +156,8 @@ ActiveRecord::Schema.define(version: 2021_03_07_105859) do
     t.text "education"
     t.integer "level_id"
     t.bigint "user_id", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_experts_on_user_id"
   end
 
@@ -149,6 +166,23 @@ ActiveRecord::Schema.define(version: 2021_03_07_105859) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "level_status"
+  end
+
+  create_table "protocols", force: :cascade do |t|
+    t.string "complaint"
+    t.string "therapy"
+    t.string "diagnosis"
+    t.string "state"
+    t.string "symptom"
+    t.string "anamnesis_of_life"
+    t.string "medical_history"
+    t.integer "type_of_inspection"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "card_id", null: false
+    t.bigint "expert_id", null: false
+    t.index ["card_id"], name: "index_protocols_on_card_id"
+    t.index ["expert_id"], name: "index_protocols_on_expert_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -160,13 +194,12 @@ ActiveRecord::Schema.define(version: 2021_03_07_105859) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.string "address"
-    t.integer "phone"
     t.datetime "birthday"
     t.string "access_token"
     t.datetime "expires_at"
     t.string "refresh_token"
     t.string "image"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -210,5 +243,8 @@ ActiveRecord::Schema.define(version: 2021_03_07_105859) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "users"
   add_foreign_key "experts", "users"
+  add_foreign_key "protocols", "cards"
+  add_foreign_key "protocols", "experts"
 end

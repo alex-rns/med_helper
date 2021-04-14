@@ -8,38 +8,32 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user.access_token = auth.credentials.token
       @user.expires_at = auth.credentials.expires_at
       @user.refresh_token = auth.credentials.refresh_token
-      @user.image = auth.info.image
       @user.save!
-      if cookies[:user_type].present?
-        set_role(cookies[:user_type], @user)
+      if @user.role?
         sign_in(:user, @user)
         redirect_to home_path
-      else
-        check_role(@user)
+      elsif cookies[:user_type].present?
+          if cookies[:user_type] == 'doctor'
+            @user.doctor!
+            expert = Expert.create!(user: @user, category: Category.first)
+            expert.image.attach(io: File.open("app/assets/images/doctor0.png"),
+                                    filename: "doctor0.png")
+            sign_in(:user, @user)
+            redirect_to home_path
+          else
+            @user.patient!
+            card = Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'))
+            card.image.attach(io: File.open("app/assets/images/avatar.png"),
+                                    filename: "avatar.png")
+            Vaccine.create(user_id: @user.id)
+            sign_in(:user, @user)
+            redirect_to home_path
+          end
+        else
+          sign_in(:user, @user)
+          redirect_to edit_user_registration_path
+        end
       end
       cookies.delete :user_type
     end
-  end
-
-  private
-
-  def check_role(user)
-    if user.client.present?||user.expert.present?
-      sign_in(:user, user)
-      redirect_to home_path
-    else
-      sign_in(:user, user)
-      redirect_to edit_user_registration_path
-    end
-  end
-
-  def set_role(cookies, user)
-    if cookies == 'pacient'
-      Client.create(user_id: user.id, email: user.email, dob: Time.now)
-      Vaccine.create(user_id: user.id)
-    elsif cookies == 'doctor'
-      Expert.create(user_id: user.id, category_id: 1, email: user.email)
-    else
-    end
-  end
 end

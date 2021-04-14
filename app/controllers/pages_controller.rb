@@ -1,4 +1,8 @@
 class PagesController < ApplicationController
-  def testbootstrap
+  def home
+    Rails.logger.error request.cookies
+  end
+
+  def rule
   end
 end

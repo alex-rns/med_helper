@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-md-1">
+      <div class="card card-pacient-first">
+  <div class="card-header card-pacient text-center">
+    Карта пациента
+  </div>
+  <div class="card-body">
+    <%= form_with url: user_card_protocols_path() do |f| %>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Прием" %>
+        <%= select_tag :type_of_inspection, options_for_select([["Первичный прием", Protocol.type_of_inspections.keys.first],
+         ["Повторный прием", Protocol.type_of_inspections.keys.second]]), class: 'form-control'%>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Жалобы пациента" %>
+        <%= f.text_area :complaint, class: 'form-control', required: true%>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Анамнез жизни" %>
+        <%= f.text_area :anamnesis_of_life, class: 'form-control', required: true%>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Анамнез болезни" %>
+        <%= f.text_area :medical_history, class: 'form-control', required: true%>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Симптомы" %>
+        <%= f.text_area :symptom, class: 'form-control', required: true%>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Cocтояние" %>
+        <%= f.text_area :state, class: 'form-control', required: true%>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Диагноз" %>
+        <%= f.text_area :diagnosis, class: 'form-control', required: true%>
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class = "form-group">
+        <%= f.label "Рекомендации по лечению" %>
+        <%= f.text_area :therapy, class: 'form-control', required: true%>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center">
+      <%= f.submit "Создать протокол", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+</br>

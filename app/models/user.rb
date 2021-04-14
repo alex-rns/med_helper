@@ -3,11 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
   has_many :events, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :experts, :through => :events, dependent: :destroy
   has_many :children, dependent: :destroy
+  has_many :visits, through: :events
   has_one :vaccine, dependent: :destroy
   has_one :expert, dependent: :destroy
-  has_one :client, dependent: :destroy
+  has_one :card, dependent: :destroy
+  enum role: [ :patient, :doctor ]
 
   def self.from_omniauth(access_token)
     data = access_token.info
@@ -15,11 +18,10 @@ class User < ApplicationRecord
 
     unless user
       user = User.create(
-          name: data["name"],
-          email: data["email"],
-          birthday: Time.now.strftime("%d of %B, %Y"),
-          password: '12383929'
-      )
+      name: data["name"],
+      email: data["email"],
+      birthday: Time.now.strftime("%d of %B, %Y"),
+      password: '12383929')
     end
     user
   end
