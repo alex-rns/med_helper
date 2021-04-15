@@ -1,36 +1,34 @@
 class CardsController < ApplicationController
+  before_action :set_card, only: [:edit, :update]
+
   def show
     if current_user.expert.present?
       user = User.find(params[:user_id])
       @card = user.card
-      @protocols = protocols
     else
-     @card = current_user.card
-     @protocols = protocols
+      @card = current_user.card
     end
+    @protocols = protocols
   end
 
-  def edit
-    @card = Card.find(params[:id])
-  end
+  def edit; end
 
   def update
-    card = Card.find(params[:id])
-    card.update(permit_params)
+    @card.update(permit_params)
     redirect_to user_card_path(current_user, current_user.card), success: "Ваша карта пациента изменена"
   end
 
   private
 
+  def set_card
+    @card = Card.find(params[:id])
+  end
+
   def protocols
-    if current_user.expert.present?
-      @card.protocols.where(expert_id: current_user.expert.id)
-    else
-      @card.protocols
-    end
+    current_user.expert.present? ? @card.protocols.where(expert_id: current_user.expert.id) : @card.protocols
   end
 
   def permit_params
-      params.permit(:full_name, :gender, :member, :address, :comment, :phone, :work, :birthday, :image)
+    params.require(:card).permit(:full_name, :gender, :member, :address, :comment, :phone, :work, :birthday, :image)
   end
 end
