@@ -79,7 +79,10 @@ module EventsHelper
 
   def get_event(expert, time)
     arr = []
-    expert.events.where(start_time:time.to_datetime.beginning_of_day...time.to_datetime.end_of_day).where(status: "pending").where(status: "approve").each do |ev|
+    events = expert.events
+                   .where(start_time:time.to_datetime.beginning_of_day...time.to_datetime.end_of_day)
+                   .where(status: [:approve, :pending])
+    events.each do |ev|
       arr << ev.start_time.hour
     end
     arr.flatten.uniq
