@@ -5,7 +5,7 @@
         <div class="card-header card-pacient text-center">
           Редактировать карту пациента</div>
          <div class="card-body">
-           <%= form_with url: user_card_path(current_user, @card), method: 'PUT' do |f| %>
+           <%= form_with model: @card, url: user_card_path(current_user, @card), method: 'PUT' do |f| %>
            <div class="mb-3">
              <div class = "form-group">
               <%= f.label "Фото" %>
@@ -15,13 +15,13 @@
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "ФИО" %>
-               <%= f.text_field :full_name, value: current_user.card&.full_name, class: 'form-control', required: true%>
+               <%= f.text_field :full_name, class: 'form-control', required: true%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Пол" %>
-               <%= select_tag('card[gender]', options_for_select([["Мужчина", "Мужчина"],["Женщина", "Женский"]]), class:'form-control') %>
+               <%= select_tag('card[gender]', options_for_select([["Мужчина", "Мужчина"],["Женщина", "Женщина"]]), class:'form-control') %>
              </div>
            </div>
 
@@ -35,31 +35,31 @@
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Адрес" %>
-               <%= f.text_area :address, value: current_user.card&.address, class: 'form-control'%>
+               <%= f.text_area :address, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Поручитель" %>
-               <%= f.text_area :member, value: current_user.card&.address, class: 'form-control'%>
+               <%= f.text_area :member, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Примечания" %>
-               <%= f.text_area :comment, value: current_user.card&.comment, class: 'form-control'%>
+               <%= f.text_area :comment, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Телефон" %>
-               <%= f.text_area :phone, value: current_user.card&.phone, class: 'form-control'%>
+               <%= f.text_area :phone, class: 'form-control'%>
              </div>
            </div>
            <div class="mb-3">
              <div class = "form-group">
                <%= f.label "Работа" %>
-               <%= f.text_area :work, value: current_user.card&.work, class: 'form-control'%>
+               <%= f.text_area :work, class: 'form-control'%>
              </div>
            </div>
            <div class="d-flex justify-content-center">
