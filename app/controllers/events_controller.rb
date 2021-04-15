@@ -5,13 +5,7 @@ class EventsController < ApplicationController
   before_action :find_user, only: [:new, :create, :show]
 
   def index
-    if current_user.expert.present?
-      find_expert
-      @events = @expert.events
-    else
-      find_user
-      @events = current_user.events
-    end
+    @events = current_user.events
   end
 
   def new
@@ -45,7 +39,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
   end
 
   def check_time
