@@ -3,6 +3,7 @@ class ExpertsController < ApplicationController
   before_action :find_all_category, only: [:edit, :update]
 
   def index
+    is_patient?
     @experts = Expert.searcher(params).paginate(page: params[:page], per_page: 5)
   end
 
