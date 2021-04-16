@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:edit, :update, :destroy]
 
   def new
+    is_patient?
     @comment = Comment.new(user: current_user, expert_id: params[:expert_id])
   end
 
@@ -17,6 +18,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    is_patient?
   end
 
   def update

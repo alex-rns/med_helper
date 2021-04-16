@@ -12,10 +12,10 @@
         </h4>
         <p><strong><%= @expert.level.name if @expert.level.present? %></strong></p>
         <div class="d-inline-block">
-          <span class="badge rounded-pill bg-success"><%= @expert.experience %></span>
+          <span class="badge rounded-pill bg-success"><%= @expert.experience.presence || 0 %></span>
           <span> лет опыта</span>
         </div>
-        <%= truncate(@expert.description, length: 700, separator: '.') %>
+        <p><%= @expert.description %></p>
       </div>
       <div class="col-12 col-md-3 d-flex flex-column justify-content-around">
         <div class="mx-2 ">
@@ -29,7 +29,7 @@
           </div>
           <%= link_to(new_expert_event_path(@expert), method: :get, class: "btn btn-success w-100 mt-3") do %>
             <i class="fa fa-calendar mx-2"></i>Записаться
-          <% end %>
+          <% end if current_user.patient? %>
           <%= button_tag data: { toggle: "modal",
                                  target: ".bd-example-modal-lg-#{@expert.id}" },
                          class: "btn btn-primary text-white w-100 mt-3" do %>
@@ -41,17 +41,17 @@
     </div>
     <div class="row m-3 text-black-50">
       <h5 class="text-secondary fs-5">Образование</h5>
-      <p><%= @expert.education %></p>
+      <p><%= @expert.education.presence || "Врач не предоставил эту информацию"  %></p>
       <h5 class="text-secondary fs-5">Дополнительное образование</h5>
-      <p><%= @expert.additional_education %></p>
+      <p><%= @expert.additional_education.presence || "Врач не предоставил эту информацию" %></p>
       <h5 class="text-secondary fs-5">Выполняет процедуры</h5>
-      <p><%= @expert.procedure %></p>
+      <p><%= @expert.procedure.presence || "Врач не предоставил эту информацию" %></p>
     </div>
   </div>
   <div>
     <h4 class="text-center text-primary pt-4 pb-3">Комментарии</h4>
     <%= link_to "Написать комментарий", new_comment_path(expert_id: @expert), method: :get,
-                class: "btn btn-small btn-primary m-2" %>
+                class: "btn btn-small btn-primary m-2" if current_user.patient? %>
     <% if @expert.comments.present? %>
       <div class="m-2 d-flex-column">
         <% @expert.comments.each do |comment| %>
@@ -79,7 +79,7 @@
         <% end %>
       </div>
     <% else %>
-      <p>Никто не пишет((</p>
+      <p class="text-center">Комментрии отсутствуют</p>
     <% end %>
   </div>
 </div>

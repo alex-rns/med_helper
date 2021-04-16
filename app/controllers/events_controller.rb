@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   end
 
   def new
+    is_patient?
     @event = @expert.events.build
   end
 

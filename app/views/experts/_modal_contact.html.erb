@@ -32,10 +32,15 @@
           </div>
           <div class="col-sm-5">
             <h5 class="text-center text-primary">Адрес</h5>
-            <p class="text-center text-secondary"><%= expert.address %></p>
+            <p class="text-center text-secondary"><%= expert.address.presence || "Нет информации" %></p>
             <h5 class="text-center text-primary">Телефон</h5>
-            <p class="text-center text-secondary"><%= link_to "#{expert.phone}", "tel:#{expert.phone}",
-                                                              class: "text-secondary" %></p>
+            <p class="text-center text-secondary">
+              <% if expert.phone.present? %>
+                <%= link_to "#{expert.phone}", "tel:#{expert.phone}", class: "text-secondary" %>
+              <% else %>
+                Нет информации
+              <% end %>
+            </p>
             <h5 class="text-center text-primary">Время работы</h5>
             <p class="text-center text-secondary">Пн: <%= expert.hw_start_monday %>-<%= expert.hw_end_monday %></p>
             <p class="text-center text-secondary">Вт: <%= expert.hw_start_thursday %>
