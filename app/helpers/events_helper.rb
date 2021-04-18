@@ -3,30 +3,55 @@ module EventsHelper
   require "google/api_client/client_secrets.rb"
 
   def google_event(event)
-    user_email = event.user.email
+    @event = Event.find(event.id)
+    user_email = @event.user.email
     expert_email = current_user.email
-    attendees = "#{user_email}, #{expert_email}".split(',').map{ |t| {email: t.strip} }
-    client = get_google_calendar_client current_user
+    @attendees = "#{user_email}, #{expert_email}".split(',').map{ |t| {email: t.strip} }
+    @client = get_google_calendar_client current_user
+    if @event.online?
+      get_online
+    else
+      get_offline
+    end
+  end
+
+  def get_offline
     event = Google::Apis::CalendarV3::Event.new({
-      summary: event.comment,
-      description: "Пациент: #{event.user.card.full_name}",
+      summary: @event.comment,
+      description: "Пациент: #{@event.user.card.full_name}",
       start: {
-         date_time: event.start_time.to_datetime,
+         date_time: @event.start_time.to_datetime,
       },
       end: {
-        date_time: event.end_time.to_datetime,
+        date_time: @event.start_time.to_datetime + 1.hour,
       },
-       attendees: attendees,
+       attendees: @attendees
+    })
+    new_event = @client.insert_event('primary', event, conference_data_version: 1)
+    event_link = [new_event.html_link]
+  end
+
+  def get_online
+    event = Google::Apis::CalendarV3::Event.new({
+      summary: @event.comment,
+      description: "Пациент: #{@event.user.card.full_name}",
+      start: {
+         date_time: @event.start_time.to_datetime,
+      },
+      end: {
+        date_time: @event.start_time.to_datetime + 1.hour,
+      },
+       attendees: @attendees,
        conference_data: Google::Apis::CalendarV3::ConferenceData.new(
        create_request: Google::Apis::CalendarV3::CreateConferenceRequest.new(
-       request_id: "sample123",
+       request_id: SecureRandom.alphanumeric,
        conference_solution_key: Google::Apis::CalendarV3::ConferenceSolutionKey.new(
         type: "hangoutsMeet"
         )
       )
     )
     })
-    new_event = client.insert_event('primary', event, conference_data_version: 1)
+    new_event = @client.insert_event('primary', event, conference_data_version: 1)
     event_link = [new_event.html_link, new_event.hangout_link]
   end
 
@@ -47,6 +72,7 @@ module EventsHelper
     client.authorization
     client
   end
+
   def available_time(expert, time)
     day_of_week = time.to_datetime.strftime("%A").downcase
     start_time = expert.send("hw_start_#{day_of_week}").to_i
