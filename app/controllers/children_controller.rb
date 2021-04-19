@@ -13,8 +13,6 @@ class ChildrenController < ApplicationController
   end
 
   def update
-    @child.update(child_params)
-    redirect_to user_children_path, notice: "Child was edited."
   end
 
   def create

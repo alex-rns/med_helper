@@ -1,50 +1,55 @@
 <div class="container">
   <h3 class="text-center text-primary pt-4 pb-3">Карта пациента</h3>
-  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center">
-    <%= image_tag(@card&.image, size: 150, class: 'text-center img-fluid mt-4') %>
-    <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
-      <div class="d-flex flex-column">
-        <p>
-          <strong>ФИО: </strong>
-          <span><%= @card&.full_name %></span>
-        </p>
-        <p>
-          <strong>Дата рождения: </strong>
-          <span><%= @card&.birthday %></span>
-        </p>
-        <p>
-          <strong>Пол: </strong>
-          <span><%= @card&.gender %></span>
-        </p>
-        <p>
-          <strong>Телефон: </strong>
-          <span><%= @card&.phone %></span>
-        </p>
-        <p>
-          <strong>Адрес: </strong>
-          <span><%= @card&.address %></span>
-        </p>
-        <p>
-          <strong>Место работы: </strong>
-          <span><%= @card&.work %></span>
-        </p>
-        <p>
-          <strong>Поручитель: </strong>
-          <span><%= @card&.member %></span>
-        </p>
-        <p>
-          <strong>Примечания: </strong>
-          <span><%= @card&.comment %></span>
-        </p>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center row">
+    <div class="text-center">
+      <%= image_tag(@card&.image, size: 250, class: 'text-center img-fluid mt-4') %>
+    </div>
+    <div class="m-auto">
+      <div class="pacient-card-info bg-primary p-4 text-white m-3 row">
+        <div class="d-flex flex-column">
+          <p>
+            <strong>ФИО: </strong>
+            <span><%= @card&.full_name %></span>
+          </p>
+          <p>
+            <strong>Дата рождения: </strong>
+            <span><%= @card&.birthday %></span>
+          </p>
+          <p>
+            <strong>Пол: </strong>
+            <span><%= @card&.gender %></span>
+          </p>
+          <p>
+            <strong>Телефон: </strong>
+            <span><%= @card&.phone %></span>
+          </p>
+          <p>
+            <strong>Адрес: </strong>
+            <span><%= @card&.address %></span>
+          </p>
+          <p>
+            <strong>Место работы: </strong>
+            <span><%= @card&.work %></span>
+          </p>
+          <p>
+            <strong>Поручитель: </strong>
+            <span><%= @card&.member %></span>
+          </p>
+          <p>
+            <strong>Примечания: </strong>
+            <span><%= @card&.comment %></span>
+          </p>
 
+        </div>
       </div>
+
     </div>
     <% if current_user.expert.present? %>
       <%= link_to "Создать протокол приема пациента", new_user_card_protocol_path(@card.user, @card),
-                  class: "btn btn-light text-primary d-block mb-4" %>
+                  class: "btn btn-light text-primary d-block mb-4 inherit" %>
     <% else %>
       <%= link_to "Редактировать", edit_user_card_path(@card.user, @card),
-                  class: "btn btn-light text-primary d-block mb-4" %>
+                  class: "btn btn-light text-primary d-block mb-4 inherit" %>
     <% end %>
   </div>
   <h3 class="text-center text-primary pt-5 pb-3">История приемов</h3>

@@ -1,73 +1,62 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-10 offset-md-1">
-      <div class="card card-pacient-first">
-        <div class="card-header card-pacient text-center">
-          Редактировать карту пациента</div>
-         <div class="card-body">
-           <%= form_with model: @card, url: user_card_path(current_user, @card), method: 'PUT' do |f| %>
-           <div class="mb-3">
-             <div class = "form-group">
-              <%= f.label "Фото" %>
-              <%= f.file_field(:image, title: current_user.card.image.filename.to_s, direct_upload: true, class: "rounded mx-auto d-block", id: "customFile-user" ) %>
-            </div>
-          </div>
-           <div class="mb-3">
-             <div class = "form-group">
-               <%= f.label "ФИО" %>
-               <%= f.text_field :full_name, class: 'form-control', required: true%>
-             </div>
-           </div>
-           <div class="mb-3">
-             <div class = "form-group">
-               <%= f.label "Пол" %>
-               <%= select_tag('card[gender]', options_for_select([["Мужчина", "Мужчина"],["Женщина", "Женщина"]]), class:'form-control') %>
-             </div>
-           </div>
-
-           <div class="mb-3">
-             <div class = "form-group">
-             <%= f.label "Дата рождения" %>
-             <%= f.date_field :birthday, class: "form-control", required: true %>
-             </div>
-            </div>
-
-           <div class="mb-3">
-             <div class = "form-group">
-               <%= f.label "Адрес" %>
-               <%= f.text_area :address, class: 'form-control'%>
-             </div>
-           </div>
-           <div class="mb-3">
-             <div class = "form-group">
-               <%= f.label "Поручитель" %>
-               <%= f.text_area :member, class: 'form-control'%>
-             </div>
-           </div>
-           <div class="mb-3">
-             <div class = "form-group">
-               <%= f.label "Примечания" %>
-               <%= f.text_area :comment, class: 'form-control'%>
-             </div>
-           </div>
-           <div class="mb-3">
-             <div class = "form-group">
-               <%= f.label "Телефон" %>
-               <%= f.text_area :phone, class: 'form-control'%>
-             </div>
-           </div>
-           <div class="mb-3">
-             <div class = "form-group">
-               <%= f.label "Работа" %>
-               <%= f.text_area :work, class: 'form-control'%>
-             </div>
-           </div>
-           <div class="d-flex justify-content-center">
-             <%= f.submit "Редактировать карту", class: "btn btn-primary" %>
-           </div>
-           <% end %>
+  <% if @card.errors.any? %>
+    <div class="alert alert-danger">
+      <h6>При добавлении комментария возникли ошибки:</h6>
+      <ul>
+        <% @card.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3 class="text-center text-primary pt-4 pb-3">Редактировать карту пациента</h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center mb-4 row">
+    <%= form_with model: @card, url: user_card_path(current_user, @card), method: 'PUT' do |f| %>
+      <div class="text-center">
+        <%= image_tag(@card&.image, size: 250, class: 'text-center img-fluid my-4') %>
+        <%= f.file_field(:image, title: current_user.card.image.filename.to_s,
+                         direct_upload: true,
+                         class: "rounded mx-auto d-block form-control w-auto") %>
+      </div>
+      <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
+        <div class="d-flex flex-column">
+          <p>
+            <strong><%= f.label "ФИО" %></strong>
+            <span><%= f.text_field :full_name, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Дата рождения" %></strong>
+            <span><%= f.date_field :birthday, max: DateTime.now, class: "form-control" %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Пол" %></strong>
+            <span><%= select_tag('card[gender]',
+                                 options_for_select([["Мужчина", "Мужчина"], ["Женщина", "Женщина"]]),
+                                 class: 'form-control') %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Телефон" %></strong>
+            <span><%= f.telephone_field :phone, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Адрес" %></strong>
+            <span><%= f.text_area :address, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Место работы" %></strong>
+            <span><%= f.text_area :work, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Поручитель" %></strong>
+            <span><%= f.text_field :member, class: 'form-control' %></span>
+          </p>
+          <p>
+            <strong><%= f.label "Примечания" %></strong>
+            <span><%= f.text_area :comment, class: 'form-control' %></span>
+          </p>
         </div>
       </div>
-    </div>
+      <%= f.submit "Редактировать карту", class: "btn btn-light text-primary d-block mb-4 m-auto" %>
+    <% end %>
   </div>
 </div>
