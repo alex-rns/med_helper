@@ -14,8 +14,12 @@ class CardsController < ApplicationController
   def edit; end
 
   def update
-    @card.update(permit_params)
-    redirect_to user_card_path(current_user, current_user.card), success: "Ваша карта пациента изменена"
+    if @card.update(permit_params)
+      redirect_to user_card_path(current_user, current_user.card), success: "Ваша карта пациента изменена"
+    else
+      flash.now[:error] = "Ваша карта пациента не изменена"
+      render "edit"
+    end
   end
 
   private
