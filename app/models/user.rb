@@ -22,7 +22,6 @@ class User < ApplicationRecord
       email: data["email"],
       image: access_token.info.image,
       password: "28ddds83")
-      binding.pry
     end
     user
   end
