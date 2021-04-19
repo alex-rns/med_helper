@@ -28,20 +28,20 @@ $theme-colors: (
 @import 'bootstrap';
 
 a {
-  color: #ffffff!important;
+  color: #ffffff !important;
 }
 
 $fa-font-path: "font-awesome/fonts" !default;
 
 .card-border {
   border-radius: 15px;
+
   &-top {
     border-radius: 15px 15px 0 0;
   }
 }
 
-
-#customFile{
+#customFile {
   border: 1px solid #ced4da;
   width: 855px;
   height: 40px !important;
@@ -50,14 +50,15 @@ $fa-font-path: "font-awesome/fonts" !default;
   padding: 5px;
 }
 
-.event-border{
+.event-border {
   height: 700px;
   width: 600px;
   margin-top: 50px;
   margin-left: 10px;
 
 }
-.btn-event{
+
+.btn-event {
   width: 464px;
   margin-top: 10px;
 }
@@ -66,9 +67,11 @@ $fa-font-path: "font-awesome/fonts" !default;
   height: 296px;
   margin-top: 10px;
 }
+
 .cart-address {
   height: 95px;
 }
+
 .contact {
   display: inline-flex;
 }
@@ -77,101 +80,91 @@ $fa-font-path: "font-awesome/fonts" !default;
   height: 115px;
   margin-top: 10px;
 }
-.ui-menu{
+
+.ui-menu {
   max-width: 707.719px;
 }
+
 .filter {
   margin-top: 10px;
 }
+
 .ui-autocomplete {
   background-color: white;
 }
-.accaunt-button{
+
+.accaunt-button {
   margin-top: 20px;
   width: 300px;
 }
-#menu li{
-	display: inline-block;
+
+#menu li {
+  display: inline-block;
 }
+
 .ui-tooltip {
-    background: #4a4a4a;
-    color: #96f226;
-    border: 2px solid #454545;
-    border-radius: 0px;
-    box-shadow: 0 0
+  background: #4a4a4a;
+  color: #96f226;
+  border: 2px solid #454545;
+  border-radius: 0;
+  box-shadow: 0 0
 }
+
 .ui-autocomplete {
-    background: white;
-    border-radius: 0px;
+  background: white;
+  border-radius: 0;
 }
 
-.ui-menu .ui-menu-item{
-  font-size:20px;
+.ui-menu .ui-menu-item {
+  font-size: 20px;
 }
+
 .datepicker-dropdown {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-.datepicker td, .datepicker th {
-    width: 2.5rem;
-    height: 2.5rem;
-    font-size: 0.85rem;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-.datepicker {
-    // margin-bottom: 3rem;
-    // margin-left: 4px;
+.datepicker td, .datepicker th {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.85rem;
 }
-.button-contact{
+
+.button-contact {
   width: 392px;
 }
-.alert-event{
-  padding: 0px;
+
+.alert-event {
+  padding: 0;
 }
-.event-border-doctor{
+
+.event-border-doctor {
   height: 1700px;
   width: 900px;
   margin-top: 50px;
   margin-left: 10px;
-
 }
-#customFile-user{
-  border: 1px solid #ced4da;
-  width: 1290px;
-  height: 40px !important;
-  border-radius: 0.25rem !important;
-  margin: 5px;
-  padding: 5px;
-  background-color: white;
 
-
+.inherit {
+  width: inherit;
 }
-//.show-header{
-//  background-color: #303c6c;
-//  color: white;
-//}
-//.btn-show-event{
-//  width: 250px;
-//  margin-bottom: 10px;
-//  margin-top: 10px;
-//}
-//.card-event {
-//  margin-top: 10px;
-//  margin-bottom: 10px;
-//}
-.card-header:first-child.card-pacient{
+
+.card-header:first-child.card-pacient {
   background-color: #303c6c;
   color: white;
-  border-radius: 50px 50px 0px 0px;
+  border-radius: 50px 50px 0 0;
 }
+
 .card-pacient-first {
   border-radius: 50px 50px 50px 50px;
 }
-.card-client-show{
-  margin:0px 20px 20px 20px;
+
+.card-client-show {
+  margin: 0 20px 20px 20px;
 }
+
 .form-check input[type="radio"]:checked ~ .role-image {
-  background:#b8dd5c !important;
-  border-color:#b8dd5c !important;
+  background: #b8dd5c !important;
+  border-color: #b8dd5c !important;
   transition: all .2s ease-in-out;
   transform: scale(1.1);
 }
