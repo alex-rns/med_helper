@@ -1,3 +1,4 @@
+require 'open-uri'
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
 
@@ -20,15 +21,16 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def set_role
+    @downloaded_image = open(@user.image)
     if cookies[:user_type] == 'doctor'
       @user.doctor!
-      expert = Expert.create!(user: @user, category: Category.first)
-      expert.image.attach(io: File.open("app/assets/images/doctor0.png"),
+      expert = Expert.create!(full_name: @user.name, category: Category.first, user: @user, level: Level.first)
+      expert.image.attach(io: @downloaded_image,
                                   filename: "doctor0.png")
     elsif cookies[:user_type] == 'patient'
       @user.patient!
-      card = Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'))
-      card.image.attach(io: File.open("app/assets/images/avatar.png"),
+      card = Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'), full_name: @user.name)
+      card.image.attach(io: @downloaded_image,
                                   filename: "avatar.png")
       Vaccine.create(user_id: @user.id)
     else

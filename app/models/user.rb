@@ -18,10 +18,11 @@ class User < ApplicationRecord
 
     unless user
       user = User.create(
-      name: data["name"],
+      name: access_token.info.name,
       email: data["email"],
-      birthday: Time.now.strftime("%d of %B, %Y"),
-      password: '12383929')
+      image: access_token.info.image,
+      password: "28ddds83")
+      binding.pry
     end
     user
   end
