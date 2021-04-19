@@ -1,3 +1,4 @@
+require 'open-uri'
 class Users::RegistrationsController < Devise::RegistrationsController
   def create
     cookies[:user_type] = params[:user][:type]
@@ -8,16 +9,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
+    @downloaded_image = open(@user.image)
     if params[:user][:type] == 'doctor'
       @user.doctor!
-      expert = Expert.create!(user: @user, category: Category.first)
-      expert.image.attach(io: File.open("app/assets/images/doctor0.png"),
-                                  filename: "doctor0.png")
+      expert = Expert.create!(full_name: @user.name, category: Category.first, user: @user, level: Level.first)
+      expert.image.attach(io: @downloaded_image, filename: "doctor0.png")
     else
       @user.patient!
-      card = Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'))
-      card.image.attach(io: File.open("app/assets/images/avatar.png"),
-                                  filename: "avatar.png")
+      card = Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'), full_name: @user.name)
+      card.image.attach(io: @downloaded_image, filename: "avatar.png")
       Vaccine.create(user_id: @user.id)
 
     end
