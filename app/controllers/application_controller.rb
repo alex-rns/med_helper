@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :phone, :address, :birthday])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :phone, :address, :birthday])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name phone address birthday])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[name phone address birthday])
   end
 
   def is_patient?
-    redirect_to home_path, notice: "Эта страница для Вас недоступна" if current_user.doctor?
+    redirect_to home_path, notice: 'Эта страница для Вас недоступна' if current_user.doctor?
   end
 end

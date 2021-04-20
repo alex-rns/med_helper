@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-
-  before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :set_comment, only: %i[edit update destroy]
 
   def new
     is_patient?
@@ -10,9 +9,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.create(comment_params)
     if @comment.save
-      redirect_to expert_path(@comment.expert), success: "Комментарий добавлен"
+      redirect_to expert_path(@comment.expert), success: 'Комментарий добавлен'
     else
-      flash.now[:error] = "Комментарий не добавлен"
+      flash.now[:error] = 'Комментарий не добавлен'
       render 'new'
     end
   end
@@ -23,16 +22,16 @@ class CommentsController < ApplicationController
 
   def update
     if @comment.update(comment_params)
-      redirect_to @comment.expert, success: "Комментарий изменён"
+      redirect_to @comment.expert, success: 'Комментарий изменён'
     else
-      flash.now[:error] = "Комментарий не изменён"
+      flash.now[:error] = 'Комментарий не изменён'
       render 'edit'
     end
   end
 
   def destroy
     @comment.destroy
-    redirect_to @comment.expert, success: "Комментарий удалён"
+    redirect_to @comment.expert, success: 'Комментарий удалён'
   end
 
   private
