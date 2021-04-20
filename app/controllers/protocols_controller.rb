@@ -31,6 +31,6 @@ class ProtocolsController < ApplicationController
   end
 
   def permit_params
-    params.require(:protocol).permit(:complaint, :therapy, :diagnosis, :state, :symptom, :anamnesis_of_life, :medical_history, :type_of_inspection).merge(expert_id: current_user.expert.id)
+    params.permit(:complaint, :therapy, :diagnosis, :state, :symptom, :anamnesis_of_life, :medical_history, :type_of_inspection).merge(expert_id: current_user.expert.id)
   end
 end
