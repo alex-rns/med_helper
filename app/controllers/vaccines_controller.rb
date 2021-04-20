@@ -1,31 +1,28 @@
 class VaccinesController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :set_vaccine, only: [:show, :edit, :update]
+  before_action :set_user, only: %i[show edit update]
+  before_action :set_vaccine, only: %i[show edit update]
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @vaccines.update(vaccines_params)
     if params[:child_id].present?
-      redirect_to user_child_vaccine_path(@user), success: "Карта вакцинации Вашего ребёнка обновлена"
+      redirect_to user_child_vaccine_path(@user), success: 'Карта вакцинации Вашего ребёнка обновлена'
     else
-      redirect_to user_vaccine_path(@user), success: "Ваша карта вакцинации обновлена"
+      redirect_to user_vaccine_path(@user), success: 'Ваша карта вакцинации обновлена'
     end
   end
 
   private
 
   def set_user
-    if params[:child_id].present?
-      @user = Child.find(params[:id])
-    else
-      @user = User.find(params[:id])
-
-    end
+    @user = if params[:child_id].present?
+              Child.find(params[:id])
+            else
+              User.find(params[:id])
+            end
   end
 
   def set_vaccine

@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: [:edit, :update]
+  before_action :set_card, only: %i[edit update]
 
   def show
     if current_user.expert.present?
@@ -15,10 +15,10 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(permit_params)
-      redirect_to user_card_path(current_user, current_user.card), success: "Ваша карта пациента изменена"
+      redirect_to user_card_path(current_user, current_user.card), success: 'Ваша карта пациента изменена'
     else
-      flash.now[:error] = "Ваша карта пациента не изменена"
-      render "edit"
+      flash.now[:error] = 'Ваша карта пациента не изменена'
+      render 'edit'
     end
   end
 
