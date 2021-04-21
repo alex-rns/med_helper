@@ -22,4 +22,20 @@ class ApplicationController < ActionController::Base
   def get_patient?
     current_user.patient?
   end
+
+  def correct_user
+    if get_patient?
+    else
+      flash[:notice] = 'Страница не доступна'
+      redirect_to home_path
+    end
+  end
+
+  def correct_expert
+    if get_doctor?
+    else
+      flash[:notice] = 'Страница не доступна'
+      redirect_to home_path
+    end
+  end
 end
