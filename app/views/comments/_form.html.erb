@@ -10,7 +10,7 @@
         </ul>
       </div>
     <% end %>
-    <h3 class="text-center text-primary pt-4 pb-3">Написать комментарий</h3>
+    <h3 class="text-center text-primary pt-4 pb-3"><%= @comment.persisted? ? "Редактировать комментарий" : "Cоздать комментарий" %></h3>
     <div class="pacient-card bg-primary-light text-center d-flex flex-column align-items-center mb-4">
       <div class="pacient-card-info bg-primary p-4 text-white m-4 row">
         <div class="field py-2">
@@ -39,7 +39,8 @@
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :expert_id %>
         <div>
-          <%= f.submit "Добавить комментарий", class: "btn btn-success text-white" %>
+
+          <%= f.submit @comment.persisted? ? "Редактировать комментарий" : "Cоздать комментарий", class: "btn btn-success text-white" %>
         </div>
       </div>
     </div>
