@@ -1,27 +1,24 @@
 include EventsHelper
-
 class EventsController < ApplicationController
-  before_action :find_expert, only: %i[new create show update]
-  before_action :find_user, only: %i[new create show]
+  before_action :find_expert, only: %i[index new create show update]
+  before_action :get_patient_event, only: %i[index], if: :get_patient?
+  before_action :get_doctor_event, only: %i[index], if: :get_doctor?
+  before_action :correct_user, only: %i[new create]
 
   def index
-    if current_user.expert.present?
-      find_expert
-      @events = @expert.events
-    else
-      find_user
-      @events = current_user.events
-    end
+  end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   def new
-    is_patient?
-    @event = @expert.events.build
+    @event = current_user.events.build(expert: @expert)
   end
 
   def create
     params[:event][:end_time] = params[:event][:start_time].to_datetime + 1.hour
-    @event = @expert.events.create(event_params)
+    @event = current_user.events.build(event_params)
     @event.pending!
     if @event.save
       redirect_to expert_event_path(@expert, @event)
@@ -32,10 +29,10 @@ class EventsController < ApplicationController
   end
 
   def update
-    event = Event.find(params[:id])
+    @event = Event.find(params[:id])
     if params[:q] == 'approve'
-      @links = google_event(event)
-      @event = event.approve!
+      @links = google_event(@event)
+      event = @event.approve!
       event.update(calendar_link: @links.first, meeting_link: @links.second)
     else
       @event = event.rejected!
@@ -43,33 +40,36 @@ class EventsController < ApplicationController
     redirect_to expert_events_path(@expert)
   end
 
-  def show
-    @event = Event.find(params[:id])
-  end
-
   def check_time
     @time = params[:time]
-    expert = Expert.find(params[:expert])
+    expert = Expert.find(params[:expert_id])
     @avail_time = available_time(expert, @time)
     render partial: 'time_slots'
   end
 
   private
 
+  def correct_user
+    if get_patient?
+    else
+      redirect_to home_path
+    end
+  end
+
+  def get_patient_event
+    @events = current_user.events
+  end
+
+  def get_doctor_event
+    @events = @expert.events
+  end
+
   def find_expert
     @expert = Expert.find(params[:expert_id])
   end
 
-  def find_user
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    else
-      current_user
-    end
-  end
-
   def event_params
     params.require(:event).permit(:start_time, :end_time, :comment, :type_of_call, :status)
-          .merge(user_id: current_user.id)
+              .merge(expert_id: @expert.id)
   end
 end
