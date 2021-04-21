@@ -2,9 +2,10 @@ class ExpertsController < ApplicationController
   before_action :find_all_level, only: %i[edit update]
   before_action :find_all_category, only: %i[edit update]
   before_action :set_expert, only: %i[show edit update]
+  before_action :correct_user, only: %i[index show]
+  before_action :correct_expert, only: %i[edit update]
 
   def index
-    is_patient?
     @experts = Expert.searcher(params).paginate(page: params[:page], per_page: 5)
   end
 
@@ -22,6 +23,20 @@ class ExpertsController < ApplicationController
   end
 
   private
+
+  def correct_user
+    if get_patient?
+    else
+      redirect_to home_path
+    end
+  end
+
+  def correct_expert
+    if get_doctor?
+    else
+      redirect_to home_path
+    end
+  end
 
   def set_expert
     @expert = Expert.find(params[:id])
