@@ -1,6 +1,7 @@
 include EventsHelper
 class EventsController < ApplicationController
-  before_action :find_expert, only: %i[index new create show update]
+  before_action :find_expert, only: %i[new create update]
+  before_action :find_expert, only: %i[index], if: :get_doctor?
   before_action :get_patient_event, only: %i[index], if: :get_patient?
   before_action :get_doctor_event, only: %i[index], if: :get_doctor?
   before_action :correct_user, only: %i[new create]
@@ -35,7 +36,7 @@ class EventsController < ApplicationController
       event = @event.approve!
       event.update(calendar_link: @links.first, meeting_link: @links.second)
     else
-      @event = event.rejected!
+      event = @event.rejected!
     end
     redirect_to expert_events_path(@expert)
   end
