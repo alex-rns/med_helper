@@ -34,7 +34,7 @@ class CardsController < ApplicationController
   end
 
   def set_card
-    @card = current_user.card.find(params[:id])
+    @card = current_user.card
   end
 
   def correct_user
