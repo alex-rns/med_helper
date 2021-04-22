@@ -1,10 +1,9 @@
 include EventsHelper
 class EventsController < ApplicationController
-  before_action :find_expert, only: %i[new create update]
-  before_action :find_expert, only: %i[index], if: :get_doctor?
+  before_action :find_expert, only: %i[index update], if: :get_doctor?
+  before_action :find_expert, only: %i[new create update], if: :get_patient?
   before_action :get_patient_event, only: %i[index], if: :get_patient?
   before_action :get_doctor_event, only: %i[index], if: :get_doctor?
-  before_action :correct_user, only: %i[new create]
 
   def index
   end
@@ -30,11 +29,12 @@ class EventsController < ApplicationController
   end
 
   def update
+    @expert = Expert.find(params[:expert_id])
     @event = Event.find(params[:id])
     if params[:q] == 'approve'
       @links = google_event(@event)
       event = @event.approve!
-      event.update(calendar_link: @links.first, meeting_link: @links.second)
+      @event.update(calendar_link: @links.first, meeting_link: @links.second)
     else
       event = @event.rejected!
     end
@@ -62,6 +62,7 @@ class EventsController < ApplicationController
   end
 
   def get_doctor_event
+    @expert = Expert.find(params[:expert_id])
     @events = @expert.events
   end
 
