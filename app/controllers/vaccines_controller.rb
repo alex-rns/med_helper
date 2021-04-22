@@ -1,6 +1,7 @@
 class VaccinesController < ApplicationController
   before_action :set_user, only: %i[show edit update]
   before_action :set_vaccine, only: %i[show edit update]
+  before_action :correct_user, only: %i[show edit update]
 
   def show; end
 
@@ -23,6 +24,13 @@ class VaccinesController < ApplicationController
             else
               User.find(params[:id])
             end
+  end
+
+  def correct_user
+    if get_patient?
+    else
+      redirect_to home_path
+    end
   end
 
   def set_vaccine

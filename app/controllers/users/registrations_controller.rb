@@ -8,24 +8,39 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit; end
 
   def update
-    @downloaded_image = open(@user.image)
-    if params[:user][:type] == 'doctor'
+    if params[:user][:type]=="doctor"
       @user.doctor!
-      expert = Expert.create!(full_name: @user.name, category: Category.first, user: @user, level: Level.first)
-      expert.image.attach(io: @downloaded_image, filename: 'doctor0.png')
-    else
+      assign_image_doctor
+    elsif params[:user][:type]=="patient"
       @user.patient!
-      card = Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'), full_name: @user.name)
-      card.image.attach(io: @downloaded_image, filename: 'avatar.png')
-      Vaccine.create(user_id: @user.id)
+      assign_image_patient
+    else
     end
-    cookies.delete :user_type
     redirect_to home_path
   end
 
   private
 
-  def create_vaccine_card
+  def assign_image_doctor
+    @expert = assign_expert
+    @expert.image.attach(io: File.open("app/assets/images/doctor0.png"), filename: "doctor0.png")
+  end
+
+  def assign_image_patient
+    @card = assign_card
+    @card.image.attach(io: File.open("app/assets/images/avatar.png"), filename: "avatar.png")
+    assign_vaccine
+  end
+
+  def assign_expert
+    Expert.create!(full_name: @user.name, category: Category.first, user: @user, level: Level.first)
+  end
+
+  def assign_card
+    Card.create(user_id: @user.id, birthday: Time.now.strftime('%d/%m/%Y'), full_name: @user.name)
+  end
+
+  def assign_vaccine
     Vaccine.create(user_id: @user.id)
   end
 end

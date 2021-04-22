@@ -35,6 +35,7 @@
           <% end %>
         </div>
       </div>
+      <%= f.hidden_field "event[expert_id]", value: @expert.id %>
       <%= f.submit "Отправить заявку", class: "btn btn-lg btn-success text-center form-control text-white" %>
     <% end %>
   </div>

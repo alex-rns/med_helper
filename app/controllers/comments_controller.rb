@@ -1,13 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update destroy]
+  before_action :get_expert, only: %i[new]
+  before_action :correct_user, only: [:new, :create, :edit, :update, :destroy]
 
   def new
-    is_patient?
-    @comment = Comment.new(user: current_user, expert_id: params[:expert_id])
+    @comment = current_user.comments.build(expert: @expert)
   end
 
   def create
-    @comment = Comment.create(comment_params)
+    @comment = current_user.comments.build(comment_params)
     if @comment.save
       redirect_to expert_path(@comment.expert), success: 'Комментарий добавлен'
     else
@@ -17,7 +18,6 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    is_patient?
   end
 
   def update
@@ -36,11 +36,22 @@ class CommentsController < ApplicationController
 
   private
 
+  def correct_user
+    if get_patient?
+    else
+      redirect_to home_path
+    end
+  end
+
+  def get_expert
+    @expert = Expert.find(params[:expert_id])
+  end
+
   def set_comment
-    @comment = Comment.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
   end
 
   def comment_params
-    params.require(:comment).permit(:user_id, :expert_id, :body, :rating, :recommendation)
+    params.require(:comment).permit(:body, :rating, :recommendation, :expert_id)
   end
 end
