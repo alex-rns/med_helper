@@ -5,9 +5,11 @@ class Expert < ApplicationRecord
    belongs_to :user
    belongs_to :level, optional: true
    has_one_attached :image
-   validates :category, presence: false
    has_many :comments, dependent: :destroy
    has_many :protocols, dependent: :destroy
+
+   validates :category, presence: false
+
    scope :searcher, lambda {|params|
     search_scope = Expert.all
     search_scope = search_scope.query(params[:query]) if params[:query].present?
