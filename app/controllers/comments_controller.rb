@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[edit update destroy]
-  before_action :get_expert, only: %i[new]
-  before_action :correct_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :find_comment, only: %i[edit update destroy]
+  before_action :find_expert, only: %i[new]
+  before_action :correct_user, only: %i[new create edit update destroy]
 
   def new
     @comment = current_user.comments.build(expert: @expert)
@@ -17,8 +17,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @comment.update(comment_params)
@@ -36,18 +35,11 @@ class CommentsController < ApplicationController
 
   private
 
-  def correct_user
-    if get_patient?
-    else
-      redirect_to home_path
-    end
-  end
-
-  def get_expert
+  def find_expert
     @expert = Expert.find(params[:expert_id])
   end
 
-  def set_comment
+  def find_comment
     @comment = current_user.comments.find(params[:id])
   end
 

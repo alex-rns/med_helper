@@ -1,5 +1,5 @@
-include EventsHelper
 class EventsController < ApplicationController
+  include EventsHelper
   before_action :find_expert, only: %i[index update], if: :get_doctor?
   before_action :find_expert, only: %i[new create update], if: :get_patient?
   before_action :get_patient_event, only: %i[index], if: :get_patient?
@@ -17,12 +17,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    params[:event][:end_time] = params[:event][:start_time].to_datetime + 1.hour
     @event = current_user.events.build(event_params)
-    @event.pending!
     if @event.save
-      redirect_to expert_event_path(@expert, @event)
       flash[:notice] = 'Заявка отправлена успешно! Ожидайте подтверждения врача!'
+      redirect_to expert_event_path(@expert, @event)
     else
       render 'new'
     end
@@ -50,13 +48,6 @@ class EventsController < ApplicationController
 
   private
 
-  def correct_user
-    if get_patient?
-    else
-      redirect_to home_path
-    end
-  end
-
   def get_patient_event
     @events = current_user.events
   end
@@ -71,7 +62,10 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:start_time, :end_time, :comment, :type_of_call, :status)
-              .merge(expert_id: @expert.id)
+    p = params.require(:event).permit(:start_time, :comment, :type_of_call,
+                    :end_time).merge(expert_id: @expert.id)
+    p[:end_time] = p[:start_time].to_datetime + 1.hour
+    p[:status] = "pending"
+    p
   end
 end

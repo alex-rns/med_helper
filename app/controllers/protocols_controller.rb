@@ -1,7 +1,7 @@
 class ProtocolsController < ApplicationController
-  before_action :set_user, only: %i[new create]
-  before_action :set_card, only: %i[new create]
-  before_action :correct_user, only: [:new, :create]
+  before_action :find_user, only: %i[new create]
+  before_action :find_card, only: %i[new create]
+  before_action :correct_user, only: %i[new create]
 
   def new
     @protocol = Protocol.new
@@ -23,22 +23,17 @@ class ProtocolsController < ApplicationController
 
   private
 
-  def correct_user
-    if get_doctor?
-    else
-      redirect_to home_path
-    end
-  end
-
-  def set_user
+  def find_user
     @user = User.find(params[:user_id])
   end
 
-  def set_card
+  def find_card
     @card = Card.find(params[:card_id])
   end
 
   def permit_params
-    params.permit(:complaint, :therapy, :diagnosis, :state, :symptom, :anamnesis_of_life, :medical_history, :type_of_inspection).merge(expert_id: current_user.expert.id)
+    params.permit(:complaint, :therapy, :diagnosis, :state, :symptom,
+                  :anamnesis_of_life, :medical_history, :type_of_inspection)
+                  .merge(expert_id: current_user.expert.id)
   end
 end

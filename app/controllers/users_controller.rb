@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show]
+  before_action :find_user, only: %i[show]
 
   def show; end
 
   private
 
-  def set_user
+  def find_user
    @user = current_user
-  end
-
-  def user_params
-    params.require(:user).permit(:birthday, :image)
   end
 end
