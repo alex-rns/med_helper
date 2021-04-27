@@ -12,6 +12,7 @@ import "@fortawesome/fontawesome-free/css/all";
 import "channels"
 import "bootstrap"
 import "jquery-ui/ui/widgets/autocomplete"
+import "./search"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
