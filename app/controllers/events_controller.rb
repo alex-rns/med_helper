@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   include EventsHelper
   before_action :find_expert, only: %i[index update], if: :get_doctor?

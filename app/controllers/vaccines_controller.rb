@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class VaccinesController < ApplicationController
   before_action :find_user, only: %i[show edit update]
   before_action :find_vaccine, only: %i[show edit update]

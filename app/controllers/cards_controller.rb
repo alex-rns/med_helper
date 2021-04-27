@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CardsController < ApplicationController
   before_action :find_card, only: %i[edit update]
   before_action :find_user, :get_card, only: %i[show], if: :get_doctor?

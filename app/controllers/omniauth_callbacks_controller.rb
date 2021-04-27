@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
 
@@ -20,10 +22,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def assign_role
-    if cookies[:user_type] == 'doctor'
+    case cookies[:user_type]
+    when 'doctor'
       @user.doctor!
       assign_image_doctor
-    elsif cookies[:user_type] == 'patient'
+    when 'patient'
       @user.patient!
       assign_image_patient
     end

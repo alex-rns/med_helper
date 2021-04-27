@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :find_comment, only: %i[edit update destroy]
   before_action :find_expert, only: %i[new]

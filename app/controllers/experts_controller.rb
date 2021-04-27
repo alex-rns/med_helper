@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExpertsController < ApplicationController
   before_action :find_expert, only: %i[show edit update]
   before_action :correct_user, only: %i[index show]

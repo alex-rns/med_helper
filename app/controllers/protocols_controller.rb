@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProtocolsController < ApplicationController
   before_action :find_user, only: %i[new create]
   before_action :find_card, only: %i[new create]
