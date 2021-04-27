@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
-  before_action :find_card, only: %i[edit update]
-  before_action :find_user, :get_card, only: %i[show], if: :get_doctor?
-  before_action :find_patient_card, only: %i[show], if: :get_patient?
+  before_action :find_user, only: %i[show]
+  before_action :find_expert_card, only: %i[show], if: :find_doctor?
+  before_action :find_patient_card, only: %i[show edit update], if: :find_patient?
   before_action :correct_user, only: %i[edit update]
 
   def show
@@ -31,8 +31,8 @@ class CardsController < ApplicationController
     @card = current_user.card
   end
 
-  def find_card
-    @card = current_user.card
+  def find_expert_card
+    @card = @user.card
   end
 
   def protocols

@@ -2,10 +2,10 @@
 
 class EventsController < ApplicationController
   include EventsHelper
-  before_action :find_expert, only: %i[index update], if: :get_doctor?
-  before_action :find_expert, only: %i[new create update], if: :get_patient?
-  before_action :find_patient_event, only: %i[index], if: :get_patient?
-  before_action :find_doctor_event, only: %i[index], if: :get_doctor?
+  before_action :find_expert, only: %i[index update], if: :find_doctor?
+  before_action :find_expert, only: %i[new create update], if: :find_patient?
+  before_action :find_patient_event, only: %i[index], if: :find_patient?
+  before_action :find_doctor_event, only: %i[index], if: :find_doctor?
 
   def index; end
 

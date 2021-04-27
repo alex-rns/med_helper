@@ -2,9 +2,8 @@
 
 class ExpertsController < ApplicationController
   before_action :find_expert, only: %i[show edit update]
-  before_action :correct_user, only: %i[index show]
-  before_action :correct_expert, :find_all_level, :find_all_category,
-                only: %i[edit update]
+  before_action :correct_expert, only: %i[edit update]
+  before_action :find_all_level, :find_all_category, only: %i[edit update]
 
   def index
     @experts = Expert.searcher(params).paginate(page: params[:page], per_page: 5)
