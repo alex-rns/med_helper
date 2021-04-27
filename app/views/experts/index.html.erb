@@ -7,11 +7,17 @@
     <div class="row col-12 col-sm-12 col-md-12 col-lg-12">
       <%= form_tag(search_experts_path, :method => "get") do %>
         <div class="input-group ">
-          <%= search_field_tag :query, params[:query], placeholder: "Введите фамилию врача или категорию...", class: "form-control input-lg", id: "tag" %>
+          <%= search_field_tag :query, params[:query], data: { autocomplete_source: Category.pluck(:name) }, local: true, placeholder: "Введите фамилию врача или категорию...", class: "form-control input-lg", id: "search" %>
           <div class="input-group-btn">
             <%= button_tag "Search", :class => 'btn btn-outline-success', :name => nil %>
           </div>
         </div>
+      <% end %>
+
+      <%= form_with url: search_experts_path, method: :get, local: true, class: "form-floating d-flex" do |form| %>
+        <%= form.text_field :query, id: :query, data: { autocomplete_source: experts_path }, class: "form-control query", placeholder: "Search" %>
+        <%= form.label :query, "Search" %>
+        <%= form.submit "Go!", class: "btn btn-primary" %>
       <% end %>
     </div>
 
@@ -22,11 +28,6 @@
           <%= select_tag :filter, options_for_select(["Сортировать по", ["От высшей категории к низшей", "downcategory"], ["От низшей категории к высшей", "upcategory"], ["От большого стажа к небольшому", "downexperience"], ["От небольшого стажа к большому", "upexperience"]]), class: 'form-control selector' %>
         <% end %>
       </div>
-      <div class="col-sm-6">
-        <!-- <span>Paccписание на </span>
-       <input id="mydate" type="date"  > -->
-      </div>
-
 
     </div>
   </div>
@@ -71,30 +72,3 @@
 </div>
 
 <%= will_paginate @experts, class: "pagination" %>
-
-<script>
-    $(document).ready(function () {
-        $(function () {
-            var availableTags = [
-                "Гастроэнтеролог",
-                "Невролог",
-                "Офтальмолог",
-                "Стоматолог",
-                "Терапевт",
-                "Ортопед"
-            ];
-            $("#tag").autocomplete({
-                source: availableTags
-            });
-        });
-    });
-
-    $(document).ready(function () {
-        $('.selector').change(function () {
-            this.form.submit()
-        });
-    });
-    // $(document).ready(function(){
-    //   $("#mydate").("setDate", new Date())
-    // });
-</script>
