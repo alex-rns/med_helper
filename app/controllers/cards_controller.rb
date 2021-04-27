@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   before_action :find_card, only: %i[edit update]
   before_action :find_user, :get_card, only: %i[show], if: :get_doctor?
   before_action :find_patient_card, only: %i[show], if: :get_patient?
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user, only: %i[edit update]
 
   def show
     @protocols = protocols
@@ -23,10 +23,6 @@ class CardsController < ApplicationController
 
   def find_user
     @user = User.find(params[:user_id])
-  end
-
-  def find_card
-    @card = @user.card
   end
 
   def find_patient_card
