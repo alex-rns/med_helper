@@ -5,8 +5,7 @@ class EventsController < ApplicationController
   before_action :find_patient_event, only: %i[index], if: :get_patient?
   before_action :find_doctor_event, only: %i[index], if: :get_doctor?
 
-  def index
-  end
+  def index; end
 
   def show
     @event = Event.find(params[:id])
@@ -63,9 +62,9 @@ class EventsController < ApplicationController
 
   def event_params
     p = params.require(:event).permit(:start_time, :comment, :type_of_call,
-                    :end_time).merge(expert_id: @expert.id)
+                                      :end_time).merge(expert_id: @expert.id)
     p[:end_time] = p[:start_time].to_datetime + 1.hour
-    p[:status] = "pending"
+    p[:status] = 'pending'
     p
   end
 end

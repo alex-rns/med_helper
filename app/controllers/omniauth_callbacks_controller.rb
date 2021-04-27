@@ -20,25 +20,24 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def assign_role
-    if cookies[:user_type]=="doctor"
+    if cookies[:user_type] == 'doctor'
       @user.doctor!
       assign_image_doctor
-    elsif cookies[:user_type]=="patient"
+    elsif cookies[:user_type] == 'patient'
       @user.patient!
       assign_image_patient
-    else
     end
     cookies.delete :user_type
   end
 
   def assign_image_doctor
     @expert = assign_expert
-    @expert.image.attach(io: File.open("app/assets/images/doctor0.png"), filename: "doctor0.png")
+    @expert.image.attach(io: File.open('app/assets/images/doctor0.png'), filename: 'doctor0.png')
   end
 
   def assign_image_patient
     @card = assign_card
-    @card.image.attach(io: File.open("app/assets/images/avatar.png"), filename: "avatar.png")
+    @card.image.attach(io: File.open('app/assets/images/avatar.png'), filename: 'avatar.png')
     assign_vaccine
   end
 

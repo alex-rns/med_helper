@@ -11,10 +11,10 @@ class VaccinesController < ApplicationController
     @vaccines.update(vaccines_params)
     if params[:child_id].present?
       redirect_to user_child_vaccine_path(@user),
-      success: 'Карта вакцинации Вашего ребёнка обновлена'
+                  success: 'Карта вакцинации Вашего ребёнка обновлена'
     else
       redirect_to user_vaccine_path(@user),
-       success: 'Ваша карта вакцинации обновлена'
+                  success: 'Ваша карта вакцинации обновлена'
     end
   end
 
@@ -41,8 +41,8 @@ class VaccinesController < ApplicationController
                   :morbilli_mumps_rubella_2w, :diphtheria_tetanus_pertussis_1w,
                   :diphtheria_tetanus_pertussis_2w, :hib_desease_1w,
                   :diphtheria_tetanus_pertussis_3w, :hib_desease_4w, :rota_1w,
-                  :diphtheria_tetanus_pertussis_1rw,:hib_desease_2w,
-                  :diphtheria_tetanus_pertussis_2rw,:rota_2w,
+                  :diphtheria_tetanus_pertussis_1rw, :hib_desease_2w,
+                  :diphtheria_tetanus_pertussis_2rw, :rota_2w,
                   :diphtheria_tetanus_pertussis_3rw, :covid19_1w, :covid19_2w,
                   :hib_desease_2w, :hib_desease_3w)
   end

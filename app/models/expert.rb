@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Expert < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :users, through: :events
@@ -21,11 +23,12 @@ class Expert < ApplicationRecord
       .or(where(category_id: Category.where('name ILIKE :search', search: "%#{params}%").ids))
   }
   scope :filters, lambda { |parameter|
-    if parameter == 'upexperience'
+    case parameter
+    when 'upexperience'
       order(experience: :asc)
-    elsif parameter == 'downexperience'
+    when 'downexperience'
       order(experience: :desc)
-    elsif parameter == 'upcategory'
+    when 'upcategory'
       order(level_id: :desc)
     else
       order(level_id: :asc)

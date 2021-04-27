@@ -8,10 +8,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit; end
 
   def update
-    if params[:user][:type]=="doctor"
+    if params[:user][:type] == 'doctor'
       @user.doctor!
       assign_image_doctor
-    elsif params[:user][:type]=="patient"
+    elsif params[:user][:type] == 'patient'
       @user.patient!
       assign_image_patient
     else
@@ -23,12 +23,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def assign_image_doctor
     @expert = assign_expert
-    @expert.image.attach(io: File.open("app/assets/images/doctor0.png"), filename: "doctor0.png")
+    @expert.image.attach(io: File.open('app/assets/images/doctor0.png'), filename: 'doctor0.png')
   end
 
   def assign_image_patient
     @card = assign_card
-    @card.image.attach(io: File.open("app/assets/images/avatar.png"), filename: "avatar.png")
+    @card.image.attach(io: File.open('app/assets/images/avatar.png'), filename: 'avatar.png')
     assign_vaccine
   end
 

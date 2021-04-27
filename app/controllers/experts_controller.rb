@@ -2,7 +2,7 @@ class ExpertsController < ApplicationController
   before_action :find_expert, only: %i[show edit update]
   before_action :correct_user, only: %i[index show]
   before_action :correct_expert, :find_all_level, :find_all_category,
-                                                  only: %i[edit update]
+                only: %i[edit update]
 
   def index
     @experts = Expert.searcher(params).paginate(page: params[:page], per_page: 5)
@@ -42,9 +42,9 @@ class ExpertsController < ApplicationController
                                    :hw_end_monday, :hw_start_tuesday,
                                    :hw_end_tuesday, :hw_start_wednesday,
                                    :hw_end_wednesday, :hw_start_thursday,
-                                   :hw_end_thursday,:hw_start_friday,
+                                   :hw_end_thursday, :hw_start_friday,
                                    :hw_end_friday, :hw_start_saturday, :image,
-                                   :hw_end_saturday,:hw_start_sunday, :level_id,
+                                   :hw_end_saturday, :hw_start_sunday, :level_id,
                                    :hw_end_sunday, :category_id, :education)
   end
 end

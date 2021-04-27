@@ -6,6 +6,6 @@ class UsersController < ApplicationController
   private
 
   def find_user
-   @user = current_user
+    @user = current_user
   end
 end
