@@ -24,7 +24,6 @@ $theme-colors: (
         "light": #f8f9fa
 );
 
-@import "vaccines";
 @import 'bootstrap';
 
 a {
@@ -50,73 +49,12 @@ $fa-font-path: "font-awesome/fonts" !default;
   padding: 5px;
 }
 
-.event-border {
-  height: 700px;
-  width: 600px;
-  margin-top: 50px;
-  margin-left: 10px;
-
-}
-
-.btn-event {
-  width: 464px;
-  margin-top: 10px;
-}
-
-.expert-cart {
-  height: 296px;
-  margin-top: 10px;
-}
-
-.cart-address {
-  height: 95px;
-}
-
-.contact {
-  display: inline-flex;
-}
-
-.expert-filter {
-  height: 115px;
-  margin-top: 10px;
-}
-
-.ui-menu {
-  max-width: 707.719px;
-}
-
 .filter {
   margin-top: 10px;
 }
 
-.ui-autocomplete {
-  background-color: white;
-}
-
-.accaunt-button {
-  margin-top: 20px;
-  width: 300px;
-}
-
 #menu li {
   display: inline-block;
-}
-
-.ui-tooltip {
-  background: #4a4a4a;
-  color: #96f226;
-  border: 2px solid #454545;
-  border-radius: 0;
-  box-shadow: 0 0
-}
-
-.ui-autocomplete {
-  background: white;
-  border-radius: 0;
-}
-
-.ui-menu .ui-menu-item {
-  font-size: 20px;
 }
 
 .datepicker-dropdown {
@@ -135,13 +73,6 @@ $fa-font-path: "font-awesome/fonts" !default;
 
 .alert-event {
   padding: 0;
-}
-
-.event-border-doctor {
-  height: 1700px;
-  width: 900px;
-  margin-top: 50px;
-  margin-left: 10px;
 }
 
 .inherit {
@@ -176,3 +107,4 @@ $fa-font-path: "font-awesome/fonts" !default;
 .border-20 {
   border-radius: 20px;
 }
+
