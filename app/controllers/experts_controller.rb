@@ -15,7 +15,7 @@ class ExpertsController < ApplicationController
 
   def update
     if @expert.update(expert_params)
-      redirect_to @expert, success: 'Ваш профиль был изменён'
+      redirect_to @expert.user, success: 'Ваш профиль был изменён'
     else
       flash.now[:danger] = 'Ваш профиль не был изменён'
       render :edit
