@@ -67,5 +67,7 @@
     <%= render 'modal_contact', expert: expert %>
   <% end %>
 </div>
+<%= will_paginate @experts, class: "pagination justify-content-center my-3",
+                  previous_label: '<i class="fas fa-arrow-left"></i>',
+                  next_label: '<i class="fas fa-arrow-right"></i>' %>
 
-<%= will_paginate @experts, class: "pagination" %>
