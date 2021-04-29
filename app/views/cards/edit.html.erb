@@ -1,7 +1,7 @@
 <div class="container">
   <% if @card.errors.any? %>
     <div class="alert alert-danger">
-      <h6>При добавлении комментария возникли ошибки:</h6>
+      <h6>При редактировании возникли ошибки:</h6>
       <ul>
         <% @card.errors.full_messages.each do |message| %>
           <li><%= message %></li>
