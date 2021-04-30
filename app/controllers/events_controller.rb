@@ -6,11 +6,12 @@ class EventsController < ApplicationController
   before_action :find_expert, only: %i[new create update], if: :find_patient?
   before_action :find_patient_event, only: %i[index], if: :find_patient?
   before_action :find_doctor_event, only: %i[index], if: :find_doctor?
+  before_action :find_owner, only: %i[index], if: :find_doctor?
 
   def index; end
 
   def show
-    @event = Event.find(params[:id])
+    @event = expert.events.find(params[:id])
   end
 
   def new
