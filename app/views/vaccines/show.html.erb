@@ -8,9 +8,11 @@
 
     <% if birthday %>
       <% if params[:child_id].present? %>
-        <%= link_to "Добавить запись о прививке", edit_user_child_vaccine_path(url: "user_child_vaccine_path"), class: "btn btn-primary btn-lg text-white w-100 my-3" %>
+        <%= link_to "Добавить запись о прививке", edit_user_child_vaccine_path(url: "user_child_vaccine_path"),
+                    class: "btn btn-primary btn-lg text-white w-100 my-3" %>
       <% else %>
-        <%= link_to "Добавить запись о прививке", edit_user_vaccine_path(url: "user_vaccine_path"), class: "btn btn-primary btn-lg text-white w-100 my-3" %>
+        <%= link_to "Добавить запись о прививке", edit_user_vaccine_path(url: "user_vaccine_path"),
+                    class: "btn btn-primary btn-lg text-white w-100 my-3" %>
       <% end %>
 
       <div class="text-center fs-4">
@@ -406,11 +408,9 @@
               "Прививка не сделана. Рекомендованная дата вакцинации: #{v.covid19_1w ? (v.covid19_1w + 1.months).strftime("%d of %B, %Y") : "рассчитается от даты предыдущей прививки"}"
             end %>
       </p>
-
     <% else %>
       <p>Для рассчёта графика вакцинаций добавьте дату рождения в вашем профиле</p>
       <%= link_to "Редактировать профиль", edit_user_card_path(@user, @user.card) %>
     <% end %>
-
   </div>
 </section>

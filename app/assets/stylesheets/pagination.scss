@@ -23,7 +23,7 @@ $main-color: #2eb2ff;
 
 .pagination a {
   text-decoration: none;
-  color: #0d6efd!important;
+  color: $main-color!important;
   border: 1px solid $main-color;
 }
 
