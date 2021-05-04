@@ -21,3 +21,10 @@
     width: 130px!important;
   }
 }
+
+@media (max-width: 540px) {
+  .about-text {
+    position: relative;
+    top: 50px
+  }
+}

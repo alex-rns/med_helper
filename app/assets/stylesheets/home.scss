@@ -37,21 +37,15 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .welcome-text {
+    position: relative;
+    bottom: 10px
+  }
+}
+
 @media (max-width: 768px) {
   .welcome-page {
     background-position: 30% 50%;
-  }
-}
-
-@media (max-width: 576px) {
-  .welcome-page {
-    background-position: 35% 50%;
-  }
-}
-
-@media (max-width: 430px) {
-  .welcome-text {
-    position: relative;
-    bottom: 50px
   }
 }

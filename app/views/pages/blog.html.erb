@@ -1,0 +1,36 @@
+<div class="container">
+  <h3 class="text-center text-primary pt-4 pb-3">Блог</h3>
+  <%= link_to home_path, class: "text-decoration-none" do %>
+    <div class="row no-gutters mb-3 text-white blog-item">
+      <div class="col-8 bg-success blog-item-height blog-item-text py-4 d-flex flex-column justify-content-center">
+        <h5 class="">Как улучшить зрение в домашних условиях</h5>
+        <p class="m-0">8 советов</p>
+      </div>
+      <div class="col-4 p-0 ">
+        <%= image_tag("blog-1.jpg", class: "img-fluid blog-item-height") %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to home_path, class: "text-decoration-none" do %>
+    <div class="row no-gutters mb-3 text-white blog-item">
+      <div class="col-8 bg-primary blog-item-height blog-item-text py-4 d-flex flex-column justify-content-center">
+        <h5 class="">Зачем нужен кальций и откуда его брать</h5>
+        <p class="m-0">Почему кальций - главный минерал, и как избежать его дефицита</p>
+      </div>
+      <div class="col-4 p-0 ">
+        <%= image_tag("blog-2.jpg", class: "img-fluid blog-item-height") %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to home_path, class: "text-decoration-none" do %>
+    <div class="row no-gutters mb-3 text-white blog-item">
+      <div class="col-8 bg-success blog-item-height blog-item-text py-4 d-flex flex-column justify-content-center">
+        <h5 class="">Как бороться с бессонницей</h5>
+        <p class="m-0">Советы для полноценного и здорового отдыха</p>
+      </div>
+      <div class="col-4 p-0 ">
+        <%= image_tag("blog-3.jpg", class: "img-fluid blog-item-height") %>
+      </div>
+    </div>
+  <% end %>
+</div>
