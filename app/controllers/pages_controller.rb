@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class PagesController < ApplicationController
-
   require 'rss'
   require 'open-uri'
   URL = 'https://kurs.com.ua/novosti/rss/feed-18.xml'
