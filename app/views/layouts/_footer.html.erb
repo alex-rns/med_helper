@@ -2,7 +2,8 @@
   <div class="container-fluid row d-flex justify-content-around align-items-center">
     <div class="col-12 col-md-4 order-md-1 order-3">
       <h2 class="pl-2 m-0 text-uppercase mt-md-0 mt-3">
-        <%= link_to (image_tag "logo-footer.png", class: "p-1", width: "200"), home_path, class: "navbar-brand text-decoration-none fs-4" %>
+        <%= link_to (image_tag "logo-footer.png", class: "p-1", width: "200"),
+                    home_path, class: "navbar-brand text-decoration-none fs-4" %>
       </h2>
     </div>
     <div class="col-6 col-md-4 order-md-2 order-2">
@@ -11,7 +12,7 @@
           <%= link_to "О нас", page_path(page: 'about'), class: "nav-link fs-5" %>
         </li>
         <li>
-          <%= link_to "Блог", page_path(page: 'blog'), class: "nav-link fs-5" %>
+          <%= link_to "Новости", page_path(page: 'news'), class: "nav-link fs-5" %>
         </li>
       </ul>
     </div>
@@ -33,5 +34,9 @@
       </div>
     </div>
   </div>
-  <div class="text-white">GeekHub - RoR © 2021</div>
+  <div class="text-white">
+    <%= link_to "GeekHub", "http://geekhub.ck.ua/" %> - RoR © 2021
+    <%= link_to "Политика конфиденциальности", page_path(page: 'rule') %>
+  </div>
+
 </footer>
