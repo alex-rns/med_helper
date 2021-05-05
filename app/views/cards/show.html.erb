@@ -13,7 +13,7 @@
           </p>
           <p>
             <strong>Дата рождения: </strong>
-            <span><%= @card&.birthday.strftime("%Y-%m-%d") %></span>
+            <span><%= l @card&.birthday, format: "%e %B %Y" %></span>
           </p>
           <p>
             <strong>Пол: </strong>

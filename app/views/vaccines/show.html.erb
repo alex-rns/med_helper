@@ -21,23 +21,23 @@
       <p class="<%= v.hepatitis_a_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.hepatitis_a_1w
-              v.hepatitis_a_1w.strftime("%d of %B, %Y")
+              l v.hepatitis_a_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : (birthday + 12.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : l((birthday + 12.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.hepatitis_a_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.hepatitis_a_2w
-              v.hepatitis_a_2w.strftime("%d of %B, %Y")
+              l v.hepatitis_a_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.hepatitis_a_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.hepatitis_a_1w > birthday + 17.months
-                  (v.hepatitis_a_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.hepatitis_a_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 18.months).strftime("%d of %B, %Y")
+                  l (birthday + 18.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -48,23 +48,23 @@
       <p class="<%= v.hepatitis_b_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.hepatitis_b_1w
-              v.hepatitis_b_1w.strftime("%d of %B, %Y")
+              l v.hepatitis_b_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(0) ? "можно уже сегодня" : (birthday).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(0) ? "можно уже сегодня" : l((birthday), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.hepatitis_b_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.hepatitis_b_2w
-              v.hepatitis_b_2w.strftime("%d of %B, %Y")
+              l v.hepatitis_b_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.hepatitis_b_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.hepatitis_b_1w > birthday + 1.months
-                  (v.hepatitis_b_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.hepatitis_b_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 2.months).strftime("%d of %B, %Y")
+                  l (birthday + 2.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -72,15 +72,15 @@
       <p class="<%= v.hepatitis_b_3w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>3 вакцинация: </strong>
         <%= if v.hepatitis_b_3w
-              v.hepatitis_b_3w.strftime("%d of %B, %Y")
+              l v.hepatitis_b_3w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.hepatitis_b_2w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.hepatitis_b_2w > birthday + 5.months
-                  (v.hepatitis_b_2w + 1.months).strftime("%d of %B, %Y")
+                  l (v.hepatitis_b_2w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 6.months).strftime("%d of %B, %Y")
+                  l (birthday + 6.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -91,9 +91,9 @@
       <p class="<%= v.tuberculosis ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.tuberculosis
-              v.tuberculosis.strftime("%d of %B, %Y")
+              l v.tuberculosis, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(0) ? "можно уже сегодня" : (birthday + 3.days).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(0) ? "можно уже сегодня" : l((birthday + 3.days), format: "%e %B %Y")}"
             end %>
       </p>
       <div class="text-center pt-3 fs-4">
@@ -102,23 +102,23 @@
       <p class="<%= v.pneumococcus_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.pneumococcus_1w
-              v.pneumococcus_1w.strftime("%d of %B, %Y")
+              l v.pneumococcus_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : (birthday + 2.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((birthday + 2.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.pneumococcus_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.pneumococcus_2w
-              v.pneumococcus_2w.strftime("%d of %B, %Y")
+              l v.pneumococcus_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.pneumococcus_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.pneumococcus_1w > birthday + 3.months
-                  (v.pneumococcus_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.pneumococcus_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 4.months).strftime("%d of %B, %Y")
+                  l (birthday + 4.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -126,15 +126,15 @@
       <p class="<%= v.pneumococcus_3w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>3 вакцинация: </strong>
         <%= if v.pneumococcus_3w
-              v.pneumococcus_3w.strftime("%d of %B, %Y")
+              l v.pneumococcus_3w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.pneumococcus_2w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.pneumococcus_2w > birthday + 5.months
-                  (v.pneumococcus_2w + 1.months).strftime("%d of %B, %Y")
+                  l (v.pneumococcus_2w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 6.months).strftime("%d of %B, %Y")
+                  l (birthday + 6.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -145,23 +145,23 @@
       <p class="<%= v.meningococcus_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.meningococcus_1w
-              v.meningococcus_1w.strftime("%d of %B, %Y")
+              l v.meningococcus_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(9) ? "можно уже сегодня" : (birthday + 9.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(9) ? "можно уже сегодня" : l((birthday + 9.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.meningococcus_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.meningococcus_2w
-              v.meningococcus_2w.strftime("%d of %B, %Y")
+              l v.meningococcus_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.meningococcus_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.meningococcus_1w > birthday + 11.months
-                  (v.meningococcus_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.meningococcus_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 12.months).strftime("%d of %B, %Y")
+                  l (birthday + 12.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -172,17 +172,17 @@
       <p class="<%= v.varicella_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.varicella_1w
-              v.varicella_1w.strftime("%d of %B, %Y")
+              l v.varicella_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : (birthday + 12.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : l((birthday + 12.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.varicella_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.varicella_2w
-              v.varicella_2w.strftime("%d of %B, %Y")
+              l v.varicella_2w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{v.varicella_1w ? (v.varicella_1w + 2.months).strftime("%d of %B, %Y") : "рассчитается от даты предыдущей прививки"}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{v.varicella_1w ? l((v.varicella_1w + 2.months), format: "%e %B %Y") : "рассчитается от даты предыдущей прививки"}"
             end %>
       </p>
       <div class="text-center pt-3 fs-4">
@@ -191,23 +191,23 @@
       <p class="<%= v.morbilli_mumps_rubella_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.morbilli_mumps_rubella_1w
-              v.morbilli_mumps_rubella_1w.strftime("%d of %B, %Y")
+              l v.morbilli_mumps_rubella_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : (birthday + 12.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(12) ? "можно уже сегодня" : l((birthday + 12.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.morbilli_mumps_rubella_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.morbilli_mumps_rubella_2w
-              v.morbilli_mumps_rubella_2w.strftime("%d of %B, %Y")
+              l v.morbilli_mumps_rubella_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.morbilli_mumps_rubella_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.morbilli_mumps_rubella_1w > birthday + 72.months
-                  (v.morbilli_mumps_rubella_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.morbilli_mumps_rubella_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 72.months).strftime("%d of %B, %Y")
+                  l (birthday + 72.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -218,23 +218,23 @@
       <p class="<%= v.diphtheria_tetanus_pertussis_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.diphtheria_tetanus_pertussis_1w
-              v.diphtheria_tetanus_pertussis_1w.strftime("%d of %B, %Y")
+              l v.diphtheria_tetanus_pertussis_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : (birthday + 2.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((birthday + 2.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.diphtheria_tetanus_pertussis_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.diphtheria_tetanus_pertussis_2w
-              v.diphtheria_tetanus_pertussis_2w.strftime("%d of %B, %Y")
+              l v.diphtheria_tetanus_pertussis_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.diphtheria_tetanus_pertussis_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.diphtheria_tetanus_pertussis_1w > birthday + 3.months
-                  (v.diphtheria_tetanus_pertussis_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.diphtheria_tetanus_pertussis_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 4.months).strftime("%d of %B, %Y")
+                  l (birthday + 4.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -242,15 +242,15 @@
       <p class="<%= v.diphtheria_tetanus_pertussis_3w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>3 вакцинация: </strong>
         <%= if v.diphtheria_tetanus_pertussis_3w
-              v.diphtheria_tetanus_pertussis_3w.strftime("%d of %B, %Y")
+              l v.diphtheria_tetanus_pertussis_3w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.diphtheria_tetanus_pertussis_2w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.diphtheria_tetanus_pertussis_2w > birthday + 5.months
-                  (v.diphtheria_tetanus_pertussis_2w + 1.months).strftime("%d of %B, %Y")
+                  l (v.diphtheria_tetanus_pertussis_2w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 6.months).strftime("%d of %B, %Y")
+                  l (birthday + 6.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -258,15 +258,15 @@
       <p class="<%= v.diphtheria_tetanus_pertussis_1rw ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 ревакцинация: </strong>
         <%= if v.diphtheria_tetanus_pertussis_1rw
-              v.diphtheria_tetanus_pertussis_1rw.strftime("%d of %B, %Y")
+              l v.diphtheria_tetanus_pertussis_1rw, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.diphtheria_tetanus_pertussis_3w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.diphtheria_tetanus_pertussis_3w > birthday + 17.months
-                  (v.diphtheria_tetanus_pertussis_3w + 1.months).strftime("%d of %B, %Y")
+                  l (v.diphtheria_tetanus_pertussis_3w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 18.months).strftime("%d of %B, %Y")
+                  l (birthday + 18.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -274,15 +274,15 @@
       <p class="<%= v.diphtheria_tetanus_pertussis_2rw ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 ревакцинация: </strong>
         <%= if v.diphtheria_tetanus_pertussis_2rw
-              v.diphtheria_tetanus_pertussis_2rw.strftime("%d of %B, %Y")
+              l v.diphtheria_tetanus_pertussis_2rw, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.diphtheria_tetanus_pertussis_1rw.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.diphtheria_tetanus_pertussis_1rw > birthday + 72.months
-                  (v.diphtheria_tetanus_pertussis_1rw + 1.months).strftime("%d of %B, %Y")
+                  l (v.diphtheria_tetanus_pertussis_1rw + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 72.months).strftime("%d of %B, %Y")
+                  l (birthday + 72.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -290,15 +290,15 @@
       <p class="<%= v.diphtheria_tetanus_pertussis_3rw ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>3 ревакцинация: </strong>
         <%= if v.diphtheria_tetanus_pertussis_3rw
-              v.diphtheria_tetanus_pertussis_3rw.strftime("%d of %B, %Y")
+              l v.diphtheria_tetanus_pertussis_3rw, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.diphtheria_tetanus_pertussis_2rw.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.diphtheria_tetanus_pertussis_2rw > birthday + 192.months
-                  (v.diphtheria_tetanus_pertussis_2rw + 1.months).strftime("%d of %B, %Y")
+                  l (v.diphtheria_tetanus_pertussis_2rw + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 192.months).strftime("%d of %B, %Y")
+                  l (birthday + 192.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -309,23 +309,23 @@
       <p class="<%= v.hib_desease_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.hib_desease_1w
-              v.hib_desease_1w.strftime("%d of %B, %Y")
+              l v.hib_desease_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : (birthday + 2.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((birthday + 2.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.hib_desease_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.hib_desease_2w
-              v.hib_desease_2w.strftime("%d of %B, %Y")
+              l v.hib_desease_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.hib_desease_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.hib_desease_1w > birthday + 3.months
-                  (v.hib_desease_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.hib_desease_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 4.months).strftime("%d of %B, %Y")
+                  l (birthday + 4.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -333,15 +333,15 @@
       <p class="<%= v.hib_desease_3w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>3 вакцинация: </strong>
         <%= if v.hib_desease_3w
-              v.hib_desease_3w.strftime("%d of %B, %Y")
+              l v.hib_desease_3w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.hib_desease_2w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.hib_desease_2w > birthday + 5.months
-                  (v.hib_desease_2w + 1.months).strftime("%d of %B, %Y")
+                  l (v.hib_desease_2w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 6.months).strftime("%d of %B, %Y")
+                  l (birthday + 6.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -349,15 +349,15 @@
       <p class="<%= v.hib_desease_4w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>4 вакцинация: </strong>
         <%= if v.hib_desease_4w
-              v.hib_desease_4w.strftime("%d of %B, %Y")
+              l v.hib_desease_4w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.hib_desease_3w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.hib_desease_3w > birthday + 11.months
-                  (v.hib_desease_3w + 1.months).strftime("%d of %B, %Y")
+                  l (v.hib_desease_3w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 12.months).strftime("%d of %B, %Y")
+                  l (birthday + 12.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -368,23 +368,23 @@
       <p class="<%= v.rota_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.rota_1w
-              v.rota_1w.strftime("%d of %B, %Y")
+              l v.rota_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : (birthday + 2.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(2) ? "можно уже сегодня" : l((birthday + 2.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.rota_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.rota_2w
-              v.rota_2w.strftime("%d of %B, %Y")
+              l v.rota_2w, format: "%e %B %Y"
             else
               "Прививка не сделана. Рекомендованная дата вакцинации: #{
                 if v.rota_1w.nil?
                   "рассчитается от даты предыдущей прививки"
                 elsif v.rota_1w > birthday + 3.months
-                  (v.rota_1w + 1.months).strftime("%d of %B, %Y")
+                  l (v.rota_1w + 1.months), format: "%e %B %Y"
                 else
-                  (birthday + 4.months).strftime("%d of %B, %Y")
+                  l (birthday + 4.months), format: "%e %B %Y"
                 end
               }"
             end %>
@@ -395,17 +395,17 @@
       <p class="<%= v.covid19_1w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>1 вакцинация: </strong>
         <%= if v.covid19_1w
-              v.covid19_1w.strftime("%d of %B, %Y")
+              l v.covid19_1w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(192) ? "можно уже сегодня" : (birthday + 192.months).strftime("%d of %B, %Y")}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{vaccination_permit?(192) ? "можно уже сегодня" : l((birthday + 192.months), format: "%e %B %Y")}"
             end %>
       </p>
       <p class="<%= v.covid19_2w ? 'alert alert-success' : 'alert alert-danger' %>">
         <strong>2 вакцинация: </strong>
         <%= if v.covid19_2w
-              v.covid19_2w.strftime("%d of %B, %Y")
+              l v.covid19_2w, format: "%e %B %Y"
             else
-              "Прививка не сделана. Рекомендованная дата вакцинации: #{v.covid19_1w ? (v.covid19_1w + 1.months).strftime("%d of %B, %Y") : "рассчитается от даты предыдущей прививки"}"
+              "Прививка не сделана. Рекомендованная дата вакцинации: #{v.covid19_1w ? l((v.covid19_1w + 1.months), format: "%e %B %Y") : "рассчитается от даты предыдущей прививки"}"
             end %>
       </p>
     <% else %>
