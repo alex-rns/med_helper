@@ -13,6 +13,7 @@ module MedHelper
     config.serve_static_files = true
     config.time_zone = "Europe/Kiev"
     config.active_record.default_timezone = :local
+    config.i18n.default_locale = :ru
 
     # Configuration for the application, engines, and railties goes here.
     #

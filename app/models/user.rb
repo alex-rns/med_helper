@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :experts, through: :events
   has_many :children, dependent: :destroy
-  has_many :visits, through: :events
   has_one :vaccine, dependent: :destroy
   has_one :expert, dependent: :destroy
   has_one :card, dependent: :destroy

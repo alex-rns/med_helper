@@ -49,32 +49,10 @@
             <strong>Телефон: </strong>
             <span><%= @user.expert.phone %></span>
           </p>
-          <h4 class="text-center my-4">Рабочие часы</h4>
-          <table class="table">
-            <thead>
-            <tr class="table-info">
-              <th scope="col"><strong>Пн</strong></th>
-              <th scope="col"><strong>Вт</strong></th>
-              <th scope="col"><strong>Ср</strong></th>
-              <th scope="col"><strong>Чт</strong></th>
-              <th scope="col"><strong>Пт</strong></th>
-              <th scope="col"><strong>Сб</strong></th>
-              <th scope="col"><strong>Вс</strong></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>с <%= @user.expert.hw_start_monday %> до <%= @user.expert.hw_end_monday %></td>
-              <td>с <%= @user.expert.hw_start_tuesday %> до <%= @user.expert.hw_end_tuesday %></td>
-              <td>с <%= @user.expert.hw_start_wednesday %> до <%= @user.expert.hw_end_wednesday %></td>
-              <td>с <%= @user.expert.hw_start_thursday %> до <%= @user.expert.hw_end_thursday %></td>
-              <td>с <%= @user.expert.hw_start_friday %> до <%= @user.expert.hw_end_friday %></td>
-              <td>с <%= @user.expert.hw_start_saturday %> до <%= @user.expert.hw_end_saturday %></td>
-              <td>с <%= @user.expert.hw_start_sunday %> до <%= @user.expert.hw_end_sunday %></td>
-            </tbody>
-          </table>
 
-          <div>
+          <%= render partial: "users/doctor_schedule", locals: { expert: @user.expert } %>
+
+          <div class="pt-3">
             <h4 class="text-center mb-3">Адрес</h4>
             <% if @user.expert.address.present? %>
               <iframe
@@ -100,6 +78,8 @@
       </div>
     </div>
     <%= link_to "Редактировать профиль", edit_expert_path(@user.expert),
+                class: "btn btn-light text-primary d-block mb-4 inherit" %>
+    <%= link_to "Посмотреть как выглядит профиль со стороны", expert_path(@user.expert),
                 class: "btn btn-light text-primary d-block mb-4 inherit" %>
   </div>
 </div>

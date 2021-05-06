@@ -9,12 +9,15 @@
         <div class="col-12 col-md-6 text-black-50 d-flex flex-column justify-content-center
          align-items-center align-items-md-start">
           <h5 class="text-success"><%= event.user.card&.full_name %></h5>
-          <p><strong>E-mail: </strong> <%= mail_to event.user.email, event.user.email, class: "text-success" %></p>
-          <p><strong>Телефон: </strong> <%= link_to "#{event.user.card.phone}", "tel:#{event.user.card.phone}", class: "text-success" %></p>
+          <p><strong>E-mail: </strong>
+            <%= mail_to event.user.email, event.user.email, class: "text-success" %></p>
+          <p><strong>Телефон: </strong>
+            <%= link_to "#{event.user.card.phone}", "tel:#{event.user.card.phone}", class: "text-success" %></p>
         </div>
         <div class="col-12 col-md-3 d-flex flex-column justify-content-around">
           <div class="mx-2 ">
-            <%= link_to "Карта пациента", user_card_path(event.user, event.user.card), class: "btn btn-success d-block m-3", target: :_blank %>
+            <%= link_to "Карта пациента", user_card_path(event.user, event.user.card),
+                        class: "btn btn-success d-block m-3", target: :_blank %>
           </div>
         </div>
       </div>

@@ -8,7 +8,8 @@
           <p><%= image_tag(@user.image , size: "150x150") %></p>
           <p>E-mail:<%= @user.email %></p>
           <p>Birthday:<%= @user.birthday.strftime("%d of %B, %Y") if @user.birthday %></p>
-          <%= link_to "Редактировать карту пациента", edit_user_card_path(@user, @user.card), class: "btn btn-success" %><br>
+          <%= link_to "Редактировать карту пациента", edit_user_card_path(@user, @user.card),
+                      class: "btn btn-success" %><br>
           <%= link_to "Ваша карта вакцинации", user_vaccine_path(@user), class: "btn btn-success" %><br>
           <%= link_to "Редактировать профиль", edit_user_path(@user), class: "btn btn-success" %><br>
           <%= link_to "Дети", user_children_path(@user), class: "btn btn-success" %><br>

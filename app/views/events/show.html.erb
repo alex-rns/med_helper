@@ -15,11 +15,11 @@
         <h5 class="text-success mb-3">Информация о приёме</h5>
         <p>
           <i class="fa fa-calendar text-success"></i>
-          <strong> Начало приема: </strong> <%= @event.start_time.strftime("%d-%b-%Y %H:%M") %>
+          <strong> Начало приема: </strong> <%= l @event.start_time, format: :long %>
         </p>
         <p>
           <i class="fa fa-calendar text-success"></i>
-          <strong> Конец приема: </strong> <%= @event.end_time.strftime("%d-%b-%Y %H:%M") %>
+          <strong> Конец приема: </strong> <%= l @event.end_time, format: :long %>
         </p>
         <p>
           <i class="fa fa-phone-alt text-success"></i>

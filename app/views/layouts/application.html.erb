@@ -7,7 +7,6 @@
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  <%#= stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css' %>
   <meta name="google-signin-client_id" content="<%= ENV.fetch("GOOGLE_CLIENT_ID") %>.apps.googleusercontent.com">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <% if Rails.env.production? %>
