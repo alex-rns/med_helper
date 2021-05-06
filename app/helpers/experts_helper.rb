@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 require 'time'
 module ExpertsHelper
-
   def set_address(address)
-    address.split(' ').join("+")
+    address.split(' ').join('+')
   end
 
   def selector_element(arr)
@@ -10,7 +11,7 @@ module ExpertsHelper
   end
 
   def set_time
-    (0..23).map { |x| [x.to_s + ":" + "00", "#{x}" + ":" + "00"] }
+    (0..23).map { |x| %W[#{x}:00 #{x}:00] }
   end
 
   def check_params(expert, time)
@@ -23,9 +24,7 @@ module ExpertsHelper
 
   def check_event(expert)
     arr = []
-    expert.events.each do |ev|
-      arr << (ev.start_time.hour..ev.end_time.hour).to_a
-    end
+    expert.events.each { |ev| arr << (ev.start_time.hour..ev.end_time.hour).to_a }
     arr.flatten
   end
 end
