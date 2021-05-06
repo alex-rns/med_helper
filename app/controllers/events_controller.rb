@@ -11,7 +11,7 @@ class EventsController < ApplicationController
   def index; end
 
   def show
-    @event = expert.events.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def new

@@ -6,13 +6,11 @@ module ExpertsHelper
   end
 
   def selector_element(arr)
-    abc = arr.each_with_index.map { |x, i| [x.name, i + 1] }
-    abc
+    arr.each_with_index.map { |x, i| [x.name, i + 1] }
   end
 
   def set_time
-    time = (0..23).map { |x| [x.to_s + ":" + "00", "#{x}" + ":" + "00"] }
-    time
+    (0..23).map { |x| [x.to_s + ":" + "00", "#{x}" + ":" + "00"] }
   end
 
   def check_params(expert, time)
