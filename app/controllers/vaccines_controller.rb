@@ -5,7 +5,9 @@ class VaccinesController < ApplicationController
   before_action :find_vaccine, only: %i[show edit update]
   before_action :correct_user, only: %i[show edit update]
 
-  def show; end
+  def show
+    @birthday = params[:child_id].present? ? @user.birthday : @user.card.birthday
+  end
 
   def edit; end
 
@@ -23,11 +25,7 @@ class VaccinesController < ApplicationController
   private
 
   def find_user
-    @user = if params[:child_id].present?
-              Child.find(params[:id])
-            else
-              User.find(params[:id])
-            end
+    @user = params[:child_id].present? ? Child.find(params[:id]) : User.find(params[:id])
   end
 
   def find_vaccine
