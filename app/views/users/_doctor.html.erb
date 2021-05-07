@@ -2,53 +2,14 @@
   <h3 class="text-center text-primary pt-4 pb-3">Профиль врача</h3>
   <div class="pacient-card bg-primary-light d-flex flex-column align-items-center row">
     <div class="text-center">
-      <% if @user.expert.image.attached? || @user.image.present? %>
-        <%= image_tag(@user.expert.image.url || @user.image, size: 250, class: 'text-center img-fluid mt-4') %>
-      <% end %>
+       <%= image_tag(@user.expert.image.url || @user.image, size: 250, class: 'text-center img-fluid mt-4') %>
     </div>
     <div class="m-auto">
       <div class="pacient-card-info bg-primary p-4 text-white m-3 row">
         <div class="d-flex flex-column">
-          <p>
-            <strong>ФИО: </strong>
-            <span><%= @user.expert.full_name %></span>
-          </p>
-          <p>
-            <strong>Категория: </strong>
-            <span><%= @user.expert.category.name %></span>
-          </p>
-          <p>
-            <strong>Краткое описание: </strong>
-            <span><%= @user.expert.description %></span>
-          </p>
-          <p>
-            <strong>Уровень категории: </strong>
-            <span><%= @user.expert.level.name %></span>
-          </p>
-          <p>
-            <strong>Опыт: </strong>
-            <span><%= @user.expert.experience %></span>
-          </p>
-          <p>
-            <strong>Образование: </strong>
-            <span><%= @user.expert.education %></span>
-          </p>
-          <p>
-            <strong>Дополнительное образование: </strong>
-            <span><%= @user.expert.additional_education %></span>
-          </p>
-          <p>
-            <strong>Место работы: </strong>
-            <span><%= @user.expert.medical_center %></span>
-          </p>
-          <p>
-            <strong>Процедуры: </strong>
-            <span><%= @user.expert.procedure %></span>
-          </p>
-          <p>
-            <strong>Телефон: </strong>
-            <span><%= @user.expert.phone %></span>
-          </p>
+          <% @user_fields_hash.each do |key, val| %>
+            <% user_fields(key, val) %>
+          <% end %>
 
           <%= render partial: "users/doctor_schedule", locals: { expert: @user.expert } %>
 
