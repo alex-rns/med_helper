@@ -25,4 +25,11 @@ class ApplicationController < ActionController::Base
       redirect_to home_path
     end
   end
+
+  def find_owner
+    unless current_user.expert == Expert.find(params[:expert_id])
+      flash[:notice] = 'Страница не доступна'
+      redirect_to home_path
+    end
+  end
 end
