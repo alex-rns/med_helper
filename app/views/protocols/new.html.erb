@@ -17,8 +17,8 @@
           <p>
             <strong><%= f.label "Прием" %></strong>
             <span><%= select_tag :type_of_inspection,
-                                 options_for_select([["Первичный прием", Protocol.type_of_inspections.keys.first],
-                                                     ["Повторный прием", Protocol.type_of_inspections.keys.second]]),
+                                 options_for_select([["Первичный прием", Protocol.type_of_inspections.first_visit],
+                                                     ["Повторный прием", Protocol.type_of_inspections.second_visit]]),
                                  class: 'form-control' %></span>
           </p>
           <p>
