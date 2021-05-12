@@ -44,7 +44,7 @@ class EventsController < ApplicationController
   def check_time
     @time = params[:time]
     expert = Expert.find(params[:expert_id])
-    @avail_time = available_time(expert, @time)
+    @avail_time = available_time(expert, @time)[0..-2]
     render partial: 'time_slots'
   end
 
