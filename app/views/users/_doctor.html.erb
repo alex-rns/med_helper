@@ -2,13 +2,13 @@
   <h3 class="text-center text-primary pt-4 pb-3">Профиль врача</h3>
   <div class="pacient-card bg-primary-light d-flex flex-column align-items-center row">
     <div class="text-center">
-       <%= image_tag(@user.expert.image.url || @user.image, size: 250, class: 'text-center img-fluid mt-4') %>
+      <%= image_tag(@user.expert.image.url || @user.image, size: 250, class: 'text-center img-fluid mt-4') %>
     </div>
     <div class="m-auto">
       <div class="pacient-card-info bg-primary p-4 text-white m-3 row">
         <div class="d-flex flex-column">
           <% @user_fields_hash.each do |key, val| %>
-            <% user_fields(key, val) %>
+            <%= user_fields(key, val) %>
           <% end %>
 
           <%= render partial: "users/doctor_schedule", locals: { expert: @user.expert } %>
