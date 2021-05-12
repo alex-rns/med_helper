@@ -21,8 +21,7 @@ class User < ApplicationRecord
       name: access_token.info.name,
       email: data['email'],
       image: access_token.info.image,
-      password: '28ddds83'
-    )
+      password: SecureRandom.hex(8))
     user
   end
 end
