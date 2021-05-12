@@ -85,22 +85,7 @@ module EventsHelper
     else
       availiabe = set_time - event_time
     end
-    arr = {}
-    if day_of_week == 0
-      return arr[0] = availiabe
-    elsif day_of_week == 1
-      return arr[1] = availiabe
-    elsif day_of_week == 2
-      return arr[2] = availiabe
-    elsif day_of_week == 3
-      return arr[3] = availiabe
-    elsif day_of_week == 4
-      return arr[4] = availiabe
-    elsif day_of_week == 5
-      return arr[5] = availiabe
-    else
-      return arr[6] = availiabe
-    end
+    arr = { day_of_week: availiabe }
   end
 
   def get_event(expert, time)
