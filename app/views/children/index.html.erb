@@ -14,7 +14,7 @@
                 </p>
                 <p>
                   <strong>Дата рождения: </strong>
-                  <span><%= child.birthday.strftime("%d of %B, %Y") %></span>
+                  <span><%= l child.birthday, format: :custom %></span>
                 </p>
               </div>
             </div>

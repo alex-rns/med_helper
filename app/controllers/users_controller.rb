@@ -1,29 +1,26 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :find_user, only: %i[show]
 
   def show
-  end
-
-  def edit
-  end
-
-  def update
-    if @user.update(user_params)
-      redirect_to @user, success: "Ваш профиль был изменён"
-    else
-      flash.now[:danger] = "Ваш профиль не был изменён"
-      render "edit"
-    end
+    @user_fields_hash = {
+      fio: @user.expert.full_name,
+      category: @user.expert.category.name,
+      description: @user.expert.description,
+      level: @user.expert.level.name,
+      experience: @user.expert.experience,
+      education: @user.expert.education,
+      add_education: @user.expert.additional_education,
+      center: @user.expert.medical_center,
+      procedure: @user.expert.procedure,
+      phone: @user.expert.phone
+    }
   end
 
   private
 
-  def set_user
+  def find_user
     @user = current_user
   end
-
-  def user_params
-    params.require(:user).permit(:birthday, :image)
-  end
-
 end

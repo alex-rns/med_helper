@@ -20,7 +20,7 @@
         </div>
         <div class="mb-3">
           <%= f.label "Дата рождения", class: "pb-2" %>
-          <%= f.date_field :birthday, class: "form-control" %>
+          <%= f.date_field :birthday, max: DateTime.now, class: "form-control" %>
         </div>
         <%= f.submit "Добавить", class: "btn btn-success form-control text-white" %>
       <% end %>

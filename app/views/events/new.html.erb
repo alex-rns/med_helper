@@ -35,7 +35,8 @@
           <% end %>
         </div>
       </div>
-      <%= f.submit "Отправить заявку", class: "btn btn-lg btn-success text-center form-control text-white" %>
+      <%= f.hidden_field "event[expert_id]", value: @expert.id %>
+      <%= f.submit "Отправить заявку", id: 'submitBtn', class: "btn btn-lg btn-success text-center form-control text-white" %>
     <% end %>
   </div>
 </div>
@@ -49,6 +50,11 @@
             data: {time: date_time, expert: '<%=@expert.id%>'},
             success: function (response) {
                 $('#time').html(response);
+                if ($(document).find('#time .btn').length) {
+                  $(document).find('#submitBtn').attr('disabled', false)
+                } else {
+                  $(document).find('#submitBtn').attr('disabled', true)
+                }
             }
         });
     })

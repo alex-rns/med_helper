@@ -1,113 +1,72 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-10 offset-md-1">
-      <div class="card card-pacient-first">
-        <div class="card-header card-pacient text-center">
-          Профиль врача</div>
-         <div class="card-body text-center">
-<% if @user.expert.image.attached? || @user.image.present? %>
-  <p><%= image_tag(@user.expert.image.url || @user.image, size: "150x150", class: "avatar-contain") %></p>
-<% end %>
-<p>Рейтинг: <%= @user.expert.rating %></p>
-<% if @user.expert.full_name.present? %>
-<p><strong>ФИО:</strong> <%= @user.expert.full_name %></p>
-<% end %>
-<% if @user.expert.description.present? %>
-<p><strong>Краткое описание:</strong> <%= @user.expert.description %></p>
-<% end %>
-<% if @user.expert.experience.present? %>
-<p><strong>Опыт:</strong> <%= @user.expert.experience %></p>
-<% end %>
- <% if @user.expert.education.present? %>
-<p><strong>Образование:</strong> <%= @user.expert.education %></p>
-<%end %>
-<% if @user.expert.additional_education.present? %>
-<p><strong>Дополнительное образование:</strong> <%= @user.expert.additional_education %></p>
-<% end %>
-<% if @user.expert.procedure.present? %>
-<p><strong>Процедуры:</strong> <%= @user.expert.procedure %></p>
-<% end %>
-<% if @user.expert.medical_center.present? %>
-<p><strong>Место работы:</strong> <%= @user.expert.medical_center %></p>
-<% end %>
-<% if @user.expert.address.present? %>
-<p><strong>Адрес:</strong> <%= @user.expert.address %></p>
-<% end %>
-<% if @user.email.present? %>
-<p><strong>Email:</strong> <%= @user.email %></p>
-<% end %>
-<% if @user.expert.phone.present? %>
-<p><strong>Телефон:</strong> <%= @user.expert.phone %></p>
-<% end %>
-<% if @user.expert.level.present? %>
-<p><strong>Уровень:</strong> <%= @user.expert.level.name %></p>
-<% end %>
-<% if @user.expert.category.name.present? %>
-<p><strong>Категория:</strong> <%= @user.expert.category.name %></p>
-<% end %>
-<p><strong>Рабочие часы:</strong></p>
-<table class="table">
-  <thead>
-    <tr class="table-info">
-      <th scope="col"><strong>Пн</strong></th>
-      <th scope="col"><strong>Вт</strong></th>
-      <th scope="col"><strong>Ср</strong></th>
-      <th scope="col"><strong>Чт</strong></th>
-      <th scope="col"><strong>Пт</strong></th>
-      <th scope="col"><strong>Сб</strong></th>
-      <th scope="col"><strong>Вс</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>с <%= @user.expert.hw_start_monday %> до <%= @user.expert.hw_end_monday %></td>
-      <td>с <%= @user.expert.hw_start_tuesday %> до <%= @user.expert.hw_end_tuesday %></td>
-      <td>с <%= @user.expert.hw_start_wednesday %> до <%= @user.expert.hw_end_wednesday %></td>
-      <td>с <%= @user.expert.hw_start_thursday %> до <%= @user.expert.hw_end_thursday %></td>
-      <td>с <%= @user.expert.hw_start_friday %> до <%= @user.expert.hw_end_friday %></td>
-      <td>с <%= @user.expert.hw_start_saturday %> до <%= @user.expert.hw_end_saturday %></td>
-      <td>с <%= @user.expert.hw_start_sunday %> до <%= @user.expert.hw_end_sunday %></td>
-  </tbody>
-</table>
+  <h3 class="text-center text-primary pt-4 pb-3">Профиль врача</h3>
+  <div class="pacient-card bg-primary-light d-flex flex-column align-items-center row">
+    <div class="text-center">
+      <%= image_tag(@user.expert.image.url || @user.image, size: 250, class: 'text-center img-fluid mt-4') %>
+    </div>
+    <div class="m-auto">
+      <div class="pacient-card-info bg-primary p-4 text-white m-3 row">
+        <div class="d-flex flex-column">
+          <% @user_fields_hash.each do |key, val| %>
+            <%= user_fields(key, val) %>
+          <% end %>
 
+          <%= render partial: "users/doctor_schedule", locals: { expert: @user.expert } %>
 
-<div>
-  <% if @user.expert.address.present? %>
-    <iframe
-      width="860"
-      height="450"
-      style="border:0"
-      loading="lazy"
-      allowfullscreen
-      src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+          <div class="pt-3">
+            <h4 class="text-center mb-3">Адрес</h4>
+            <% if @user.expert.address.present? %>
+              <iframe
+                width="100%"
+                height="400px"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
       &q=Черкассы+<%= set_address(@user.expert.address) %>">
-    </iframe>
-  <% else %>
-    <iframe
-      width="860"
-      height="450"
-      style="border:0"
-      loading="lazy"
-      allowfullscreen
-      src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
+              </iframe>
+            <% else %>
+              <iframe
+                width="100%"
+                height="400px"
+                loading="lazy"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?key=<%= ENV.fetch("API_KEY") %>
       &q=Черкассы">
-    </iframe>
-  <% end %>
-  <div>
-    <%= link_to "Редактировать", edit_expert_path(@user.expert) %>
+              </iframe>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= link_to "Редактировать профиль", edit_expert_path(@user.expert),
+                class: "btn btn-light text-primary d-block mb-4 inherit" %>
+    <%= link_to "Посмотреть как выглядит профиль со стороны", expert_path(@user.expert),
+                class: "btn btn-light text-primary d-block mb-4 inherit" %>
   </div>
 </div>
 
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="text-center">
-  <h4>Оставленные мне комментарии</h4>
-  <% @user.expert.comments.each do |comment| %>
-    <%= comment.user.email %>:
-    <%= comment.body %>
-    <br>
-  <% end %>
-</div>
+<h3 class="text-center text-primary pt-4 pb-3">Оставленные мне комментарии</h3>
+<% if @user.expert.comments.present? %>
+  <div class="m-2 d-flex-column">
+    <% @user.expert.comments.each do |comment| %>
+      <div class="col- p-4 bg-white mb-3 border border-success my-3 card-border">
+        <strong class="p-2">
+          <%= link_to (comment.user.card.full_name if comment.user.card.present?).presence || comment.user.email,
+                      user_card_path(comment.user, comment.user.card),
+                      class: "text-success" %>
+        </strong>
+        <strong class="text-right p-2"><%= render_stars(comment.rating) %></strong>
+        <p class="p-3 my-3 border border-success bg-success card-border"><%= comment.body %></p>
+        <div class="d-flex justify-content-between">
+          <div class="p-2">
+            <span>Рекомендация </span>
+            <i class="fas fa-thumbs-<%= comment.recommendation ? "up" : "down" %>
+               fa-lg text-<%= comment.recommendation ? "success" : "danger" %>"></i>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="text-center">Комментрии отсутствуют</p>
+<% end %>

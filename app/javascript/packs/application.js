@@ -6,26 +6,18 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
-// import '../stylesheets/application'
 import "@fortawesome/fontawesome-free/js/all";
 import "@fortawesome/fontawesome-free/css/all";
 import "channels"
 import "bootstrap"
 import "jquery-ui/ui/widgets/autocomplete"
+import "./search"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-// THIS IS MAKING jQuery AVAILABLE EVEN INSIDE Views FOLDER
-// global.$ = require("jquery")
 
-// import "jquery" // Don't really need to require this...
 import "jquery-ui/ui/widgets/autocomplete"
 
-// $(document).on('ready', function () {
-//   $('#eventStartDate').on('change', function () {
-//     debugger
-//   })
-// })
 document.addEventListener("turbolinks:load", function() {
   $(function () {
     setTimeout(function(){

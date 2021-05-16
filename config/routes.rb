@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   root 'pages#home', as: "home"
   get '/role', to: 'pages#role', as: "role"
   get '/privacy_policy', to: 'pages#rule', as: "rules"
+  get "/pages/:page", to: "pages#show", as: 'page'
   resources :comments
-  resources :pacients, only: [:index]
+  resources :patients, only: [:index]
   resources :experts, only: [:show, :index, :edit, :update] do
     resources :events, only: [:index, :new, :create, :show, :update] do
       collection do

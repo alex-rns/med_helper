@@ -1,74 +1,73 @@
-include EventsHelper
+# frozen_string_literal: true
 
 class EventsController < ApplicationController
-  before_action :find_expert, only: [:new, :create, :show, :update]
-  before_action :find_user, only: [:new, :create, :show]
+  include EventsHelper
+  before_action :find_expert, only: %i[index update], if: :find_doctor?
+  before_action :find_expert, only: %i[new create update], if: :find_patient?
+  before_action :find_patient_event, only: %i[index], if: :find_patient?
+  before_action :find_doctor_event, only: %i[index], if: :find_doctor?
+  before_action :find_owner, only: %i[index], if: :find_doctor?
 
-  def index
-    if current_user.expert.present?
-      find_expert
-      @events = @expert.events
-    else
-      find_user
-      @events = current_user.events
-    end
+  def index; end
+
+  def show
+    @event = Event.find(params[:id])
   end
 
   def new
-    @event = @expert.events.build
+    @event = current_user.events.build(expert: @expert)
   end
 
   def create
-    params[:event][:end_time] = params[:event][:start_time].to_datetime+1.hour
-    @event = @expert.events.create(event_params)
-    @event.pending!
+    @event = current_user.events.build(event_params)
     if @event.save
+      flash[:notice] = 'Заявка отправлена успешно! Ожидайте подтверждения врача!'
       redirect_to expert_event_path(@expert, @event)
-      flash[:notice] = "Заявка отправлена успешно! Ожидайте подтверждения врача!"
     else
       render 'new'
     end
   end
 
   def update
-    if params[:q]=='approve'
-      event = Event.find(params[:id])
-      @links = google_event(event)
-      @event = event.approve!
-      event.update(calendar_link: @links.first, meeting_link: @links.second)
-      redirect_to expert_events_path(@expert)
-    else
-      event = Event.find(params[:id])
-      @event = event.rejected!
-      redirect_to expert_events_path(@expert)
-    end
-  end
-
-  def show
+    @expert = Expert.find(params[:expert_id])
     @event = Event.find(params[:id])
+    if params[:q] == 'approve'
+      @links = google_event(@event)
+      @event.approve!
+      @event.update(calendar_link: @links.first, meeting_link: @links.second)
+    else
+      @event.rejected!
+    end
+    redirect_to expert_events_path(@expert)
   end
 
   def check_time
     @time = params[:time]
-    expert = Expert.find(params[:expert])
+    expert = Expert.find(params[:expert_id])
     @avail_time = available_time(expert, @time)
-    render partial: "time_slots"
+    render partial: 'time_slots'
   end
 
   private
+
+  def find_patient_event
+    @events = current_user.events
+  end
+
+  def find_doctor_event
+    @expert = Expert.find(params[:expert_id])
+    @events = @expert.events
+  end
+
   def find_expert
     @expert = Expert.find(params[:expert_id])
   end
 
-  def find_user
-    unless user_signed_in?
-      redirect_to new_user_session_path
-    else
-     current_user
-   end
-  end
-
   def event_params
-    params.require(:event).permit(:start_time, :end_time, :comment, :type_of_call, :status).merge(user_id: current_user.id)
+    p = params.require(:event).permit(:start_time, :comment, :type_of_call,
+                                      :end_time).merge(expert_id: @expert.id)
+    p[:end_time] = p[:start_time].to_datetime + 1.hour
+    p[:status] = 'pending'
+    p
   end
 end
