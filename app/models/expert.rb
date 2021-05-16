@@ -13,11 +13,11 @@ class Expert < ApplicationRecord
   validates :category, presence: false
 
   scope :searcher, lambda { |params|
-                     search_scope = Expert.all
-                     search_scope = search_scope.query(params[:query]) if params[:query].present?
-                     search_scope = search_scope.filters(params[:filter]) if params[:filter].present?
-                     search_scope
-                   }
+    search_scope = Expert.all
+    search_scope = search_scope.query(params[:query]) if params[:query].present?
+    search_scope = search_scope.filters(params[:filter]) if params[:filter].present?
+    search_scope
+  }
   scope :query, lambda { |params|
     where('full_name ILIKE :search', search: "%#{params}%")
       .or(where(category_id: Category.where('name ILIKE :search', search: "%#{params}%").ids))
@@ -37,7 +37,6 @@ class Expert < ApplicationRecord
 
   def rating
     return 0 if comments.empty?
-
     comments.sum(&:rating).to_f / comments.count
   end
 end

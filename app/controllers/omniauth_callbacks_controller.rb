@@ -26,7 +26,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     when 'doctor'
       @user.doctor!
       assign_image_doctor
-    when 'patient'
+    else
       @user.patient!
       assign_image_patient
     end

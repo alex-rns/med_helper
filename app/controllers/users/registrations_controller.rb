@@ -8,13 +8,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit; end
 
   def update
-    if params[:user][:type] == 'doctor'
+    case params[:user][:type]
+    when 'doctor'
       @user.doctor!
       assign_image_doctor
-    elsif params[:user][:type] == 'patient'
+    else
       @user.patient!
       assign_image_patient
-    else
     end
     redirect_to home_path
   end
